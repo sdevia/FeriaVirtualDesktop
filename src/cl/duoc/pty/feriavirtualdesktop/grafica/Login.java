@@ -127,6 +127,11 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
+        String identificador = txtIdentificador.getText();
+        String clave = txtClave.getText();
+        
+        Login objLogin= new Login(identificador, clave, 1);
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificadorActionPerformed

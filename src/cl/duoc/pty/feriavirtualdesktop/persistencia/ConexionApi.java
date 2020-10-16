@@ -77,7 +77,7 @@ public class ConexionApi {
             conn.setRequestProperty("Content-Type", "application/json;charset=UTF-16");
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Accept", "application/json");
-            String jsonInputString = "{Rut: \"22222222-5\", Clave: \"12345a\", TipoPerfil: 1}";
+            String jsonInputString = "{Rut: \"15538372-0\", Clave: \"12345a\", TipoPerfil: 1}";
             try(OutputStream os = conn.getOutputStream()) {
                 byte[] input = jsonInputString.getBytes("UTF-16");
                 os.write(input, 0, input.length);

@@ -13,7 +13,10 @@ public class Login {
     
     private String rut; 
     private String clave; 
-    public int tipoPerfil;
+    private int tipoPerfil;
+
+    public Login() {
+    }
 
     public Login(String rut, String clave, int tipoPerfil) {
         this.rut = rut;
@@ -21,12 +24,6 @@ public class Login {
         this.tipoPerfil = tipoPerfil;
     }
 
-
-// Constructor sin parametros 
-    public Login() {
-    }
-
-// Getters y Setters
     public String getRut() {
         return rut;
     }
@@ -50,8 +47,7 @@ public class Login {
     public void setTipoPerfil(int tipoPerfil) {
         this.tipoPerfil = tipoPerfil;
     }
-    
-    
-    
+
+   
     
 }

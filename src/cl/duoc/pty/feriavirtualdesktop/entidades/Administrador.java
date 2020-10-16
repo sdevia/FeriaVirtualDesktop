@@ -5,10 +5,59 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.entidades;
 
+import java.io.Serializable;
+
 /**
  *
  * @author s1mu2
  */
 public class Administrador {
-    
+
+    private boolean Exito;
+    private int Motivo;
+    private String Mensaje;
+    private Usuario Usuario;
+
+    public Administrador() {
+    }
+
+    public Administrador(boolean Exito, int Motivo, String Mensaje, Usuario Usuario) {
+        this.Exito = Exito;
+        this.Motivo = Motivo;
+        this.Mensaje = Mensaje;
+        this.Usuario = Usuario;
+    }
+
+    public boolean isExito() {
+        return Exito;
+    }
+
+    public void setExito(boolean Exito) {
+        this.Exito = Exito;
+    }
+
+    public int getMotivo() {
+        return Motivo;
+    }
+
+    public void setMotivo(int Motivo) {
+        this.Motivo = Motivo;
+    }
+
+    public String getMensaje() {
+        return Mensaje;
+    }
+
+    public void setMensaje(String Mensaje) {
+        this.Mensaje = Mensaje;
+    }
+
+    public Usuario getUsuario() {
+        return Usuario;
+    }
+
+    public void setUsuario(Usuario Usuario) {
+        this.Usuario = Usuario;
+    }
+
 }

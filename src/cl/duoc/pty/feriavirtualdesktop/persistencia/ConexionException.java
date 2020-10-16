@@ -9,6 +9,11 @@ package cl.duoc.pty.feriavirtualdesktop.persistencia;
  *
  * @author s1mu2
  */
-public class Rest {
+class ConexionException extends Exception{
+    
+    public ConexionException(String msg)
+    {
+        super(msg);
+    }
     
 }

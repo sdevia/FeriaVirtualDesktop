@@ -8,21 +8,24 @@ package cl.duoc.pty.feriavirtualdesktop.grafica;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Administrador;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Login;
 import cl.duoc.pty.feriavirtualdesktop.negocio.LoginController;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
 
-        
 /**
  *
  * @author s1mu2
  */
 public class VistaLogin extends javax.swing.JFrame {
 
-    
     /**
      * Creates new form Login
      */
     public VistaLogin() {
         initComponents();
         pnlDatosUsuario.setVisible(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
 
     /**
@@ -49,10 +52,14 @@ public class VistaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblIdentificador.setText("Identificador");
+        lblIdentificador.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+        lblIdentificador.setText("Rut");
 
+        lblClave.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         lblClave.setText("Clave");
 
+        txtIdentificador.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+        txtIdentificador.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIdentificador.setText("15538372-0");
         txtIdentificador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,13 +67,19 @@ public class VistaLogin extends javax.swing.JFrame {
             }
         });
 
-        lblTituloLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTituloLogin.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        lblTituloLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTituloLogin.setText("Ingreso Administrador");
 
+        txtClave.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         jLabel1.setText("¿Ha Olvidado Su Contraseña?");
 
+        btnCerrar.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         btnCerrar.setText("Salir");
 
+        btnIngresar.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +87,7 @@ public class VistaLogin extends javax.swing.JFrame {
             }
         });
 
+        txtNombre.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -85,16 +99,23 @@ public class VistaLogin extends javax.swing.JFrame {
         pnlDatosUsuarioLayout.setHorizontalGroup(
             pnlDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosUsuarioLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGroup(pnlDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosUsuarioLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlDatosUsuarioLayout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         pnlDatosUsuarioLayout.setVerticalGroup(
             pnlDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosUsuarioLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(16, 16, 16)
+                .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
@@ -104,33 +125,28 @@ public class VistaLogin extends javax.swing.JFrame {
             .addGroup(pnlAdminLayout.createSequentialGroup()
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(pnlDatosUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlAdminLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(lblTituloLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlAdminLayout.createSequentialGroup()
-                            .addGap(81, 81, 81)
-                            .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
+                        .addGap(81, 81, 81)
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(pnlAdminLayout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(94, 94, 94))
                                 .addGroup(pnlAdminLayout.createSequentialGroup()
                                     .addComponent(btnIngresar)
-                                    .addGap(63, 63, 63)
-                                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlAdminLayout.createSequentialGroup()
-                            .addGap(52, 52, 52)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblClave))
-                            .addGap(68, 68, 68)
-                            .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
+                                    .addComponent(lblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblClave))))
+                    .addGroup(pnlAdminLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnlDatosUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(11, Short.MAX_VALUE))
+            .addComponent(lblTituloLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlAdminLayout.setVerticalGroup(
             pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,24 +167,22 @@ public class VistaLogin extends javax.swing.JFrame {
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresar)
                     .addComponent(btnCerrar))
-                .addGap(58, 58, 58)
-                .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlDatosUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+            .addComponent(pnlAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,35 +190,30 @@ public class VistaLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-       
-     
-                        
+
         Login login = new Login();
         Administrador admin = new Administrador();
-        
+
         login.setRut(txtIdentificador.getText());
         login.setClave(txtClave.getText());
         login.setTipoPerfil(1);
-        
+
         try {
             admin = LoginController.login(login);
-            
-            if(admin.isExito()){
-                 lblMensajeError.setText("");
+
+            if (admin.isExito()) {
+                lblMensajeError.setText("");
                 txtNombre.setText(admin.getUsuario().getNombre());
-               pnlDatosUsuario.setVisible(true);
-            }else{
+                pnlDatosUsuario.setVisible(true);
+            } else {
                 lblMensajeError.setText("Usuario o Contraseña Incorrectos");
             }
-          
-            
+
         } catch (Exception e) {
-              System.out.println("Error al obtener los datos del usuario" + e);
+            System.out.println("Error al obtener los datos del usuario" + e);
         }
-        
-       
-        
-        
+
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificadorActionPerformed
@@ -247,7 +256,7 @@ public class VistaLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VistaLogin().setVisible(true);
-                
+
             }
         });
     }

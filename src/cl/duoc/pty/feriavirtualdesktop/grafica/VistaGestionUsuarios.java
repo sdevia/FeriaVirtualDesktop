@@ -5,16 +5,22 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
+import cl.duoc.pty.feriavirtualdesktop.entidades.ListaUsuario;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
+import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
+import static cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController.buscarUsuario;
+import java.util.List;
+
 /**
  *
  * @author s1mu2
  */
-public class DatosAdministrador extends javax.swing.JFrame {
+public class VistaGestionUsuarios extends javax.swing.JFrame {
 
     /**
      * Creates new form DatosAdministrador
      */
-    public DatosAdministrador() {
+    public VistaGestionUsuarios() {
         initComponents();
     }
 
@@ -57,7 +63,7 @@ public class DatosAdministrador extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,10 +128,20 @@ public class DatosAdministrador extends javax.swing.JFrame {
         lblEmail.setText("Email");
 
         btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +150,7 @@ public class DatosAdministrador extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -145,7 +161,7 @@ public class DatosAdministrador extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblUsuarios);
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
         pnlDatos.setLayout(pnlDatosLayout);
@@ -312,6 +328,30 @@ public class DatosAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        ListaUsuario listaUsuario = new ListaUsuario();
+        
+        String idPerfil = "0";
+        String idSession = "d1aabe67-35eb-4f57-bd2b-378082e0b3b2";
+        String servicio = "FRT";
+        
+        
+        listaUsuario = UsuarioController.buscarUsuario(idPerfil, idSession, servicio);
+        
+        List<Usuario> lista = listaUsuario.getUsuarios();
+        //Crear las columnas
+     // Llenar swing table con datos de array
+        
+        
+        
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -329,20 +369,23 @@ public class DatosAdministrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DatosAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaGestionUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DatosAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaGestionUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DatosAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaGestionUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DatosAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaGestionUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DatosAdministrador().setVisible(true);
+                new VistaGestionUsuarios().setVisible(true);
             }
         });
     }
@@ -357,7 +400,6 @@ public class DatosAdministrador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbTipoUsuario;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblActivo;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblClave;
@@ -371,6 +413,7 @@ public class DatosAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTipoUsuario;
     private javax.swing.JPanel pnlDatos;
+    private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;

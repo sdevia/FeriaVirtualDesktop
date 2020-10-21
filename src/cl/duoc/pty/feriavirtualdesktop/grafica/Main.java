@@ -16,8 +16,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        VistaLogin login= new VistaLogin();
-        login.setVisible (true);
+       // VistaLogin login= new VistaLogin();
+       VistaGestionUsuarios vgu = new VistaGestionUsuarios();
+     //   pnlDatos.setVisible (true);
     }
     
 }

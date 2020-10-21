@@ -7,9 +7,12 @@ package cl.duoc.pty.feriavirtualdesktop.grafica;
 
 import cl.duoc.pty.feriavirtualdesktop.entidades.ListaUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
 import static cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController.buscarUsuario;
 import java.util.List;
+import javax.swing.JTable;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,9 +23,14 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
     /**
      * Creates new form DatosAdministrador
      */
+    private List<Usuario> usuarios;
+    private TMUsuario modelo;
+    
     public VistaGestionUsuarios() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,7 +70,7 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -161,7 +169,7 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblUsuarios);
+        jScrollPane2.setViewportView(tblUsuarios);
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
         pnlDatos.setLayout(pnlDatosLayout);
@@ -209,11 +217,10 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
                         .addComponent(lblTelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosLayout.createSequentialGroup()
-                    .addContainerGap(56, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(52, Short.MAX_VALUE)))
+            .addGroup(pnlDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         pnlDatosLayout.setVerticalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,12 +283,9 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar)
                     .addComponent(btnBuscar))
-                .addContainerGap(185, Short.MAX_VALUE))
-            .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosLayout.createSequentialGroup()
-                    .addContainerGap(391, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -298,7 +302,7 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -339,11 +343,20 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
         
         listaUsuario = UsuarioController.buscarUsuario(idPerfil, idSession, servicio);
         
-        List<Usuario> lista = listaUsuario.getUsuarios();
+        
         //Crear las columnas
+        usuarios = new ArrayList<>();
+        usuarios.add(new Usuario (23,"33333333-3","Javier","Caro","j.caroo@alumnos.duoc.cl", true,true,"Antoniop varas 666","lbi1BDn8jPTIhm8m0O0MEIE9DAU=", 0, false,"2020-10-09T00:00:00",
+                "0001-01-01T00:00:00", 4, "995717582", "", null, "true"));
+        usuarios.add(new Usuario (23,"33333333-3","Javier","Caro","j.caroo@alumnos.duoc.cl", true,true,"Antoniop varas 666","lbi1BDn8jPTIhm8m0O0MEIE9DAU=", 0, false,"2020-10-09T00:00:00",
+                "0001-01-01T00:00:00", 4, "995717582", "", null, "true"));
+        
+        modelo = new TMUsuario(usuarios);
+        tblUsuarios.setModel(modelo);
+        
      // Llenar swing table con datos de array
         
-        
+            
         
         
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -399,7 +412,7 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbComuna;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbTipoUsuario;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblActivo;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblClave;

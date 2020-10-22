@@ -11,16 +11,16 @@ import java.util.List;
  *
  * @author s1mu2
  */
-public class ListaUsuario {
+public class RespuestaUsuarioListar {
 
     private boolean Exito;
     private String Mensaje;
     private List<Usuario> Usuarios;
 
-    public ListaUsuario() {
+    public RespuestaUsuarioListar() {
     }
 
-    public ListaUsuario(boolean Exito, String Mensaje, List<Usuario> Usuarios) {
+    public RespuestaUsuarioListar(boolean Exito, String Mensaje, List<Usuario> Usuarios) {
         this.Exito = Exito;
         this.Mensaje = Mensaje;
         this.Usuarios = Usuarios;

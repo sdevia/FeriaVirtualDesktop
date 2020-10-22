@@ -5,33 +5,38 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.negocio;
 
-import cl.duoc.pty.feriavirtualdesktop.entidades.Administrador;
-import cl.duoc.pty.feriavirtualdesktop.entidades.Login;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import com.google.gson.Gson;
 
 /**
  *
  * @author s1mu2
  */
-public class LoginController {
+public class ApiController {
 
-    public static Administrador login(Login login) {
+    private String urlApi = "https://localhost:44302/api/";
 
-        boolean accesoCorrecto = false;
-        Administrador admin = new Administrador();
-        
+    public String Get(String recurso) {
+        List<Parametro> parametros = new ArrayList<Parametro>();
+        return Get(recurso, parametros);
+    }
+
+    public String Get(String recurso, List<Parametro> parametros) {
+
         try {
 
             //Aqui ponemos loginca para conectarnos a la api
@@ -59,19 +64,23 @@ public class LoginController {
             // Install the all-trusting host verifier
             HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
             /* End of the fix*/
-
-            URL url = new URL("https://localhost:44302/api/login");//your url i.e fetch data from .
+            String param = "?";
+            for (final Parametro myparam : parametros) {
+                param += myparam.Name + "=" + myparam.Value+"&";
+            }
+            URL url = new URL(urlApi + recurso+param);//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             //conn.setDoInput(true);
             conn.setRequestProperty("Content-Type", "application/json;charset=UTF-16");
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Accept", "application/json");
-            String jsonInputString = "{Rut: \"" + login.getRut() + "\", Clave: \"" + login.getClave() + "\", TipoPerfil: 1}";
-            try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("UTF-16");
-                os.write(input, 0, input.length);
-            }
+            conn.setRequestMethod("GET");
+            //conn.setRequestProperty("Accept", "application/json");
+            //String jsonInputString = "{idperfil: \"" + idPerfil + "\", idSession: \"" + idSession + "\", servicio: \"" + servicio +"\"}";
+//            System.out.println(">>>" + jsonInputString);
+//            try (OutputStream os = conn.getOutputStream()) {
+//                byte[] input = jsonInputString.getBytes("UTF-16");
+//                os.write(input, 0, input.length);
+//            }
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP Error code : "
                         + conn.getResponseCode());
@@ -82,29 +91,17 @@ public class LoginController {
             StringBuilder data = new StringBuilder();
             String output;
             while ((output = br.readLine()) != null) {
-                data.append(output + '\n');         
+                data.append(output + '\n');
             }
 
-            // 
-
-           
-            Gson g = new Gson();
-            String jsonString = g.toJson(admin);
-            admin = g.fromJson(data.toString(), Administrador.class);
-
-            if (admin != null) {
-                if(admin.isExito()){
-                    accesoCorrecto = true;         
-                }
-
-            } 
+            
             conn.disconnect();
-
+            return data.toString();
         } catch (Exception e) {
             System.out.println("Se ha producido un error al obtener la información " + e);
         }
-
-        return admin;
+        return null;
     }
 
+    // Todo lo del get y el post aca.
 }

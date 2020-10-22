@@ -5,7 +5,7 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
-import cl.duoc.pty.feriavirtualdesktop.entidades.ListaUsuario;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
@@ -295,7 +295,7 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,7 +334,7 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        ListaUsuario listaUsuario = new ListaUsuario();
+        RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
         
         String idPerfil = "0";
         String idSession = "d1aabe67-35eb-4f57-bd2b-378082e0b3b2";

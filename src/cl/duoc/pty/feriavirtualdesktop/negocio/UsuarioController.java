@@ -55,8 +55,8 @@ public class UsuarioController {
            }
             Gson g = new Gson();
             //String jsonString = g.toJson(Usuarios);
+            //listaUsuario = g.fromJson(resultado, RespuestaUsuarioListar.class);
             listaUsuario = g.fromJson(resultado, RespuestaUsuarioListar.class);
-
             if (listaUsuario != null) {
                 if(listaUsuario.isExito()){
                     return listaUsuario;

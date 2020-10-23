@@ -23,6 +23,7 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
     /**
      * Creates new form DatosAdministrador
      */
+    
     private List<Usuario> usuarios;
     private TMUsuario modelo;
     
@@ -334,6 +335,8 @@ public class VistaGestionUsuarios extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+    
+
         RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
         
         String idPerfil = "0";

@@ -5,6 +5,16 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
+import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
+import cl.duoc.pty.feriavirtualdesktop.utils.ValidarRut;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author bruunildo
@@ -16,6 +26,23 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
      */
     public VistaGestionUsuarioss() {
         initComponents();
+        inicializarTabla();
+        
+
+    }
+    
+   
+    private void inicializarTabla() {
+        List<Usuario> usuarios = new ArrayList<>();
+        TMUsuario modelo;
+                            
+        modelo = new TMUsuario(usuarios);
+        
+ 
+        tblGestionUsuarios.setModel(modelo);
+        
+        
+
     }
 
     /**
@@ -41,18 +68,18 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         lblEstadoUsuario = new javax.swing.JLabel();
         lblActivoUsuario = new javax.swing.JLabel();
         lblDireccionUsuario = new javax.swing.JLabel();
-        txtRefionUsuario = new javax.swing.JTextField();
+        txtDireccionUsuario = new javax.swing.JTextField();
         lblEmailUsuario = new javax.swing.JLabel();
         txtEmailUsuario = new javax.swing.JTextField();
         lblClaveUsuario = new javax.swing.JLabel();
         lblTelefonoUsuario = new javax.swing.JLabel();
         txtTelefonoUsuario = new javax.swing.JTextField();
-        txtClaveUsuario = new javax.swing.JTextField();
         lblComunaUsuario = new javax.swing.JLabel();
         cbxTipoUsuario = new javax.swing.JComboBox<>();
         cbxEstadoUsuario = new javax.swing.JComboBox<>();
         cbxActivoUsuario = new javax.swing.JComboBox<>();
         vbxComunaUsuario = new javax.swing.JComboBox<>();
+        pwfClaveUsuario = new javax.swing.JPasswordField();
         pnlbtnUsuarios = new javax.swing.JPanel();
         btnCrearUsuario = new javax.swing.JButton();
         btnBuscarUsuario = new javax.swing.JButton();
@@ -73,6 +100,16 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         llIdUsuario.setText("ID Usuario");
 
         txtIdUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtIdUsuario.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                txtIdUsuarioComponentAdded(evt);
+            }
+        });
+        txtIdUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdUsuarioActionPerformed(evt);
+            }
+        });
 
         lblRutUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblRutUsuario.setText("Rut");
@@ -101,7 +138,7 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         lblDireccionUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblDireccionUsuario.setText("Dirección");
 
-        txtRefionUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtDireccionUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblEmailUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmailUsuario.setText("E-mail");
@@ -115,8 +152,6 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         lblTelefonoUsuario.setText("Teléfono");
 
         txtTelefonoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        txtClaveUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblComunaUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblComunaUsuario.setText("Comuna");
@@ -149,6 +184,8 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
             }
         });
 
+        pwfClaveUsuario.setText("jPasswordField1");
+
         javax.swing.GroupLayout pnlInputsGestionUsuarioLayout = new javax.swing.GroupLayout(pnlInputsGestionUsuario);
         pnlInputsGestionUsuario.setLayout(pnlInputsGestionUsuarioLayout);
         pnlInputsGestionUsuarioLayout.setHorizontalGroup(
@@ -164,27 +201,26 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
                     .addComponent(txtRut)
                     .addComponent(txtNombre)
                     .addComponent(txtApellido))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(255, 255, 255)
                 .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTipoUsuario)
                     .addComponent(lblEstadoUsuario)
                     .addComponent(lblActivoUsuario)
                     .addComponent(lblDireccionUsuario)
-                    .addComponent(txtRefionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDireccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxEstadoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxActivoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblEmailUsuario)
-                        .addComponent(lblClaveUsuario)
-                        .addComponent(lblTelefonoUsuario)
-                        .addComponent(lblComunaUsuario)
-                        .addComponent(txtClaveUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addComponent(txtTelefonoUsuario)
-                        .addComponent(txtEmailUsuario))
-                    .addComponent(vbxComunaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(255, 255, 255)
+                .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblEmailUsuario)
+                    .addComponent(lblClaveUsuario)
+                    .addComponent(lblTelefonoUsuario)
+                    .addComponent(lblComunaUsuario)
+                    .addComponent(txtTelefonoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(txtEmailUsuario)
+                    .addComponent(vbxComunaUsuario, 0, 250, Short.MAX_VALUE)
+                    .addComponent(pwfClaveUsuario))
                 .addGap(100, 100, 100))
         );
         pnlInputsGestionUsuarioLayout.setVerticalGroup(
@@ -225,13 +261,13 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
                             .addComponent(lblApellidoUsuario))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRefionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDireccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlInputsGestionUsuarioLayout.createSequentialGroup()
                         .addComponent(lblClaveUsuario)
-                        .addGap(1, 1, 1)
-                        .addComponent(txtClaveUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pwfClaveUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTelefonoUsuario)
                         .addGap(1, 1, 1)
@@ -254,6 +290,11 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         btnBuscarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarUsuario.setText("Buscar");
         btnBuscarUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarUsuarioActionPerformed(evt);
+            }
+        });
 
         btnActualizarUsuario.setBackground(new java.awt.Color(253, 187, 72));
         btnActualizarUsuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -278,7 +319,7 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
                 .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
                 .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
         );
@@ -298,23 +339,28 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         tblGestionUsuarios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblGestionUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "ID", "Rut", "Nombre", "Apellido", "Email", "Estado", "Activo", "Direccion", "Comuna", "Clave", "Fecha Creacion", "Fecha Ultima Mod", "Telefono"
+
             }
         ));
         tblGestionUsuarios.setGridColor(new java.awt.Color(43, 172, 192));
         tblGestionUsuarios.getTableHeader().setResizingAllowed(false);
+        tblGestionUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGestionUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblGestionUsuarios);
 
         javax.swing.GroupLayout pnlGridUsuariosLayout = new javax.swing.GroupLayout(pnlGridUsuarios);
@@ -368,6 +414,65 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
+        // TODO add your handling code here:
+        RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
+        
+        //si el campo tipoUsuario tiene seleccionado un valor
+        //buscarUsuario(valor)
+    
+        listaUsuario = UsuarioController.buscarUsuario(txtIdUsuario.getText());
+        
+        //1. Generar un TMmodel
+        //2. Setear los usuarios al model
+        //3. Setear el model al tblTabla
+        //List<Usuario> usuarios = new ArrayList<>();
+        TMUsuario modelo;
+        modelo = new TMUsuario(listaUsuario.getUsuarios());
+        tblGestionUsuarios.setModel(modelo);
+        
+        
+        
+    }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
+
+    private void tblGestionUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGestionUsuariosMouseClicked
+        // TODO add your handling code here:
+        ValidarRut valida;
+        valida = new ValidarRut();
+        
+        int i = tblGestionUsuarios.getSelectedRow();
+        TableModel model = tblGestionUsuarios.getModel();
+        
+        String rut = model.getValueAt(i,1).toString();
+        String rutFormateado = valida.FormatearRUT(rut);
+        
+        
+        txtIdUsuario.setText(model.getValueAt(i,0).toString());
+        txtRut.setText(rutFormateado);
+        txtNombre.setText(model.getValueAt(i,2).toString());
+        txtApellido.setText(model.getValueAt(i,3).toString());
+        txtEmailUsuario.setText(model.getValueAt(i,4).toString());
+        txtDireccionUsuario.setText(model.getValueAt(i,7).toString());
+        txtTelefonoUsuario.setText(model.getValueAt(i,14).toString());
+        pwfClaveUsuario.setText(model.getValueAt(i,8).toString());
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_tblGestionUsuariosMouseClicked
+
+    private void vbxComunaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vbxComunaUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vbxComunaUsuarioActionPerformed
+
+    private void cbxActivoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxActivoUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxActivoUsuarioActionPerformed
+
     private void cbxEstadoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEstadoUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxEstadoUsuarioActionPerformed
@@ -376,13 +481,13 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxTipoUsuarioActionPerformed
 
-    private void cbxActivoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxActivoUsuarioActionPerformed
+    private void txtIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxActivoUsuarioActionPerformed
+    }//GEN-LAST:event_txtIdUsuarioActionPerformed
 
-    private void vbxComunaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vbxComunaUsuarioActionPerformed
+    private void txtIdUsuarioComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtIdUsuarioComponentAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_vbxComunaUsuarioActionPerformed
+    }//GEN-LAST:event_txtIdUsuarioComponentAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -410,13 +515,13 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
     private javax.swing.JPanel pnlGridUsuarios;
     private javax.swing.JPanel pnlInputsGestionUsuario;
     private javax.swing.JPanel pnlbtnUsuarios;
+    private javax.swing.JPasswordField pwfClaveUsuario;
     private javax.swing.JTable tblGestionUsuarios;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtClaveUsuario;
+    private javax.swing.JTextField txtDireccionUsuario;
     private javax.swing.JTextField txtEmailUsuario;
     private javax.swing.JTextField txtIdUsuario;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtRefionUsuario;
     private javax.swing.JTextField txtRut;
     private javax.swing.JTextField txtTelefonoUsuario;
     private javax.swing.JComboBox<String> vbxComunaUsuario;

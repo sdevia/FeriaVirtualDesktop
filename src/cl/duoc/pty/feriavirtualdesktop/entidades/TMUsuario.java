@@ -36,75 +36,75 @@ public class TMUsuario implements TableModel {
             String titulo = null;
             switch (columnIndex) {
                 case 0: {
-                    titulo = "IdUsuario";
+                    titulo = "ID";
                     break;
                 }
                 case 1: {
-                    titulo = "Rut";
+                    titulo = "RUT";
                     break;
                 }
                 case 2: {
-                    titulo = "Nombre";
+                    titulo = "NOMBRE";
                     break;
                 }
                 case 3: {
-                    titulo = "Apellido";
+                    titulo = "APELLIDO";
                     break;
                 }
                 case 4: {
-                    titulo = "Email";
+                    titulo = "EMAIL";
                     break;
                 }
                 case 5: {
-                    titulo = "Estado";
+                    titulo = "ESTADO";
                     break;
                 }
                 case 6: {
-                    titulo = "Activo";
+                    titulo = "ACTIVO";
                     break;
                 }
                 case 7: {
-                    titulo = "Dirección";
+                    titulo = "DIRECCIÓN";
                     break;
                 }
                 case 8: {
-                    titulo = "Clave";
+                    titulo = "CLAVE";
                     break;
                 }
                 case 9: {
-                    titulo = "Intentos";
+                    titulo = "INTENTOS";
                     break;
                 }
                 case 10: {
-                    titulo = "Cambio Clave";
+                    titulo = "CAMBIO CLAVE";
                     break;
                 }
                 case 11: {
-                    titulo = "Fecha Creación";
+                    titulo = "CREACIÓN";
                     break;
                 }
                 case 12: {
-                    titulo = "Fecha Modificación";
+                    titulo = "MODIFICACIÓN";
                     break;
                 }
                 case 13: {
-                    titulo = "IdPerfil";
+                    titulo = "IDPERFIL";
                     break;
                 }
                 case 14: {
-                    titulo = "Teléfono";
+                    titulo = "TELÉFONO";
                     break;
                 }
                 case 15: {
-                    titulo = "ReClave";
+                    titulo = "RECLAVE";
                     break;
                 }
                 case 16: {
-                    titulo = "Sesión ID";
+                    titulo = "SESIÓN ID";
                     break;
                 }
                 case 17: {
-                    titulo = "Estado Editado";
+                    titulo = "ESTADO EDITADO";
                     break;
                 }
 

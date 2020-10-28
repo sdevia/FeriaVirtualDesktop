@@ -5,6 +5,13 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
+import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author bruunildo
@@ -16,6 +23,20 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
      */
     public VistaGestionUsuarioss() {
         initComponents();
+        inicializarTabla();
+
+    }
+
+    private void inicializarTabla() {
+        List<Usuario> usuarios = new ArrayList<>();
+        TMUsuario modelo;
+                
+        modelo = new TMUsuario(usuarios);
+ 
+        tblGestionUsuarios.setModel(modelo);
+        
+        
+
     }
 
     /**
@@ -73,6 +94,11 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         llIdUsuario.setText("ID Usuario");
 
         txtIdUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtIdUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdUsuarioActionPerformed(evt);
+            }
+        });
 
         lblRutUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblRutUsuario.setText("Rut");
@@ -254,6 +280,11 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         btnBuscarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarUsuario.setText("Buscar");
         btnBuscarUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarUsuarioActionPerformed(evt);
+            }
+        });
 
         btnActualizarUsuario.setBackground(new java.awt.Color(253, 187, 72));
         btnActualizarUsuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -298,19 +329,19 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         tblGestionUsuarios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblGestionUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "ID", "Rut", "Nombre", "Apellido", "Email", "Estado", "Activo", "Direccion", "Comuna", "Clave", "Fecha Creacion", "Fecha Ultima Mod", "Telefono"
+
             }
         ));
         tblGestionUsuarios.setGridColor(new java.awt.Color(43, 172, 192));
@@ -383,6 +414,31 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
     private void vbxComunaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vbxComunaUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_vbxComunaUsuarioActionPerformed
+
+    private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
+        // TODO add your handling code here:
+        RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
+        
+        //si el campo tipoUsuario tiene seleccionado un valor
+        //buscarUsuario(valor)
+    
+        listaUsuario = UsuarioController.buscarUsuario(txtIdUsuario.getText());
+        
+        //1. Generar un TMmodel
+        //2. Setear los usuarios al model
+        //3. Setear el model al tblTabla
+        //List<Usuario> usuarios = new ArrayList<>();
+        TMUsuario modelo;
+        modelo = new TMUsuario(listaUsuario.getUsuarios());
+        tblGestionUsuarios.setModel(modelo);
+        
+        
+        
+    }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
+
+    private void txtIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

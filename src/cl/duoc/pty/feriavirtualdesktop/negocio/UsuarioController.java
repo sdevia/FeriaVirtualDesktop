@@ -5,23 +5,10 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.negocio;
 
-import cl.duoc.pty.feriavirtualdesktop.entidades.Administrador;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
-import cl.duoc.pty.feriavirtualdesktop.entidades.Login;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.security.cert.X509Certificate;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,45 +19,63 @@ import java.util.List;
  */
 public class UsuarioController {
 
-    public static RespuestaUsuarioListar buscarUsuario(String idPerfil, String idSession, String servicio){
-        
+    public static RespuestaUsuarioListar buscarUsuario(String idUsuario) {
+
         RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
+        RespuestaUsuario usuario = new RespuestaUsuario();
 
-         try {
+        try {
 
-            ApiController servicioApi= new ApiController();
+            ApiController servicioApi = new ApiController();
             List<Parametro> parametros = new ArrayList<Parametro>();
-            parametros.add(new Parametro("idperfil","0"));
-            parametros.add(new Parametro("idSession","session"));
-            parametros.add(new Parametro("servicio","FRT"));
-            String resultado = servicioApi.Get("usuario/perfil", parametros);
-
-           if (resultado == null){
-               
-               listaUsuario.setExito(false);
-               listaUsuario.setMensaje("No fue posbible traer los datos");
-               return listaUsuario;
-               
-               
-           }
+            String resultado = "";
             Gson g = new Gson();
-            //String jsonString = g.toJson(Usuarios);
-            //listaUsuario = g.fromJson(resultado, RespuestaUsuarioListar.class);
-            listaUsuario = g.fromJson(resultado, RespuestaUsuarioListar.class);
-            if (listaUsuario != null) {
-                if(listaUsuario.isExito()){
-                    return listaUsuario;
-                    
+            
+            
+            //Si 
+
+            //Validar si el campo idUsuario no está vacio o que no sea nulo
+            if (idUsuario != null && !idUsuario.isEmpty()) {
+                parametros.add(new Parametro("idSession", "session"));
+                resultado = servicioApi.Get("Usuario/" + idUsuario, parametros);
+
+                usuario = g.fromJson(resultado, RespuestaUsuario.class);
+                if (usuario != null) {
+                    if (usuario.isExito()) {
+
+                        List<Usuario> usr = new ArrayList<Usuario>();
+                        usr.add(usuario.getUsuario());
+                        listaUsuario.setUsuarios(usr);
+                        return listaUsuario;
+                    }
                 }
 
-            } 
-           // conn.disconnect();
+            } else {
+                parametros.add(new Parametro("idperfil", "0"));
+                parametros.add(new Parametro("idSession", "session"));
+                parametros.add(new Parametro("servicio", "FRT"));
+                resultado = servicioApi.Get("usuario/perfil", parametros);
+
+                listaUsuario = g.fromJson(resultado, RespuestaUsuarioListar.class);
+                if (listaUsuario != null) {
+                    if (listaUsuario.isExito()) {
+                        return listaUsuario;
+
+                    }
+                }
+            }  // conn.disconnect();
+
+            if (resultado == null) {
+                listaUsuario.setExito(false);
+                listaUsuario.setMensaje("No fue posbible traer los datos");
+                return listaUsuario;
+            }
 
         } catch (Exception e) {
             System.out.println("Se ha producido un error al obtener la información " + e);
         }
-        
-        return null;
+
+        return listaUsuario;
     }
 
 }

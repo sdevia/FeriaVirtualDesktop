@@ -5,6 +5,7 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
@@ -27,7 +28,7 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
     public VistaGestionUsuarioss() {
         initComponents();
         inicializarTabla();
-        
+       
 
     }
     
@@ -301,6 +302,11 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         btnActualizarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarUsuario.setText("Actualizar");
         btnActualizarUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnActualizarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarUsuarioActionPerformed(evt);
+            }
+        });
 
         btnEliminarUsuario.setBackground(new java.awt.Color(229, 52, 63));
         btnEliminarUsuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -417,16 +423,7 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
         // TODO add your handling code here:
         RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
-        
-        //si el campo tipoUsuario tiene seleccionado un valor
-        //buscarUsuario(valor)
-    
         listaUsuario = UsuarioController.buscarUsuario(txtIdUsuario.getText());
-        
-        //1. Generar un TMmodel
-        //2. Setear los usuarios al model
-        //3. Setear el model al tblTabla
-        //List<Usuario> usuarios = new ArrayList<>();
         TMUsuario modelo;
         modelo = new TMUsuario(listaUsuario.getUsuarios());
         tblGestionUsuarios.setModel(modelo);
@@ -488,6 +485,30 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
     private void txtIdUsuarioComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtIdUsuarioComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdUsuarioComponentAdded
+
+    private void btnActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarUsuarioActionPerformed
+        RespuestaUsuario ru = new RespuestaUsuario();
+        Usuario usuario = new Usuario();// TODO add your handling code here:
+          RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
+        
+        listaUsuario = UsuarioController.buscarUsuario(txtIdUsuario.getText());
+        
+        usuario = listaUsuario.getUsuarios().get(0);
+        
+        if(txtNombre.getText() != null){
+            usuario.setNombre(txtNombre.getText());
+        }
+        ru = UsuarioController.actualizarUsuario(usuario);
+      
+        if(ru.isExito()){
+        
+             TMUsuario modelo;
+        modelo = new TMUsuario(listaUsuario.getUsuarios());
+        tblGestionUsuarios.setModel(modelo);
+        }
+        
+        
+    }//GEN-LAST:event_btnActualizarUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

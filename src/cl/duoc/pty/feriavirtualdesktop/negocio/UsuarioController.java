@@ -77,5 +77,45 @@ public class UsuarioController {
 
         return listaUsuario;
     }
+    
+    public static RespuestaUsuario actualizarUsuario(Usuario usuario){
+    
+        RespuestaUsuario ru = new RespuestaUsuario();
+        
+        try{
+        
+             ApiController servicioApi = new ApiController();
+            List<Parametro> parametros = new ArrayList<Parametro>();
+            String jsonUsuario = "";
+            String resultado = "";
+            Gson g = new Gson();
+            
+              if (usuario != null) {
+                parametros.add(new Parametro("idSession", "session"));
+
+                jsonUsuario = g.toJson(usuario);
+ 
+                resultado = servicioApi.Post("usuario/" + usuario.getIdUsuario() +"/modificar/" , parametros, jsonUsuario);
+
+                ru = g.fromJson(resultado, RespuestaUsuario.class);
+                if (ru != null) {
+                    if (ru.isExito()) {
+                        return ru;
+                    }
+                }
+
+            } 
+            if (resultado == null) {
+                ru.setExito(false);
+                ru.setMensaje("No fue posbible traer los datos");
+                return ru;
+            }
+        } catch (Exception e) {
+            System.out.println("Se ha producido un error al obtener la información " + e);
+            
+            //throw new Error y eso mostrarlo en un componente
+        } 
+        return ru;
+    }
 
 }

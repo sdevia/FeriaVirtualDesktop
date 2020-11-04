@@ -5,6 +5,8 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
+import cl.duoc.pty.feriavirtualdesktop.entidades.Administrador;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.SwingUtilities;
@@ -23,6 +25,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     VistaGestionSubastaTransporte vistaGestionSubastasTransportes = new VistaGestionSubastaTransporte();
     VistaReportesSubastas vistaReportesSubastas = new VistaReportesSubastas();
     CardLayout vista;
+   
     /**
      * Creates new form VistaGeneralAdministrador
      */

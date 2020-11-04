@@ -202,9 +202,11 @@ public class VistaLogin extends javax.swing.JFrame {
             admin = LoginController.login(login);
 
             if (admin.isExito()) {
-                lblMensajeError.setText("");
-                txtNombre.setText(admin.getUsuario().getNombre());
-                pnlDatosUsuario.setVisible(true);
+               
+                VistaGeneralAdministrador vga = new VistaGeneralAdministrador();
+                vga.setVisible(true);
+                this.dispose();
+                
             } else {
                 lblMensajeError.setText("Usuario o Contraseña Incorrectos");
             }

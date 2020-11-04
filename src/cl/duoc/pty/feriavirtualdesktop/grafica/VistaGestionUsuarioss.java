@@ -34,8 +34,7 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
    
     private void inicializarTabla() {
         List<Usuario> usuarios = new ArrayList<>();
-        TMUsuario modelo;
-                            
+        TMUsuario modelo;            
         modelo = new TMUsuario(usuarios);
         
  

@@ -38,7 +38,7 @@ public class UsuarioController {
             if (idUsuario != null && !idUsuario.isEmpty()) {
                 parametros.add(new Parametro("idSession", "session"));
                 resultado = servicioApi.Get("Usuario/" + idUsuario, parametros);
-
+                
                 usuario = g.fromJson(resultado, RespuestaUsuario.class);
                 if (usuario != null) {
                     if (usuario.isExito()) {

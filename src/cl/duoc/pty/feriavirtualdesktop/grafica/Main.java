@@ -19,6 +19,12 @@ public class Main {
        // VistaLogin login= new VistaLogin();
        
      //   pnlDatos.setVisible (true);
+     
+     //VistaProcesosVenta vv = new VistaProcesosVenta();
+     //vv.setVisible(true);
+     
+     VistaGestionUsuarioss vu = new VistaGestionUsuarioss();
+     vu.setVisible(true);
     }
     
 }

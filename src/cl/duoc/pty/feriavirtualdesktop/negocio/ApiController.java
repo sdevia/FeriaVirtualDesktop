@@ -105,7 +105,7 @@ public class ApiController {
     }
     
     
-    public String Post(String recurso, List<Parametro> parametros, String jsonUsuario) {
+    public String Post(String recurso, List<Parametro> parametros, String jsonData) {
 
         try {
 
@@ -150,7 +150,7 @@ public class ApiController {
             
             
             try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonUsuario.getBytes("UTF-16");
+                byte[] input = jsonData.getBytes("UTF-16");
                 os.write(input, 0, input.length);
             }
             if (conn.getResponseCode() != 200) {

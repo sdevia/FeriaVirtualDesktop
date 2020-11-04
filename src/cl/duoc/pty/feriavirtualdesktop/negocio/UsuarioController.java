@@ -95,7 +95,7 @@ public class UsuarioController {
 
                 jsonUsuario = g.toJson(usuario);
  
-                resultado = servicioApi.Post("usuario/" + usuario.getIdUsuario() +"/modificar/" , parametros, jsonUsuario);
+                resultado = servicioApi.Post("usuario/" + usuario.getIdUsuario() +"/modificar/" , jsonUsuario, parametros);
 
                 ru = g.fromJson(resultado, RespuestaUsuario.class);
                 if (ru != null) {

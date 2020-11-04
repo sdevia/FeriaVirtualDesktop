@@ -105,7 +105,7 @@ public class ApiController {
     }
     
     
-    public String Post(String recurso, List<Parametro> parametros, String jsonData) {
+    public String Post(String recurso, String objetoJson, List<Parametro> parametros) {
 
         try {
 
@@ -145,13 +145,13 @@ public class ApiController {
             conn.setRequestProperty("Content-Type", "application/json;charset=UTF-16");
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Accept", "application/json");
-            
-            
-            
-            
-            try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonData.getBytes("UTF-16");
-                os.write(input, 0, input.length);
+            //String jsonInputString = "{Rut: \"" + login.getRut() + "\", Clave: \"" + login.getClave() + "\", TipoPerfil: 1}";            
+            String jsonInputString = objetoJson;
+            if (objetoJson.length()!=0){
+                try (OutputStream os = conn.getOutputStream()) {
+                    byte[] input = jsonInputString.getBytes("UTF-16");
+                    os.write(input, 0, input.length);
+                }
             }
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP Error code : "
@@ -163,9 +163,8 @@ public class ApiController {
             StringBuilder data = new StringBuilder();
             String output;
             while ((output = br.readLine()) != null) {
-                data.append(output + '\n');
+                data.append(output + '\n');         
             }
-
             
             conn.disconnect();
             return data.toString();

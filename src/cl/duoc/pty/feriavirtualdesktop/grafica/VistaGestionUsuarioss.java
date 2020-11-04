@@ -10,7 +10,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
-import cl.duoc.pty.feriavirtualdesktop.utils.ValidarRut;
+import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -434,8 +434,8 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
 
     private void tblGestionUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGestionUsuariosMouseClicked
         // TODO add your handling code here:
-        ValidarRut valida;
-        valida = new ValidarRut();
+        ValidacionRut valida;
+        valida = new ValidacionRut();
         
         int i = tblGestionUsuarios.getSelectedRow();
         TableModel model = tblGestionUsuarios.getModel();

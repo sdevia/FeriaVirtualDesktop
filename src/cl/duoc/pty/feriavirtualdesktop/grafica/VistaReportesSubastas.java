@@ -5,6 +5,13 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
+import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author bruunildo
@@ -16,6 +23,19 @@ public class VistaReportesSubastas extends javax.swing.JPanel {
      */
     public VistaReportesSubastas() {
         initComponents();
+        inicializarTabla();   
+    }
+    
+    
+        private void inicializarTabla() {
+        List<Usuario> usuarios = new ArrayList<>();
+        TMUsuario modelo;
+                            
+        modelo = new TMUsuario(usuarios);
+        
+ 
+        tblReporteAdministrador.setModel(modelo);
+
     }
 
     /**
@@ -28,19 +48,96 @@ public class VistaReportesSubastas extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblReporteAdministrador = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reportes de Subastas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 48))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reportes Administrador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+
+        tblReporteAdministrador.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tblReporteAdministrador.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tblReporteAdministrador.setGridColor(new java.awt.Color(43, 172, 192));
+        tblReporteAdministrador.getTableHeader().setResizingAllowed(false);
+        tblReporteAdministrador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblReporteAdministradorMouseClicked(evt);
+            }
+        });
+        tblReporteAdministrador.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                tblReporteAdministradorComponentShown(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblReporteAdministrador);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
+                .addGap(274, 274, 274))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(228, 228, 228)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1233, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 586, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -55,8 +152,58 @@ public class VistaReportesSubastas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblReporteAdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblReporteAdministradorMouseClicked
+        // TODO add your handling code here:
+        //ValidarRut valida;
+        //valida = new ValidarRut();
+
+        //int i = tblReporteAdministrador.getSelectedRow();
+        //TableModel model = tblReporteAdministrador.getModel();
+
+        //String rut = model.getValueAt(i,1).toString();
+        //String rutFormateado = valida.FormatearRUT(rut);
+
+        //txtIdUsuario.setText(model.getValueAt(i,0).toString());
+        //txtRut.setText(rutFormateado);
+        //txtNombre.setText(model.getValueAt(i,2).toString());
+        //txtApellido.setText(model.getValueAt(i,3).toString());
+       //txtEmailUsuario.setText(model.getValueAt(i,4).toString());
+       // txtDireccionUsuario.setText(model.getValueAt(i,7).toString());
+        //txtTelefonoUsuario.setText(model.getValueAt(i,14).toString());
+        //pwfClaveUsuario.setText(model.getValueAt(i,8).toString());
+
+    }//GEN-LAST:event_tblReporteAdministradorMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+               // TODO add your handling code here:
+        RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
+        
+        //si el campo tipoUsuario tiene seleccionado un valor
+        //buscarUsuario(valor)
+    
+        listaUsuario = UsuarioController.buscarUsuario(jTextField1.getText());
+        
+        //1. Generar un TMmodel
+        //2. Setear los usuarios al model
+        //3. Setear el model al tblTabla
+        //List<Usuario> usuarios = new ArrayList<>();
+        TMUsuario modelo;
+        modelo = new TMUsuario(listaUsuario.getUsuarios());
+        tblReporteAdministrador.setModel(modelo);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tblReporteAdministradorComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tblReporteAdministradorComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblReporteAdministradorComponentShown
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblReporteAdministrador;
     // End of variables declaration//GEN-END:variables
 }

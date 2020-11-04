@@ -40,8 +40,6 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         
  
         tblGestionUsuarios.setModel(modelo);
-        
-        
 
     }
 

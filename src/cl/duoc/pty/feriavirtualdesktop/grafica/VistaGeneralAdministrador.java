@@ -22,6 +22,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     VistaProcesosVenta vistaProcesosVenta = new VistaProcesosVenta();
     VistaGestionSubastaTransporte vistaGestionSubastasTransportes = new VistaGestionSubastaTransporte();
     VistaReportesSubastas vistaReportesSubastas = new VistaReportesSubastas();
+    VistaReportesAdministrador vistaReportesAdministrador = new VistaReportesAdministrador();
     CardLayout vista;
     /**
      * Creates new form VistaGeneralAdministrador
@@ -50,7 +51,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
         btnGestionUsuarios = new javax.swing.JButton();
         btnProcesosVenta = new javax.swing.JButton();
         btnGestionSubastaTransporte = new javax.swing.JButton();
-        btnReportesVentas = new javax.swing.JButton();
+        btnReportes = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         pnlAdministradorDinamico = new javax.swing.JPanel();
@@ -174,24 +175,24 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
             }
         });
 
-        btnReportesVentas.setBackground(new java.awt.Color(255, 255, 255));
-        btnReportesVentas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnReportesVentas.setText("Reportes Subastas");
-        btnReportesVentas.setBorder(null);
-        btnReportesVentas.setBorderPainted(false);
-        btnReportesVentas.setRequestFocusEnabled(false);
-        btnReportesVentas.setSelected(true);
-        btnReportesVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnReportes.setBackground(new java.awt.Color(255, 255, 255));
+        btnReportes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnReportes.setText("Reportes");
+        btnReportes.setBorder(null);
+        btnReportes.setBorderPainted(false);
+        btnReportes.setRequestFocusEnabled(false);
+        btnReportes.setSelected(true);
+        btnReportes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnReportesVentasMouseEntered(evt);
+                btnReportesMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnReportesVentasMouseExited(evt);
+                btnReportesMouseExited(evt);
             }
         });
-        btnReportesVentas.addActionListener(new java.awt.event.ActionListener() {
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportesVentasActionPerformed(evt);
+                btnReportesActionPerformed(evt);
             }
         });
 
@@ -217,7 +218,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
             .addComponent(btnGestionUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnProcesosVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnGestionSubastaTransporte, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-            .addComponent(btnReportesVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlbtnAdmin2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlbtnAdmin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +246,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(btnGestionSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(btnReportesVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -331,20 +332,20 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
        this.repaint();
     }//GEN-LAST:event_btnGestionSubastaTransporteActionPerformed
 
-    private void btnReportesVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesVentasMouseEntered
-       btnReportesVentas.setBackground(new Color(253,187,72));
-    }//GEN-LAST:event_btnReportesVentasMouseEntered
+    private void btnReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseEntered
+       btnReportes.setBackground(new Color(253,187,72));
+    }//GEN-LAST:event_btnReportesMouseEntered
 
-    private void btnReportesVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesVentasMouseExited
-       btnReportesVentas.setBackground(Color.white);
-    }//GEN-LAST:event_btnReportesVentasMouseExited
+    private void btnReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesMouseExited
+       btnReportes.setBackground(Color.white);
+    }//GEN-LAST:event_btnReportesMouseExited
 
-    private void btnReportesVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesVentasActionPerformed
-       pnlAdministradorDinamico.add(vistaReportesSubastas,"alta");
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
+       pnlAdministradorDinamico.add(vistaReportesAdministrador,"alta");
        vista.show(pnlAdministradorDinamico, "alta");
        SwingUtilities.updateComponentTreeUI(this);
        this.repaint();
-    }//GEN-LAST:event_btnReportesVentasActionPerformed
+    }//GEN-LAST:event_btnReportesActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         System.exit(0);
@@ -398,7 +399,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btnGestionSubastaTransporte;
     private javax.swing.JButton btnGestionUsuarios;
     private javax.swing.JButton btnProcesosVenta;
-    private javax.swing.JButton btnReportesVentas;
+    private javax.swing.JButton btnReportes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

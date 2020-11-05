@@ -36,10 +36,10 @@ public class TMProceso implements TableModel {
         String titulo = null;
         switch (columnIndex) {
             case 0: {
-                titulo = "ID";
+                titulo = "ID ORDEN";
                 break;
             }
-            case 1: {
+            case 7: {
                 titulo = "COMISION";
                 break;
             }
@@ -63,8 +63,8 @@ public class TMProceso implements TableModel {
                 titulo = "ESTADO";
                 break;
             }
-            case 7: {
-                titulo = "ID ORDEN";
+            case 1: {
+                titulo = "ID PROCESO";
                 break;
             }
             case 8: {
@@ -95,7 +95,7 @@ public class TMProceso implements TableModel {
                 valor = Integer.toString(p.getIdOrden());
                 break;
             }
-            case 1: {
+            case 7: {
                 /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
                 valor = formatter.format(o.getFechaOrden());*/
                 valor = Integer.toString(p.getComision());
@@ -121,8 +121,8 @@ public class TMProceso implements TableModel {
                 valor = (p.getEstadoProceso());
                 break;
             }
-            case 7: {
-                valor = Integer.toString(p.getIdOrden());
+            case 1: {
+                valor = Integer.toString(p.getIdProceso());
                 break;
             }
             case 8: {

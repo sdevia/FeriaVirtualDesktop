@@ -6,18 +6,27 @@
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
 import cl.duoc.pty.feriavirtualdesktop.entidades.Orden;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Proceso;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaFirmarOrden;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaOrden;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaOrdenListar;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProceso;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProcesoListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMOrden;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMProceso;
 import cl.duoc.pty.feriavirtualdesktop.negocio.OrdenController;
 import cl.duoc.pty.feriavirtualdesktop.negocio.ProcesoController;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidarRut;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableModel;
 
@@ -30,6 +39,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     /**
      * Creates new form VistaProcesosVenta
      */
+    
     public VistaProcesosVenta() {
         initComponents();
         inicializarTabla();
@@ -50,7 +60,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     
     private void setearBotones() {
         
-        btnCrearProcesoVenta.setEnabled(false);
+        btnFirmarOrden.setEnabled(false);
         
     }
     
@@ -63,32 +73,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         modelo = new TMOrden(listaOrden.getOrdenes());
         
         // TODO: Remover filas con estado PENDIENTE
-        for(int row = 0;row < modelo.getRowCount();row++) {
-            System.out.println(modelo.getValueAt(row, 3));
-            String estado = modelo.getValueAt(row, 3).toString();
-            if("VIGENTE".equals(estado)) {
-                System.out.println("siiiii");
-                ;
-            }
-        }
-        
-        
-       /* List<Object> objs;
-        Iterator<TMOrden> i = modelo.iterator();
-        while (i.hasNext()) {
-        Object o = i.next();
-        //some condition
-        i.remove();
-        }
-        
-        for (Iterator<TMOrden> iter = model.listIterator(); iter.hasNext(); ) {
-        String a = iter.next();
-        if (...) {
-        iter.remove();
-    }
-}*/
 
-       
         tblOrdenes.setModel(modelo);
     }
     
@@ -101,14 +86,6 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         modelo = new TMProceso(listaProceso.getProcesos());
         
         // TODO: Remover filas con estado PENDIENTE
-        for(int row = 0;row < modelo.getRowCount();row++) {
-            System.out.println(modelo.getValueAt(row, 3));
-            String estado = modelo.getValueAt(row, 3).toString();
-            if("VIGENTE".equals(estado)) {
-                System.out.println("siiiii");
-                ;
-            }
-        }
 
         tblProcesos.setModel(modelo);
     }
@@ -146,11 +123,15 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         txtEstadoProceso = new javax.swing.JTextField();
         btnBuscarOrden = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        btnCrearProcesoVenta = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtIdUsuario = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
+        btnActualizarOrdenesProcesos = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnFirmarOrden = new javax.swing.JButton();
         btnModificarProcesoVenta = new javax.swing.JButton();
         btnEliminarProcesoVenta = new javax.swing.JButton();
+        btnCrearProceso = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrdenes = new javax.swing.JTable();
@@ -248,25 +229,59 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("ID ");
+
+        btnLimpiar.setBackground(new java.awt.Color(253, 187, 52));
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnActualizarOrdenesProcesos.setBackground(new java.awt.Color(253, 187, 52));
+        btnActualizarOrdenesProcesos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnActualizarOrdenesProcesos.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizarOrdenesProcesos.setText("Actualizar");
+        btnActualizarOrdenesProcesos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarOrdenesProcesosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(txtCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtFechaOrden, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtEstadoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtIdOrden)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscarOrden)
-                        .addGap(6, 6, 6)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(txtFechaOrden, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtEstadoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtIdOrden)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscarOrden)
+                                .addGap(6, 6, 6))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(35, 35, 35)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5)
@@ -287,8 +302,14 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                             .addComponent(jLabel13)
                             .addComponent(jLabel12)
                             .addComponent(jLabel7))
-                        .addGap(0, 11, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(116, 116, 116))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(btnActualizarOrdenesProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,61 +327,59 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                     .addComponent(btnBuscarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtFechaProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtAduana))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtAduana)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFechaOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                            .addComponent(txtPagoServicio, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                            .addComponent(txtEstadoProceso))
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))))
+                        .addComponent(txtIdUsuario)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFechaOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(txtPagoServicio, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(txtEstadoProceso))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEstadoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPagoTransportista, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizarOrdenesProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnCrearProcesoVenta.setBackground(new java.awt.Color(253, 187, 52));
-        btnCrearProcesoVenta.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnCrearProcesoVenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnCrearProcesoVenta.setText("Firmar");
-        btnCrearProcesoVenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCrearProcesoVenta.addActionListener(new java.awt.event.ActionListener() {
+        btnFirmarOrden.setBackground(new java.awt.Color(253, 187, 52));
+        btnFirmarOrden.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnFirmarOrden.setForeground(new java.awt.Color(255, 255, 255));
+        btnFirmarOrden.setText("Firmar");
+        btnFirmarOrden.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnFirmarOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearProcesoVentaActionPerformed(evt);
-            }
-        });
-
-        btnLimpiar.setBackground(new java.awt.Color(253, 187, 52));
-        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
+                btnFirmarOrdenActionPerformed(evt);
             }
         });
 
@@ -381,30 +400,42 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         btnEliminarProcesoVenta.setText("Eliminar");
         btnEliminarProcesoVenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        btnCrearProceso.setBackground(new java.awt.Color(253, 187, 52));
+        btnCrearProceso.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnCrearProceso.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearProceso.setText("Crear Proceso");
+        btnCrearProceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearProcesoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(btnCrearProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFirmarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCrearProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169)
                 .addComponent(btnModificarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEliminarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrearProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCrearProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModificarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFirmarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -476,7 +507,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                 .addGroup(pnlProcesosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlProcesosVentaLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(196, 196, 196))
+                        .addGap(503, 503, 503))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -486,10 +517,10 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                 .addGap(39, 39, 39)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -521,7 +552,34 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnModificarProcesoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProcesoVentaActionPerformed
-        // TODO add your handling code here:
+        RespuestaProceso creacionProceso = new RespuestaProceso();
+        Proceso proceso = new Proceso();
+        
+        Date date = new Date();
+        
+        Date fechaFinProceso = new Date();
+        
+        try {
+            fechaFinProceso = new SimpleDateFormat().parse(txtFechaProceso.getText());
+        } catch (ParseException ex) {
+            System.out.println("Error "+ex);
+        }
+        
+        proceso.setIdProceso(Integer.valueOf(txtIdProceso.getText()));
+        proceso.setIdUsuario(1);
+        proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
+        proceso.setComision(Integer.valueOf(txtComision.getText()));
+        proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
+        proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
+        proceso.setPagoTransportista(Integer.valueOf(txtPagoTransportista.getText()));
+        proceso.setEstadoProceso("PENDIENTE");
+        proceso.setFechaProceso(date);
+        //TODO agregar calendario
+        proceso.setFechaFinProceso(fechaFinProceso);
+        
+        creacionProceso = ProcesoController.crearProceso(proceso);
+        
+        System.out.println("proceso creado "+creacionProceso);
     }//GEN-LAST:event_btnModificarProcesoVentaActionPerformed
 
     private void tblOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdenesMouseClicked
@@ -536,7 +594,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         
         
         txtIdOrden.setText(model.getValueAt(i,0).toString());
-        txtCliente.setText(model.getValueAt(i,2).toString());
+        txtIdUsuario.setText(model.getValueAt(i,2).toString());
         txtFechaOrden.setText(model.getValueAt(i,1).toString());
         txtEstadoOrden.setText(model.getValueAt(i,3).toString());
         /*txtEmailUsuario.setText(model.getValueAt(i,4).toString());
@@ -546,10 +604,10 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         
         if("PENDIENTE".equals(txtEstadoOrden.getText())) {
         
-            btnCrearProcesoVenta.setEnabled(true);
+            btnFirmarOrden.setEnabled(true);
     }
         else {
-            btnCrearProcesoVenta.setEnabled(false);
+            btnFirmarOrden.setEnabled(false);
         }
     }//GEN-LAST:event_tblOrdenesMouseClicked
 
@@ -569,15 +627,14 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAduanaActionPerformed
 
-    private void btnCrearProcesoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProcesoVentaActionPerformed
+    private void btnFirmarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirmarOrdenActionPerformed
         RespuestaFirmarOrden firmaOrden = new RespuestaFirmarOrden();
                 
         firmaOrden = OrdenController.firmarOrden(txtIdOrden.getText());
         
         System.out.println("firmaorden" + firmaOrden.toString());
         
-        
-    }//GEN-LAST:event_btnCrearProcesoVentaActionPerformed
+    }//GEN-LAST:event_btnFirmarOrdenActionPerformed
 
     private void tblProcesosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProcesosMouseClicked
         // TODO add your handling code here:
@@ -610,13 +667,52 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
        
        txtFechaOrden.setText(orden.getOrden().getFechaOrden().toString());
        txtEstadoOrden.setText(orden.getOrden().getEstado());
-       txtCliente.setText(String.valueOf(orden.getOrden().getIdClienteExterno()));
+       txtIdUsuario.setText(String.valueOf(orden.getOrden().getIdClienteExterno()));
+       
+        if("PENDIENTE".equals(txtEstadoOrden.getText())) {
+        
+            btnFirmarOrden.setEnabled(true);
+        }
+        else {
+            btnFirmarOrden.setEnabled(false);
+        }
+        
+        
        
     }//GEN-LAST:event_btnBuscarOrdenActionPerformed
 
     private void txtEstadoOrdenInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtEstadoOrdenInputMethodTextChanged
          
     }//GEN-LAST:event_txtEstadoOrdenInputMethodTextChanged
+
+    private void btnCrearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProcesoActionPerformed
+        
+        RespuestaProceso creacionProceso = new RespuestaProceso();
+        Proceso proceso = new Proceso();
+        
+        Date date = new Date();
+        
+        proceso.setIdProceso(0);
+        proceso.setIdUsuario(1);
+        proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
+        proceso.setComision(Integer.valueOf(txtComision.getText()));
+        proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
+        proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
+        proceso.setPagoTransportista(0);
+        proceso.setEstadoProceso("PENDIENTE");
+        proceso.setFechaProceso(date);
+        //TODO agregar calendario
+        proceso.setFechaFinProceso(date);
+        
+        creacionProceso = ProcesoController.crearProceso(proceso);
+        showMessageDialog(null, creacionProceso.getMensaje());
+        System.out.println("proceso creado "+creacionProceso.getMensaje());
+    }//GEN-LAST:event_btnCrearProcesoActionPerformed
+
+    private void btnActualizarOrdenesProcesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarOrdenesProcesosActionPerformed
+        listarOrdenes();
+        listarProcesos();     
+    }//GEN-LAST:event_btnActualizarOrdenesProcesosActionPerformed
 
         public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -651,9 +747,11 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizarOrdenesProcesos;
     private javax.swing.JButton btnBuscarOrden;
-    private javax.swing.JButton btnCrearProcesoVenta;
+    private javax.swing.JButton btnCrearProceso;
     private javax.swing.JButton btnEliminarProcesoVenta;
+    private javax.swing.JButton btnFirmarOrden;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificarProcesoVenta;
     private javax.swing.JLabel jLabel1;
@@ -667,6 +765,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -684,6 +783,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     private javax.swing.JTextField txtFechaProceso;
     private javax.swing.JTextField txtIdOrden;
     private javax.swing.JTextField txtIdProceso;
+    private javax.swing.JTextField txtIdUsuario;
     private javax.swing.JTextField txtPagoServicio;
     private javax.swing.JTextField txtPagoTransportista;
     // End of variables declaration//GEN-END:variables

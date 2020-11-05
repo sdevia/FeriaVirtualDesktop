@@ -6,7 +6,8 @@
 package cl.duoc.pty.feriavirtualdesktop.negocio;
 
 import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
-import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaOrdenListar;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Proceso;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProceso;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProcesoListar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,5 +51,26 @@ public class ProcesoController {
         }
 
         return listaProceso;
+    }
+    
+    public static RespuestaProceso crearProceso(Proceso proceso) {
+        RespuestaProceso creaProceso = new RespuestaProceso();
+        
+        try {
+            Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+            String jsonInputString = g.toJson(proceso);//"{Rut: \"" + login.getRut() + "\", Clave: \"" + login.getClave() + "\", TipoPerfil: 1}";
+            //String jsonString = g.toJson(login);
+            List<Parametro> parametros = new ArrayList<Parametro>();
+            parametros.add(new Parametro("idSession", "session"));
+            String resultado = new ApiController().Post("Admin/Proceso", jsonInputString, parametros);
+            //String jsonString = g.toJson(admin);
+            creaProceso = g.fromJson(resultado, RespuestaProceso.class);
+            
+            
+        } catch (Exception e) {
+            System.out.println("No fue posible crear el proceso " + e);
+        }
+                
+        return creaProceso;
     }
 }

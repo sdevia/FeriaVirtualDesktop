@@ -18,7 +18,7 @@ import javax.swing.border.Border;
 public class VistaGeneralAdministrador extends javax.swing.JFrame {
     
     
-    VistaGestionUsuarioss vistaGestionUsuarioss = new VistaGestionUsuarioss();
+    VistaGestionUsuarios vistaGestionUsuarios = new VistaGestionUsuarios();
     VistaProcesosVenta vistaProcesosVenta = new VistaProcesosVenta();
     VistaGestionSubastaTransporte vistaGestionSubastasTransportes = new VistaGestionSubastaTransporte();
     VistaReportesAdministrador vistaReportesAdministrador = new VistaReportesAdministrador();
@@ -313,7 +313,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionSubastaTransporteMouseExited
 
     private void btnGestionUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionUsuariosActionPerformed
-       pnlAdministradorDinamico.add(vistaGestionUsuarioss,"alta");
+       pnlAdministradorDinamico.add(vistaGestionUsuarios,"alta");
        vista.show(pnlAdministradorDinamico, "alta");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();

@@ -9,6 +9,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
+import cl.duoc.pty.feriavirtualdesktop.grafica.VistaGeneralAdministrador;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,8 @@ public class UsuarioController {
 
             //Validar si el campo idUsuario no está vacio o que no sea nulo
             if (idUsuario != null && !idUsuario.isEmpty()) {
-                parametros.add(new Parametro("idSession", "session"));
+                //parametros.add(new Parametro("idSession", "session"));
+                parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
                 resultado = servicioApi.Get("Usuario/" + idUsuario, parametros);
 
                 usuario = g.fromJson(resultado, RespuestaUsuario.class);
@@ -91,7 +93,8 @@ public class UsuarioController {
             Gson g = new Gson();
             
               if (usuario != null) {
-                parametros.add(new Parametro("idSession", "session"));
+                //parametros.add(new Parametro("idSession", "session"));
+                parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
 
                 jsonUsuario = g.toJson(usuario);
  

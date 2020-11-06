@@ -7,10 +7,14 @@ package cl.duoc.pty.feriavirtualdesktop.grafica;
 
 import cl.duoc.pty.feriavirtualdesktop.entidades.Administrador;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Login;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.LoginController;
+import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +27,6 @@ public class VistaLogin extends javax.swing.JFrame {
      */
     public VistaLogin() {
         initComponents();
-        pnlDatosUsuario.setVisible(false);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
@@ -43,43 +46,50 @@ public class VistaLogin extends javax.swing.JFrame {
         txtIdentificador = new javax.swing.JTextField();
         lblTituloLogin = new javax.swing.JLabel();
         txtClave = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        pnlDatosUsuario = new javax.swing.JPanel();
-        txtNombre = new javax.swing.JTextField();
-        lblMensajeError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Feria Virtual v1.0.0");
 
-        lblIdentificador.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+        pnlAdmin.setBackground(new java.awt.Color(43, 172, 192));
+        pnlAdmin.setBorder(new javax.swing.border.MatteBorder(null));
+        pnlAdmin.setToolTipText("");
+
+        lblIdentificador.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblIdentificador.setText("Rut");
 
-        lblClave.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+        lblClave.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblClave.setText("Clave");
 
-        txtIdentificador.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+        txtIdentificador.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtIdentificador.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtIdentificador.setText("15538372-0");
+        txtIdentificador.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIdentificadorFocusLost(evt);
+            }
+        });
         txtIdentificador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdentificadorActionPerformed(evt);
             }
         });
 
-        lblTituloLogin.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        lblTituloLogin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTituloLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTituloLogin.setText("Ingreso Administrador");
 
-        txtClave.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+        txtClave.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
-        jLabel1.setText("¿Ha Olvidado Su Contraseña?");
-
-        btnCerrar.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+        btnCerrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnCerrar.setText("Salir");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
-        btnIngresar.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+        btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,102 +97,65 @@ public class VistaLogin extends javax.swing.JFrame {
             }
         });
 
-        txtNombre.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlDatosUsuarioLayout = new javax.swing.GroupLayout(pnlDatosUsuario);
-        pnlDatosUsuario.setLayout(pnlDatosUsuarioLayout);
-        pnlDatosUsuarioLayout.setHorizontalGroup(
-            pnlDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatosUsuarioLayout.createSequentialGroup()
-                .addGroup(pnlDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDatosUsuarioLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlDatosUsuarioLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(98, Short.MAX_VALUE))
-        );
-        pnlDatosUsuarioLayout.setVerticalGroup(
-            pnlDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatosUsuarioLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(lblMensajeError, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
         pnlAdmin.setLayout(pnlAdminLayout);
         pnlAdminLayout.setHorizontalGroup(
             pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTituloLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlAdminLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(pnlAdminLayout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(94, 94, 94))
-                                .addGroup(pnlAdminLayout.createSequentialGroup()
-                                    .addComponent(btnIngresar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
-                                    .addComponent(lblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(38, 38, 38)
-                                    .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(lblClave))))
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlDatosUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
-            .addComponent(lblTituloLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
+                                .addComponent(lblClave)
+                                .addGap(50, 50, 50)))
+                        .addGap(2, 2, 2)
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtClave)
+                            .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         pnlAdminLayout.setVerticalGroup(
             pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblClave)
-                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblClave))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCerrar)
                     .addComponent(btnIngresar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlDatosUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(41, 41, 41))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -193,38 +166,69 @@ public class VistaLogin extends javax.swing.JFrame {
 
         Login login = new Login();
         Administrador admin = new Administrador();
+        
+        Usuario usuario = new Usuario();
 
+        ValidacionRut valida;
+        valida = new ValidacionRut();
+
+        boolean validacion = ValidacionRut.validarRut(txtIdentificador.getText());
+
+        /**
+         * Prueba Validar RUT
+         */
         login.setRut(txtIdentificador.getText());
         login.setClave(txtClave.getText());
         login.setTipoPerfil(1);
 
         try {
             admin = LoginController.login(login);
+            usuario = admin.getUsuario();                    
 
-            if (admin.isExito()) {
-               
-                VistaGeneralAdministrador vga = new VistaGeneralAdministrador();
-                vga.setVisible(true);
-                this.dispose();
-                
+            if (validacion == true) {
+
+                if (admin.isExito()) {
+                    VistaGeneralAdministrador.session = usuario.getSesionId();
+                    
+                    VistaGeneralAdministrador vga = new VistaGeneralAdministrador();
+                    vga.setVisible(true);
+                    this.dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(pnlAdmin, admin.getMensaje());
+                }
             } else {
-                lblMensajeError.setText("Usuario o Contraseña Incorrectos");
+                JOptionPane.showMessageDialog(pnlAdmin, "Rut Incorrecto");
             }
 
         } catch (Exception e) {
-            System.out.println("Error al obtener los datos del usuario" + e);
+            //System.out.println("Error al obtener los datos del usuario" + e);
+            JOptionPane.showMessageDialog(pnlAdmin, "Error" + e);
         }
-
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
     private void txtIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificadorActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_txtIdentificadorActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+        ValidacionRut valida;
+        valida = new ValidacionRut();
+
+        String rut = txtIdentificador.getText();
+        String rutFormateado = valida.FormatearRUT(rut);
+
+        
+        txtIdentificador.setText(rutFormateado);
+    }//GEN-LAST:event_txtIdentificadorFocusLost
 
     /**
      * @param args the command line arguments
@@ -266,15 +270,11 @@ public class VistaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblClave;
     private javax.swing.JLabel lblIdentificador;
-    private javax.swing.JLabel lblMensajeError;
     private javax.swing.JLabel lblTituloLogin;
     private javax.swing.JPanel pnlAdmin;
-    private javax.swing.JPanel pnlDatosUsuario;
     private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtIdentificador;
-    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

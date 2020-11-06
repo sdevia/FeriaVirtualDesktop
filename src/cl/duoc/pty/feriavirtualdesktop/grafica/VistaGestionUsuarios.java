@@ -20,29 +20,24 @@ import javax.swing.table.TableModel;
  *
  * @author bruunildo
  */
-public class VistaGestionUsuarioss extends javax.swing.JPanel {
+public class VistaGestionUsuarios extends javax.swing.JPanel {
 
     /**
      * Creates new form VistaGestionUsuarioss
      */
-    public VistaGestionUsuarioss() {
+    public VistaGestionUsuarios() {
         initComponents();
         inicializarTabla();
-       
 
     }
-    
-   
+
     private void inicializarTabla() {
         List<Usuario> usuarios = new ArrayList<>();
         TMUsuario modelo;
-                            
+
         modelo = new TMUsuario(usuarios);
-        
- 
+
         tblGestionUsuarios.setModel(modelo);
-        
-        
 
     }
 
@@ -122,6 +117,11 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         lblApellidoUsuario.setText("Apellido");
 
         txtRut.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRutActionPerformed(evt);
+            }
+        });
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -427,39 +427,31 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
         TMUsuario modelo;
         modelo = new TMUsuario(listaUsuario.getUsuarios());
         tblGestionUsuarios.setModel(modelo);
-        
-        
-        
+
+
     }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
 
     private void tblGestionUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGestionUsuariosMouseClicked
         // TODO add your handling code here:
         ValidacionRut valida;
         valida = new ValidacionRut();
-        
+
         int i = tblGestionUsuarios.getSelectedRow();
         TableModel model = tblGestionUsuarios.getModel();
-        
-        String rut = model.getValueAt(i,1).toString();
+
+        String rut = model.getValueAt(i, 1).toString();
         String rutFormateado = valida.FormatearRUT(rut);
-        
-        
-        txtIdUsuario.setText(model.getValueAt(i,0).toString());
+
+        txtIdUsuario.setText(model.getValueAt(i, 0).toString());
         txtRut.setText(rutFormateado);
-        txtNombre.setText(model.getValueAt(i,2).toString());
-        txtApellido.setText(model.getValueAt(i,3).toString());
-        txtEmailUsuario.setText(model.getValueAt(i,4).toString());
-        txtDireccionUsuario.setText(model.getValueAt(i,7).toString());
-        txtTelefonoUsuario.setText(model.getValueAt(i,14).toString());
-        pwfClaveUsuario.setText(model.getValueAt(i,8).toString());
-        
-        
-        
-        
-        
-        
-        
-        
+        txtNombre.setText(model.getValueAt(i, 2).toString());
+        txtApellido.setText(model.getValueAt(i, 3).toString());
+        txtEmailUsuario.setText(model.getValueAt(i, 4).toString());
+        txtDireccionUsuario.setText(model.getValueAt(i, 7).toString());
+        txtTelefonoUsuario.setText(model.getValueAt(i, 14).toString());
+        pwfClaveUsuario.setText(model.getValueAt(i, 8).toString());
+
+
     }//GEN-LAST:event_tblGestionUsuariosMouseClicked
 
     private void vbxComunaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vbxComunaUsuarioActionPerformed
@@ -489,26 +481,30 @@ public class VistaGestionUsuarioss extends javax.swing.JPanel {
     private void btnActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarUsuarioActionPerformed
         RespuestaUsuario ru = new RespuestaUsuario();
         Usuario usuario = new Usuario();// TODO add your handling code here:
-          RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
-        
+        RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
+
         listaUsuario = UsuarioController.buscarUsuario(txtIdUsuario.getText());
-        
+
         usuario = listaUsuario.getUsuarios().get(0);
-        
-        if(txtNombre.getText() != null){
+
+        if (txtNombre.getText() != null) {
             usuario.setNombre(txtNombre.getText());
         }
         ru = UsuarioController.actualizarUsuario(usuario);
-      
-        if(ru.isExito()){
-        
-             TMUsuario modelo;
-        modelo = new TMUsuario(listaUsuario.getUsuarios());
-        tblGestionUsuarios.setModel(modelo);
+
+        if (ru.isExito()) {
+
+            TMUsuario modelo;
+            modelo = new TMUsuario(listaUsuario.getUsuarios());
+            tblGestionUsuarios.setModel(modelo);
         }
-        
-        
+
+
     }//GEN-LAST:event_btnActualizarUsuarioActionPerformed
+
+    private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -59,6 +59,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         TMOrden modelo;           
         modelo = new TMOrden(ordenes);
 
+        
         tblOrdenes.setModel(modelo); 
 
     }
@@ -640,8 +641,8 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         
         String fecha = txtFechaFinProceso.getText();
         try {
-            fechaFinProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
-            fechaProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaProceso.getText());
+            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
         } catch (ParseException ex) {
             System.out.println("Error "+ex);
         }
@@ -662,6 +663,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         
         showMessageDialog(null, modificarProceso.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
         limpiarCampos();
+        btnActualizarOrdenesProcesos.doClick();
         btnModificarProceso.setEnabled(false);
         txtIdOrden.setEditable(true);
         }
@@ -674,9 +676,9 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         TableModel model = tblOrdenes.getModel();
         
         txtIdOrden.setText(model.getValueAt(i,0).toString());
-        txtIdUsuario.setText(model.getValueAt(i,2).toString());
+        txtIdUsuario.setText(model.getValueAt(i,6).toString());
         txtFechaOrden.setText(model.getValueAt(i,1).toString());
-        txtEstadoOrden.setText(model.getValueAt(i,3).toString());
+        txtEstadoOrden.setText(model.getValueAt(i,4).toString());
         
         if("PENDIENTE".equals(txtEstadoOrden.getText())) {
         

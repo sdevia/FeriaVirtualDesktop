@@ -5,6 +5,7 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.entidades;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.event.TableModelListener;
@@ -118,7 +119,9 @@ public class TMProceso implements TableModel {
                 break;
             }
             case 5: {
-                valor = (p.getFechaProceso()).toString();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                valor = sdf.format(p.getFechaProceso());
+
                 break;
             }
             case 6: {
@@ -134,7 +137,8 @@ public class TMProceso implements TableModel {
                 break;
             }
             case 9: {
-                valor = (p.getFechaFinProceso()).toString();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                valor = sdf.format(p.getFechaFinProceso());
                 break;
             }
         }

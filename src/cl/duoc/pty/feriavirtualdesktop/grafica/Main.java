@@ -23,8 +23,8 @@ public class Main {
      //VistaProcesosVenta vv = new VistaProcesosVenta();
      //vv.setVisible(true);
      
-     VistaGestionUsuarioss vu = new VistaGestionUsuarioss();
-     vu.setVisible(true);
+     VistaLogin login = new VistaLogin();
+     login.setVisible(true);
     }
     
 }

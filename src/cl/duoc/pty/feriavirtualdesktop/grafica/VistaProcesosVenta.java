@@ -353,7 +353,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                                     .addGap(18, 18, 18)
                                     .addComponent(btnBuscarOrden)
                                     .addGap(6, 6, 6))))
-                        .addGap(83, 83, 83)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtIdProceso, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtFechaProceso, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -366,7 +366,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel5))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(108, 108, 108)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPagoServicio)
                             .addComponent(txtAduana)
@@ -718,6 +718,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         setearBotones();
         btnCrearProceso.setEnabled(false);
         txtIdOrden.setEditable(false);
+
         btnModificarProceso.setEnabled(true);
         
         int i = tblProcesos.getSelectedRow();

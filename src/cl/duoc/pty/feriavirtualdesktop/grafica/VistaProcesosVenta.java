@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -86,8 +87,6 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
 
         TMProceso modelo;
         modelo = new TMProceso(listaProceso.getProcesos());
-        
-        // TODO: Remover filas con estado PENDIENTE
 
         tblProcesos.setModel(modelo);
     }
@@ -636,9 +635,10 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         Date fechaProceso = new Date();
         Date fechaFinProceso = new Date();
         
+        String fecha = txtFechaFinProceso.getText();
         try {
-            fechaFinProceso = new SimpleDateFormat().parse(txtFechaFinProceso.getText());
-            fechaProceso = new SimpleDateFormat().parse(txtFechaProceso.getText());
+            fechaFinProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaProceso.getText());
         } catch (ParseException ex) {
             System.out.println("Error "+ex);
         }
@@ -817,8 +817,8 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         Date fechaFinProceso = new Date();
         
         try {
-            fechaFinProceso = new SimpleDateFormat().parse(txtFechaFinProceso.getText());
-            fechaProceso = new SimpleDateFormat().parse(txtFechaProceso.getText());
+            fechaFinProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaProceso.getText());
         } catch (ParseException ex) {
             System.out.println("Error "+ex);
         }

@@ -12,7 +12,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.ProcesoListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProcesoListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Subasta;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMOrdenProcesoEtapa;
-import cl.duoc.pty.feriavirtualdesktop.entidades.TMProceso;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMProcesoSubasta;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMSubasta;
 import cl.duoc.pty.feriavirtualdesktop.negocio.ProcesoController;
 import java.text.DateFormat;
@@ -26,10 +26,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.scene.control.DatePicker;
 import javax.swing.RowFilter;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -494,18 +497,32 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
 
         RespuestaProcesoListar listaProceso = new RespuestaProcesoListar();
         listaProceso = ProcesoController.listarProceso();
-        TMProceso modelo;
-        modelo = new TMProceso(listaProceso.getProcesos());
+                
+         if(listaProceso.isExito()){
+             
+        Predicate<Proceso> byEstado = proceso -> proceso.getEstadoProceso().equals("PENDIENTE");  
+        List<Proceso> result = listaProceso.getProcesos().stream().filter(byEstado).collect(Collectors.toList());
+        TMProcesoSubasta modelo;
+        modelo = new TMProcesoSubasta(result);
         tblVentasSubasta.setModel(modelo);
-        
+         }else
+         {
+         
+         }
         
     }
 
     private void inicializarTabla() {
+       
+        
         List<Proceso> procesos = new ArrayList<>();
-        TMProceso modelo;
-        modelo = new TMProceso(procesos);
+        TMProcesoSubasta modelo;
+        modelo = new TMProcesoSubasta(procesos);
         tblVentasSubasta.setModel(modelo);
+        
+        
+        
+        
     }
 
   
@@ -564,6 +581,12 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         
         Subasta objSubasta = new Subasta(idsubasta, fechaSubasta, FechaTerminoSubasta, true, idProceso, arrayList);
         
+        
+       // TableModel model = tblDetalleSubasta.getModel();
+        //List<Subasta> model =  (List<Subasta>) tblDetalleSubasta.getModel();
+        
+        
+        
         List<Subasta> subastas = new ArrayList<Subasta>();
         subastas.add(objSubasta);
         TMSubasta modelo;
@@ -606,6 +629,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         txtEstado.setText("");
         dtpFechaInicioSubasta.setDate(null);
         dtpFechaTerminoSubasta.setDate(null);
+      
     }
 
     private void modificarSubasta() {
@@ -644,20 +668,18 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         limpiar();
     }
 
+    /**
+     * PARA KATHY
+     */
     private void buscarProceso() {
-//        DefaultTableModel dtm = (DefaultTableModel)tblVentasSubasta.getModel();
-//        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<DefaultTableModel>(dtm);
-//        tblVentasSubasta.setRowSorter(trs);
-//        String query = txtIdVenta.getText();
-//        trs.setRowFilter(RowFilter.regexFilter(query));
-        
-        
-        TMSubasta tm =  (TMSubasta)tblVentasSubasta.getModel();
-        TableRowSorter<TMSubasta> tr = new TableRowSorter<TMSubasta>(tm);
+       
+        TMProcesoSubasta tm =  (TMProcesoSubasta)tblVentasSubasta.getModel();
+        TableRowSorter<TMProcesoSubasta> tr = new TableRowSorter<TMProcesoSubasta>(tm);
         tblVentasSubasta.setRowSorter(tr);
         String quer = txtIdVenta.getText();
-        tr.setRowFilter(RowFilter.regexFilter(quer));
+        tr.setRowFilter(RowFilter.regexFilter("^(?i)" + quer, 0));
         
+       
         
     }
 

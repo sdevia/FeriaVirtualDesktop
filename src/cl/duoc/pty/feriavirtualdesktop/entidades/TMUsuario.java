@@ -28,7 +28,7 @@ public class TMUsuario implements TableModel {
 
         @Override
         public int getColumnCount() {
-            return 18;
+            return 15;
         }
 
         @Override
@@ -95,7 +95,7 @@ public class TMUsuario implements TableModel {
                     titulo = "TELÉFONO";
                     break;
                 }
-                case 15: {
+                /*case 15: {
                     titulo = "RECLAVE";
                     break;
                 }
@@ -106,7 +106,7 @@ public class TMUsuario implements TableModel {
                 case 17: {
                     titulo = "ESTADO EDITADO";
                     break;
-                }
+                }*/
 
             }
             return titulo;
@@ -188,7 +188,7 @@ public class TMUsuario implements TableModel {
                     valor = u.getTelefono();
                     break;
                 }
-                case 15: {
+                /*case 15: {
                     valor = u.getReClave();
                     break;
                 }
@@ -199,7 +199,7 @@ public class TMUsuario implements TableModel {
                 case 17: {
                     valor = u.getEstadoEdit();
                     break;
-                }
+                }*/
 
             }
             return valor;
@@ -270,7 +270,7 @@ public class TMUsuario implements TableModel {
                     u.setTelefono(aValue.toString());
                     break;
                 }
-                case 15: {
+                /*case 15: {
                     u.setReClave(aValue.toString());
                     break;
                 }
@@ -281,7 +281,7 @@ public class TMUsuario implements TableModel {
                 case 17: {
                     u.setEstadoEdit(aValue.toString());
                     break;
-                }
+                }*/
 
             }
             

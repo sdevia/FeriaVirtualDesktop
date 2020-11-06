@@ -54,7 +54,7 @@ public class UsuarioController {
 
             } else {
                 parametros.add(new Parametro("idperfil", "0"));
-                parametros.add(new Parametro("idSession", "session"));
+                parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
                 parametros.add(new Parametro("servicio", "FRT"));
                 resultado = servicioApi.Get("usuario/perfil", parametros);
 

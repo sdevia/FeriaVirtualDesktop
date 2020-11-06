@@ -270,9 +270,6 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setText("Fecha Fin Proceso");
 
-        txtFechaFinProceso.setEditable(false);
-        txtFechaFinProceso.setBackground(new java.awt.Color(204, 204, 204));
-
         btnFirmarOrden.setBackground(new java.awt.Color(0, 153, 153));
         btnFirmarOrden.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnFirmarOrden.setForeground(new java.awt.Color(255, 255, 255));
@@ -360,8 +357,8 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtIdProceso, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtFechaProceso, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtEstadoProceso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
-                            .addComponent(txtPagoTransportista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                            .addComponent(txtEstadoProceso, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtPagoTransportista, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -639,7 +636,6 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         Date fechaProceso = new Date();
         Date fechaFinProceso = new Date();
         
-        String fecha = txtFechaFinProceso.getText();
         try {
             fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
             fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
@@ -786,7 +782,15 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         RespuestaProceso creacionProceso = new RespuestaProceso();
         Proceso proceso = new Proceso();
         
-        Date date = new Date();
+        Date fechaProceso = new Date();
+        Date fechaFinProceso = new Date();
+        
+        try {
+            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
+        } catch (ParseException ex) {
+            System.out.println("Error "+ex);
+        }
         
         proceso.setIdProceso(0);
         proceso.setIdUsuario(1);
@@ -796,15 +800,16 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
         proceso.setPagoTransportista(0);
         proceso.setEstadoProceso("PENDIENTE");
-        proceso.setFechaProceso(date);
+        proceso.setFechaProceso(fechaProceso);
         //TODO agregar calendario
-        proceso.setFechaFinProceso(date);
+        proceso.setFechaFinProceso(fechaFinProceso);
         
         creacionProceso = ProcesoController.crearModificarProceso(proceso);
         
         showMessageDialog(null, creacionProceso.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
         limpiarCampos();
         btnCrearProceso.setEnabled(false);
+        btnActualizarOrdenesProcesos.doClick();
         txtIdOrden.setEditable(true);
         }
     }//GEN-LAST:event_btnCrearProcesoActionPerformed
@@ -850,6 +855,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         limpiarCampos();
         btnAnularProceso.setEnabled(false);
         btnModificarProceso.setEnabled(false);
+        btnActualizarOrdenesProcesos.doClick();
         txtIdOrden.setEditable(true);
 
     }//GEN-LAST:event_btnAnularProcesoActionPerformed

@@ -29,7 +29,7 @@ public class TMProceso implements TableModel {
 
     @Override
     public int getColumnCount() {
-        return 8;
+        return 9;
     }
 
     @Override

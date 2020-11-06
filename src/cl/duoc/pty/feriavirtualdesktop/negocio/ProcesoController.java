@@ -9,6 +9,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Proceso;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProceso;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProcesoListar;
+import cl.duoc.pty.feriavirtualdesktop.grafica.VistaGeneralAdministrador;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class ProcesoController {
             //Gson g = new Gson();
             Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
             
-            parametros.add(new Parametro("idSession", "session"));
+            parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
             resultado = servicioApi.Get("Admin/Proceso/Listar", parametros);
 
             listaProceso = g.fromJson(resultado, RespuestaProcesoListar.class);
@@ -61,7 +62,7 @@ public class ProcesoController {
             String jsonInputString = g.toJson(proceso);//"{Rut: \"" + login.getRut() + "\", Clave: \"" + login.getClave() + "\", TipoPerfil: 1}";
             //String jsonString = g.toJson(login);
             List<Parametro> parametros = new ArrayList<Parametro>();
-            parametros.add(new Parametro("idSession", "session"));
+            parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
             String resultado = new ApiController().Post("Admin/Proceso", jsonInputString, parametros);
             //String jsonString = g.toJson(admin);
             creaProceso = g.fromJson(resultado, RespuestaProceso.class);

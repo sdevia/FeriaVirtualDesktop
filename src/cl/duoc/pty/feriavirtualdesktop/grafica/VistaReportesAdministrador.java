@@ -14,9 +14,12 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.OrdenController;
 import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
+import javax.swing.RowFilter;
+import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -25,12 +28,14 @@ import javax.swing.table.TableRowSorter;
  * @author bruunildo
  */
 public class VistaReportesAdministrador extends javax.swing.JPanel {
-
     /**
      * Creates new form ReportesAdministrador
      */
+    CardLayout vista;
     public VistaReportesAdministrador() {
         initComponents();
+        
+
  
     }
 
@@ -38,6 +43,7 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
     
         private void inicializarTabla() {
         String cbxopcion = (String)cbxTipoReporteAdministrador.getSelectedItem();   
+        
         
         /*
         if (cbxopcion == "23") {
@@ -69,6 +75,7 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
                 tblReporteAdministrador.setModel(modeloUsuario);
                 TableRowSorter<TableModel> OrdenModeloUsuario = new TableRowSorter<TableModel>(modeloUsuario);
                 tblReporteAdministrador.setRowSorter(OrdenModeloUsuario);
+                //OrdenModeloUsuario.setRowFilter(RowFilter.regexFilter("23", 0));
             break; 
             case "Procesos de Venta Finalizados": 
             CuadroDialogo.setVisible(true);
@@ -85,6 +92,8 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
                 
                 TableRowSorter<TableModel> OrdenModeloOrden = new TableRowSorter<TableModel>(modeloOrden);
                 tblReporteAdministrador.setRowSorter(OrdenModeloOrden);
+                
+                
             break; 
 }
         
@@ -122,6 +131,7 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reportes Administrador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        setPreferredSize(new java.awt.Dimension(200, 200));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -139,7 +149,6 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
         tblReporteAdministrador.setColumnSelectionAllowed(true);
         tblReporteAdministrador.setEnabled(false);
         tblReporteAdministrador.setGridColor(new java.awt.Color(43, 172, 192));
-        tblReporteAdministrador.setIntercellSpacing(new java.awt.Dimension(1, 1));
         tblReporteAdministrador.setRowHeight(25);
         tblReporteAdministrador.getTableHeader().setReorderingAllowed(false);
         tblReporteAdministrador.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -197,12 +206,12 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(cbxTipoReporteAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReportesAdminsGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

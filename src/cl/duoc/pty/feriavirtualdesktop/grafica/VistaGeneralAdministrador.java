@@ -21,7 +21,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     VistaGestionUsuarioss vistaGestionUsuarioss = new VistaGestionUsuarioss();
     VistaProcesosVenta vistaProcesosVenta = new VistaProcesosVenta();
     VistaGestionSubastaTransporte vistaGestionSubastasTransportes = new VistaGestionSubastaTransporte();
-    VistaReportesSubastas vistaReportesSubastas = new VistaReportesSubastas();
+    VistaReportesAdministrador vistaReportesAdministrador = new VistaReportesAdministrador();
     CardLayout vista;
     /**
      * Creates new form VistaGeneralAdministrador
@@ -176,7 +176,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
 
         btnReportesVentas.setBackground(new java.awt.Color(255, 255, 255));
         btnReportesVentas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnReportesVentas.setText("Reportes Subastas");
+        btnReportesVentas.setText("Reportes");
         btnReportesVentas.setBorder(null);
         btnReportesVentas.setBorderPainted(false);
         btnReportesVentas.setRequestFocusEnabled(false);
@@ -340,7 +340,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReportesVentasMouseExited
 
     private void btnReportesVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesVentasActionPerformed
-       pnlAdministradorDinamico.add(vistaReportesSubastas,"alta");
+       pnlAdministradorDinamico.add(vistaReportesAdministrador,"alta");
        vista.show(pnlAdministradorDinamico, "alta");
        SwingUtilities.updateComponentTreeUI(this);
        this.repaint();

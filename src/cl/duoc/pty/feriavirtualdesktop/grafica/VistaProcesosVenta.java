@@ -653,7 +653,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
         proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
         proceso.setPagoTransportista(Integer.valueOf(txtPagoTransportista.getText()));
-        proceso.setEstadoProceso(txtEstadoOrden.getText());
+        proceso.setEstadoProceso(txtEstadoProceso.getText());
         proceso.setFechaProceso(fechaProceso);
         //TODO agregar calendario
         proceso.setFechaFinProceso(fechaFinProceso);
@@ -847,6 +847,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         showMessageDialog(null, anularProceso.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
         limpiarCampos();
         btnAnularProceso.setEnabled(false);
+        btnModificarProceso.setEnabled(false);
         txtIdOrden.setEditable(true);
 
     }//GEN-LAST:event_btnAnularProcesoActionPerformed

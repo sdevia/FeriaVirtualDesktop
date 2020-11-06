@@ -20,6 +20,9 @@ import cl.duoc.pty.feriavirtualdesktop.utils.ValidarRut;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -815,8 +818,12 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         
         Date fechaProceso = new Date();
         Date fechaFinProceso = new Date();
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z YYYY");
+        //ZonedDateTime today = ZonedDateTime.now();
+        
         
         try {
+            //today = ZonedDateTime.parse(txtFechaFinProceso.getText(), formatter).plusMonths(1);
             fechaFinProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
             fechaProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaProceso.getText());
         } catch (ParseException ex) {

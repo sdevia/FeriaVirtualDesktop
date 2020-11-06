@@ -53,7 +53,7 @@ public class ProcesoController {
         return listaProceso;
     }
     
-    public static RespuestaProceso crearProceso(Proceso proceso) {
+    public static RespuestaProceso crearModificarProceso(Proceso proceso) {
         RespuestaProceso creaProceso = new RespuestaProceso();
         
         try {

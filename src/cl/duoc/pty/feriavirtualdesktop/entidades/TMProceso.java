@@ -71,6 +71,10 @@ public class TMProceso implements TableModel {
                 titulo = "ID CLIENTE";
                 break;
             }
+            case 9: {
+                titulo = "FECHA FIN PROCESO";
+                break;
+            }
         }
         return titulo;
     }
@@ -127,6 +131,10 @@ public class TMProceso implements TableModel {
             }
             case 8: {
                 valor = Integer.toString(p.getIdUsuario());
+                break;
+            }
+            case 9: {
+                valor = (p.getFechaFinProceso()).toString();
                 break;
             }
         }

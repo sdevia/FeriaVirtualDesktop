@@ -23,6 +23,8 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     VistaGestionSubastaTransporte vistaGestionSubastasTransportes = new VistaGestionSubastaTransporte();
     VistaReportesAdministrador vistaReportesAdministrador = new VistaReportesAdministrador();
     CardLayout vista;
+    
+    public static String session;
     /**
      * Creates new form VistaGeneralAdministrador
      */

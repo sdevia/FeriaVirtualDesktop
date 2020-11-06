@@ -104,7 +104,8 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         tblGestionUsuarios = new javax.swing.JTable();
 
         PnlGestionUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        PnlGestionUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestion de Usuarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        PnlGestionUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestión de Usuarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        PnlGestionUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PnlGestionUsuarios.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         PnlGestionUsuarios.setPreferredSize(new java.awt.Dimension(1100, 640));
 

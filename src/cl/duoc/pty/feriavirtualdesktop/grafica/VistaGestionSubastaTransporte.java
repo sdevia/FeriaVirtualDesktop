@@ -94,7 +94,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         btnLimpiar = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestion de Subastas Transporte", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestión de Subastas Transporte", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -606,8 +606,8 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
             String estado = model.getValueAt(i,4).toString();
             String fechaString = model.getValueAt(i,2).toString();
             String fechaFinString = model.getValueAt(i,3).toString();
-            Date fechaInicioSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(fechaString);
-            Date fechaFinSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(fechaFinString);
+            Date fechaInicioSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fechaString);
+            Date fechaFinSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinString);
             
             txtIdProceso.setText(idProceso);
             txtIdSubasta.setText(idSubasta);
@@ -629,6 +629,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         txtEstado.setText("");
         dtpFechaInicioSubasta.setDate(null);
         dtpFechaTerminoSubasta.setDate(null);
+
       
     }
 

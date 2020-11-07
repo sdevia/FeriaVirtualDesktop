@@ -17,7 +17,7 @@ import javax.swing.table.TableModel;
  */
 public class TMSubasta implements TableModel {
     
-    private List<Subasta> subastas;
+    public List<Subasta> subastas;
     
     public TMSubasta(List<Subasta> lista) {
             subastas = lista;

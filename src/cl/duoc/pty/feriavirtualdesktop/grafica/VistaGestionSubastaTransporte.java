@@ -148,7 +148,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel7)))
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,12 +215,12 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(398, 398, 398)
-                .addComponent(btnCrearSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(564, 564, 564)
+                .addComponent(btnCrearSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnModificarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminarSubastaTransporte)
+                .addComponent(btnEliminarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -276,18 +276,16 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(jLabel6)
-                        .addGap(459, 459, 459)
-                        .addComponent(jLabel9)))
+                .addGap(151, 151, 151)
+                .addComponent(jLabel6)
+                .addGap(459, 459, 459)
+                .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,7 +356,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
                                     .addComponent(txtTipoVenta)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtPesoMaximo))
-                                .addGap(305, 305, 305))
+                                .addGap(418, 418, 418))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,7 +367,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
                                         .addComponent(btnBuscarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(81, 81, 81)))
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(56, 56, 56)
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -401,7 +399,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
                                 .addComponent(txtPesoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(84, 84, 84)
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -572,7 +570,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
     }
     
 
-    private void crearSubasta() {
+ private void crearSubasta() {
          int idsubasta = (int) Math.floor(Math.random()*(10-1+1)+1);
          Date fechaSubasta = dtpFechaInicioSubasta.getDate();
          Date FechaTerminoSubasta = dtpFechaTerminoSubasta.getDate();
@@ -582,12 +580,12 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         Subasta objSubasta = new Subasta(idsubasta, fechaSubasta, FechaTerminoSubasta, true, idProceso, arrayList);
         
         
-       // TableModel model = tblDetalleSubasta.getModel();
-        //List<Subasta> model =  (List<Subasta>) tblDetalleSubasta.getModel();
+        TMSubasta model = (TMSubasta)tblDetalleSubasta.getModel();
+        List<Subasta> subastas =  model.subastas;
         
         
         
-        List<Subasta> subastas = new ArrayList<Subasta>();
+        //List<Subasta> subastas = new ArrayList<Subasta>();
         subastas.add(objSubasta);
         TMSubasta modelo;
         modelo = new TMSubasta(subastas);
@@ -633,7 +631,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
       
     }
 
-    private void modificarSubasta() {
+private void modificarSubasta() {
          int idsubasta = Integer.valueOf(txtIdSubasta.getText());
          Date fechaSubasta = dtpFechaInicioSubasta.getDate();
          Date FechaTerminoSubasta = dtpFechaTerminoSubasta.getDate();
@@ -642,7 +640,18 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         
         Subasta objSubasta = new Subasta(idsubasta, fechaSubasta, FechaTerminoSubasta, true, idProceso, arrayList);
         
-        List<Subasta> subastas = new ArrayList<>();
+        TMSubasta model = (TMSubasta)tblDetalleSubasta.getModel();
+        List<Subasta> subastas =  model.subastas;
+        int eli = 0;
+        for (int i = 0; i < subastas.size(); i++) {
+            if (subastas.get(i).getIdSubasta()==idsubasta){
+                eli=i;
+                break;
+            }
+        }
+        subastas.remove(eli);
+        
+        //List<Subasta> subastas = new ArrayList<Subasta>();
         subastas.add(objSubasta);
         TMSubasta modelo;
         modelo = new TMSubasta(subastas);
@@ -660,7 +669,18 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         
         Subasta objSubasta = new Subasta(idsubasta, fechaSubasta, FechaTerminoSubasta, false, idProceso, arrayList);
         
-        List<Subasta> subastas = new ArrayList<>();
+        TMSubasta model = (TMSubasta)tblDetalleSubasta.getModel();
+        List<Subasta> subastas =  model.subastas;
+        int eli = 0;
+        for (int i = 0; i < subastas.size(); i++) {
+            if (subastas.get(i).getIdSubasta()==idsubasta){
+                eli=i;
+                break;
+            }
+        }
+        subastas.remove(eli);
+        
+        //List<Subasta> subastas = new ArrayList<Subasta>();
         subastas.add(objSubasta);
         TMSubasta modelo;
         modelo = new TMSubasta(subastas);

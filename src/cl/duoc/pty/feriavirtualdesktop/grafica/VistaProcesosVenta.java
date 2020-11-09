@@ -5,6 +5,36 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
+import cl.duoc.pty.feriavirtualdesktop.entidades.Orden;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Proceso;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaFirmarOrden;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaOrden;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaOrdenListar;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProceso;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProcesoListar;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMOrden;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMProceso;
+import cl.duoc.pty.feriavirtualdesktop.negocio.OrdenController;
+import cl.duoc.pty.feriavirtualdesktop.negocio.ProcesoController;
+import cl.duoc.pty.feriavirtualdesktop.utils.ValidarRut;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author bruunildo
@@ -14,10 +44,72 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     /**
      * Creates new form VistaProcesosVenta
      */
+    
     public VistaProcesosVenta() {
         initComponents();
-    }
+        inicializarTabla();
+        listarOrdenes();
+        listarProcesos();
+        setearBotones();
 
+    }
+    
+    private void inicializarTabla() {
+        List<Orden> ordenes = new ArrayList<>();
+        TMOrden modelo;           
+        modelo = new TMOrden(ordenes);
+
+        
+        tblOrdenes.setModel(modelo); 
+
+    }
+    
+    private void setearBotones() {
+        
+        btnFirmarOrden.setEnabled(false);
+        btnCrearProceso.setEnabled(false);
+        btnModificarProceso.setEnabled(false);
+        btnAnularProceso.setEnabled(false);
+        
+    }
+    
+    private void listarOrdenes() {
+        RespuestaOrdenListar listaOrden = new RespuestaOrdenListar();
+    
+        listaOrden = OrdenController.listarOrden();
+
+        TMOrden modelo;
+        modelo = new TMOrden(listaOrden.getOrdenes());
+
+        tblOrdenes.setModel(modelo);
+    }
+    
+    private void listarProcesos() {
+        RespuestaProcesoListar listaProceso = new RespuestaProcesoListar();
+    
+        listaProceso = ProcesoController.listarProceso();
+
+        TMProceso modelo;
+        modelo = new TMProceso(listaProceso.getProcesos());
+
+        tblProcesos.setModel(modelo);
+    }
+    
+    private void limpiarCampos() {
+        txtIdOrden.setText("");
+        txtCliente.setText("");
+        txtFechaOrden.setText("");
+        txtEstadoOrden.setText("");
+        txtIdProceso.setText("");
+        txtFechaProceso.setText("");
+        txtEstadoProceso.setText("");
+        txtPagoTransportista.setText("");
+        txtComision.setText("");
+        txtAduana.setText("");
+        txtPagoServicio.setText("");
+        txtIdUsuario.setText("");
+        txtFechaFinProceso.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,37 +122,43 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         pnlProcesosVenta = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtIdOrden = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtCliente = new javax.swing.JTextField();
+        txtFechaOrden = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtIdProceso = new javax.swing.JTextField();
+        txtEstadoOrden = new javax.swing.JTextField();
+        txtComision = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtAduana = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtPagoServicio = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtPagoTransportista = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txtFechaProceso = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        txtEstadoProceso = new javax.swing.JTextField();
+        btnBuscarOrden = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txtIdUsuario = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        txtFechaFinProceso = new javax.swing.JTextField();
+        btnFirmarOrden = new javax.swing.JButton();
+        btnCrearProceso = new javax.swing.JButton();
+        btnModificarProceso = new javax.swing.JButton();
+        btnAnularProceso = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        btnCrearProcesoVenta = new javax.swing.JButton();
-        btnBuscarProcesoVenta = new javax.swing.JButton();
-        btnModificarProcesoVenta = new javax.swing.JButton();
-        btnEliminarProcesoVenta = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblOrdenes = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblProcesos = new javax.swing.JTable();
+        btnLimpiar = new javax.swing.JButton();
+        btnActualizarOrdenesProcesos = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1100, 640));
 
@@ -70,255 +168,364 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("ID Proceso Venta");
+        jLabel1.setText("ID Orden");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtIdOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtIdOrdenActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("ID Cliente");
+        jLabel2.setText("Cliente");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtCliente.setEditable(false);
+        txtCliente.setBackground(new java.awt.Color(204, 204, 204));
+
+        txtFechaOrden.setEditable(false);
+        txtFechaOrden.setBackground(new java.awt.Color(204, 204, 204));
+        txtFechaOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtFechaOrdenActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Rut Cliente");
+        jLabel3.setText("Fecha");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Tipo Cliente");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel4.setText("Estado");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Estado de Proceso");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Etapa");
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel5.setText("ID Proceso");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Comision");
+        jLabel7.setText("Valor Aduana");
+
+        txtIdProceso.setEditable(false);
+        txtIdProceso.setBackground(new java.awt.Color(204, 204, 204));
+
+        txtEstadoOrden.setEditable(false);
+        txtEstadoOrden.setBackground(new java.awt.Color(204, 204, 204));
+        txtEstadoOrden.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtEstadoOrdenInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        txtEstadoOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEstadoOrdenActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setText("Comisión");
+
+        txtAduana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAduanaActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText("Pago por Servicio");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("Pago Transportista");
+
+        txtPagoTransportista.setEditable(false);
+        txtPagoTransportista.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setText("Estado Proceso");
+
+        txtFechaProceso.setEditable(false);
+        txtFechaProceso.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel15.setText("Fecha Proceso");
+
+        txtEstadoProceso.setEditable(false);
+        txtEstadoProceso.setBackground(new java.awt.Color(204, 204, 204));
+
+        btnBuscarOrden.setBackground(new java.awt.Color(253, 187, 52));
+        btnBuscarOrden.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBuscarOrden.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarOrden.setText("Buscar");
+        btnBuscarOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarOrdenActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Costo Aduana");
+        jLabel8.setText("ID ");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Pago de Servicios Varios");
+        txtIdUsuario.setEditable(false);
+        txtIdUsuario.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setText("Fecha Inicio Proceso");
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setText("Fecha Fin Proceso");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setText("Fecha Inicio Proceso");
+        btnFirmarOrden.setBackground(new java.awt.Color(0, 153, 153));
+        btnFirmarOrden.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnFirmarOrden.setForeground(new java.awt.Color(255, 255, 255));
+        btnFirmarOrden.setText("Firmar Orden");
+        btnFirmarOrden.setBorder(null);
+        btnFirmarOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirmarOrdenActionPerformed(evt);
+            }
+        });
+
+        btnCrearProceso.setBackground(new java.awt.Color(0, 153, 153));
+        btnCrearProceso.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnCrearProceso.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearProceso.setText("Crear Proceso");
+        btnCrearProceso.setBorder(null);
+        btnCrearProceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearProcesoActionPerformed(evt);
+            }
+        });
+
+        btnModificarProceso.setBackground(new java.awt.Color(253, 187, 52));
+        btnModificarProceso.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnModificarProceso.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarProceso.setText("Modificar");
+        btnModificarProceso.setBorder(null);
+        btnModificarProceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarProcesoActionPerformed(evt);
+            }
+        });
+
+        btnAnularProceso.setBackground(new java.awt.Color(229, 52, 63));
+        btnAnularProceso.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnAnularProceso.setForeground(new java.awt.Color(255, 255, 255));
+        btnAnularProceso.setText("Anular");
+        btnAnularProceso.setBorder(null);
+        btnAnularProceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnularProcesoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel8))
+                            .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1)
+                        .addComponent(txtFechaOrden, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(txtEstadoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(txtIdOrden)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnBuscarOrden)
+                            .addGap(6, 6, 6)))
+                    .addComponent(btnFirmarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(131, 131, 131)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCrearProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModificarProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAnularProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtEstadoProceso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                            .addComponent(txtFechaProceso, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdProceso, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPagoTransportista))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(100, 100, 100))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtAduana, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                                .addComponent(jLabel16)
+                                .addComponent(jLabel13)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel12)
+                                .addComponent(txtFechaFinProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtComision))
+                            .addComponent(txtPagoServicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(130, 130, 130))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtComision, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdUsuario))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(txtAduana))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtFechaProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel5))
-                        .addGap(1, 1, 1)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(178, 178, 178))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)
-                                .addGap(2, 2, 2)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel7))
                                 .addGap(1, 1, 1)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(66, 66, 66)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel11)
-                                        .addGap(1, 1, 1)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel10))))
-                            .addComponent(jLabel9))
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8))
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 8, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFechaOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                            .addComponent(txtEstadoProceso)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPagoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPagoTransportista, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(txtEstadoOrden)
+                    .addComponent(txtFechaFinProceso))
+                .addGap(57, 57, 57)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFirmarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrearProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificarProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAnularProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnCrearProcesoVenta.setBackground(new java.awt.Color(253, 187, 52));
-        btnCrearProcesoVenta.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnCrearProcesoVenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnCrearProcesoVenta.setText("Crear");
-        btnCrearProcesoVenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblOrdenes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
 
-        btnBuscarProcesoVenta.setBackground(new java.awt.Color(253, 187, 52));
-        btnBuscarProcesoVenta.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnBuscarProcesoVenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscarProcesoVenta.setText("Buscar");
-        btnBuscarProcesoVenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            }
+        ));
+        tblOrdenes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrdenesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblOrdenes);
 
-        btnModificarProcesoVenta.setBackground(new java.awt.Color(253, 187, 52));
-        btnModificarProcesoVenta.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnModificarProcesoVenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnModificarProcesoVenta.setText("Modificar");
-        btnModificarProcesoVenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblProcesos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
 
-        btnEliminarProcesoVenta.setBackground(new java.awt.Color(229, 52, 63));
-        btnEliminarProcesoVenta.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnEliminarProcesoVenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarProcesoVenta.setText("Eliminar");
-        btnEliminarProcesoVenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            }
+        ));
+        tblProcesos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProcesosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblProcesos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(btnCrearProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnModificarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrearProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarProcesoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Cliente", "Tipo Cliente", "Cantidad Producto"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(61, 61, 61))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        btnLimpiar.setBackground(new java.awt.Color(253, 187, 52));
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorder(null);
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnActualizarOrdenesProcesos.setBackground(new java.awt.Color(253, 187, 52));
+        btnActualizarOrdenesProcesos.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnActualizarOrdenesProcesos.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizarOrdenesProcesos.setText("Actualizar");
+        btnActualizarOrdenesProcesos.setBorder(null);
+        btnActualizarOrdenesProcesos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarOrdenesProcesosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlProcesosVentaLayout = new javax.swing.GroupLayout(pnlProcesosVenta);
         pnlProcesosVenta.setLayout(pnlProcesosVentaLayout);
@@ -326,21 +533,28 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
             pnlProcesosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlProcesosVentaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlProcesosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlProcesosVentaLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(pnlProcesosVentaLayout.createSequentialGroup()
+                .addGap(409, 409, 409)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnActualizarOrdenesProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlProcesosVentaLayout.setVerticalGroup(
             pnlProcesosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlProcesosVentaLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(8, 8, 8)
+                .addGroup(pnlProcesosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnActualizarOrdenesProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -351,30 +565,320 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlProcesosVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlProcesosVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtIdOrden.setEditable(true);
+        txtIdOrden.setText("");
+        txtCliente.setText("");
+        txtFechaOrden.setText("");
+        txtEstadoOrden.setText("");
+        txtIdProceso.setText("");
+        txtFechaProceso.setText("");
+        txtEstadoProceso.setText("");
+        txtPagoTransportista.setText("");
+        txtComision.setText("");
+        txtAduana.setText("");
+        txtPagoServicio.setText("");
+        txtIdUsuario.setText("");
+        txtFechaFinProceso.setText("");
+        
+        setearBotones();
+        
+                
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void btnModificarProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProcesoActionPerformed
+        if(txtIdOrden.getText().isEmpty() ||
+                txtComision.getText().isEmpty() ||
+                txtAduana.getText().isEmpty() ||
+                txtPagoServicio.getText().isEmpty()) {
+            
+        showMessageDialog(null, "Hay campos vacíos","Información",JOptionPane.WARNING_MESSAGE);
+        
+        } 
+        
+        else {
+            
+        RespuestaProceso modificarProceso = new RespuestaProceso();
+        Proceso proceso = new Proceso();
+        
+        Date fechaProceso = new Date();
+        Date fechaFinProceso = new Date();
+        
+        try {
+            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
+        } catch (ParseException ex) {
+            System.out.println("Error "+ex);
+        }
+        
+        proceso.setIdProceso(Integer.valueOf(txtIdProceso.getText()));
+        proceso.setIdUsuario(1);
+        proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
+        proceso.setComision(Integer.valueOf(txtComision.getText()));
+        proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
+        proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
+        proceso.setPagoTransportista(Integer.valueOf(txtPagoTransportista.getText()));
+        proceso.setEstadoProceso(txtEstadoProceso.getText());
+        proceso.setFechaProceso(fechaProceso);
+        //TODO agregar calendario
+        proceso.setFechaFinProceso(fechaFinProceso);
+        
+        modificarProceso = ProcesoController.crearModificarProceso(proceso);
+        
+        showMessageDialog(null, modificarProceso.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
+        limpiarCampos();
+        btnActualizarOrdenesProcesos.doClick();
+        btnModificarProceso.setEnabled(false);
+        txtIdOrden.setEditable(true);
+        }
+    }//GEN-LAST:event_btnModificarProcesoActionPerformed
 
+    private void tblOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdenesMouseClicked
+        
+        txtIdOrden.setEditable(false);
+        int i = tblOrdenes.getSelectedRow();
+        TableModel model = tblOrdenes.getModel();
+        
+        txtIdOrden.setText(model.getValueAt(i,0).toString());
+        txtIdUsuario.setText(model.getValueAt(i,6).toString());
+        txtFechaOrden.setText(model.getValueAt(i,1).toString());
+        txtEstadoOrden.setText(model.getValueAt(i,4).toString());
+        
+        if("PENDIENTE".equals(txtEstadoOrden.getText())) {
+        
+            btnFirmarOrden.setEnabled(true);
+        }
+        else {
+            btnFirmarOrden.setEnabled(false);
+            btnCrearProceso.setEnabled(true);
+        }
+    }//GEN-LAST:event_tblOrdenesMouseClicked
+
+    private void txtEstadoOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoOrdenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEstadoOrdenActionPerformed
+
+    private void txtFechaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaOrdenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaOrdenActionPerformed
+
+    private void txtIdOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdOrdenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdOrdenActionPerformed
+
+    private void txtAduanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAduanaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAduanaActionPerformed
+
+    private void btnFirmarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirmarOrdenActionPerformed
+        RespuestaFirmarOrden firmaOrden = new RespuestaFirmarOrden();
+                
+        firmaOrden = OrdenController.firmarOrden(txtIdOrden.getText());
+        
+        showMessageDialog(null, firmaOrden.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
+        btnFirmarOrden.setEnabled(false);
+        limpiarCampos();
+        txtIdOrden.setEditable(true);
+    }//GEN-LAST:event_btnFirmarOrdenActionPerformed
+
+    private void tblProcesosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProcesosMouseClicked
+        
+        setearBotones();
+        btnCrearProceso.setEnabled(false);
+        txtIdOrden.setEditable(false);
+
+        btnModificarProceso.setEnabled(true);
+        
+        int i = tblProcesos.getSelectedRow();
+        TableModel model = tblProcesos.getModel();
+        
+        txtIdOrden.setText(model.getValueAt(i,0).toString());
+        txtIdProceso.setText(model.getValueAt(i,1).toString());
+        txtAduana.setText(model.getValueAt(i,2).toString());
+        txtPagoServicio.setText(model.getValueAt(i,3).toString());
+        txtPagoTransportista.setText(model.getValueAt(i,4).toString());
+        txtFechaProceso.setText(model.getValueAt(i,5).toString());
+        txtEstadoProceso.setText(model.getValueAt(i,6).toString());
+        txtComision.setText(model.getValueAt(i,7).toString());
+        txtFechaFinProceso.setText(model.getValueAt(i,9).toString());
+        
+        if(!"ANULADO".equals(txtEstadoProceso.getText())) {
+            btnAnularProceso.setEnabled(true);
+        }
+        
+    }//GEN-LAST:event_tblProcesosMouseClicked
+
+    private void btnBuscarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOrdenActionPerformed
+        
+       RespuestaOrden orden = new RespuestaOrden();
+                
+       orden = OrdenController.buscarOrden(txtIdOrden.getText()); 
+       
+       if(orden.isExito()) {
+       txtFechaOrden.setText(orden.getOrden().getFechaOrden().toString());
+       txtEstadoOrden.setText(orden.getOrden().getEstado());
+       txtIdUsuario.setText(String.valueOf(orden.getOrden().getIdClienteExterno()));
+       
+        if("PENDIENTE".equals(txtEstadoOrden.getText())) {
+        
+            btnFirmarOrden.setEnabled(true);
+        }
+        else {
+            btnFirmarOrden.setEnabled(false);
+            btnCrearProceso.setEnabled(true);
+        }   
+       }
+       else {
+           limpiarCampos();
+           setearBotones();
+           showMessageDialog(null, orden.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
+       }
+    }//GEN-LAST:event_btnBuscarOrdenActionPerformed
+
+    private void txtEstadoOrdenInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtEstadoOrdenInputMethodTextChanged
+         
+    }//GEN-LAST:event_txtEstadoOrdenInputMethodTextChanged
+
+    private void btnCrearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProcesoActionPerformed
+        if(txtIdOrden.getText().isEmpty() ||
+                txtComision.getText().isEmpty() ||
+                txtAduana.getText().isEmpty() ||
+                txtPagoServicio.getText().isEmpty()) {
+            
+        showMessageDialog(null, "Hay campos vacíos","Información",JOptionPane.WARNING_MESSAGE);
+
+        } else {
+        RespuestaProceso creacionProceso = new RespuestaProceso();
+        Proceso proceso = new Proceso();
+        
+        Date fechaProceso = new Date();
+        Date fechaFinProceso = new Date();
+        
+        try {
+            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
+        } catch (ParseException ex) {
+            System.out.println("Error "+ex);
+        }
+        
+        proceso.setIdProceso(0);
+        proceso.setIdUsuario(1);
+        proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
+        proceso.setComision(Integer.valueOf(txtComision.getText()));
+        proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
+        proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
+        proceso.setPagoTransportista(0);
+        proceso.setEstadoProceso("PENDIENTE");
+        proceso.setFechaProceso(fechaProceso);
+        //TODO agregar calendario
+        proceso.setFechaFinProceso(fechaFinProceso);
+        
+        creacionProceso = ProcesoController.crearModificarProceso(proceso);
+        
+        showMessageDialog(null, creacionProceso.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
+        limpiarCampos();
+        btnCrearProceso.setEnabled(false);
+        btnActualizarOrdenesProcesos.doClick();
+        txtIdOrden.setEditable(true);
+        }
+    }//GEN-LAST:event_btnCrearProcesoActionPerformed
+
+    private void btnActualizarOrdenesProcesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarOrdenesProcesosActionPerformed
+        listarOrdenes();
+        listarProcesos();     
+    }//GEN-LAST:event_btnActualizarOrdenesProcesosActionPerformed
+
+    private void btnAnularProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularProcesoActionPerformed
+        RespuestaProceso anularProceso = new RespuestaProceso();
+        Proceso proceso = new Proceso();
+        
+        Date fechaProceso = new Date();
+        Date fechaFinProceso = new Date();
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z YYYY");
+        //ZonedDateTime today = ZonedDateTime.now();
+        
+        
+        try {
+            //today = ZonedDateTime.parse(txtFechaFinProceso.getText(), formatter).plusMonths(1);
+            fechaFinProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaProceso.getText());
+        } catch (ParseException ex) {
+            System.out.println("Error "+ex);
+        }
+        
+        proceso.setIdProceso(Integer.valueOf(txtIdProceso.getText()));
+        proceso.setIdUsuario(1);
+        proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
+        proceso.setComision(Integer.valueOf(txtComision.getText()));
+        proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
+        proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
+        proceso.setPagoTransportista(Integer.valueOf(txtPagoTransportista.getText()));
+        proceso.setEstadoProceso("ANULADO");
+        proceso.setFechaProceso(fechaProceso);
+        //TODO agregar calendario
+        proceso.setFechaFinProceso(fechaFinProceso);
+        
+        anularProceso = ProcesoController.crearModificarProceso(proceso);
+        
+        showMessageDialog(null, anularProceso.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
+        limpiarCampos();
+        btnAnularProceso.setEnabled(false);
+        btnModificarProceso.setEnabled(false);
+        btnActualizarOrdenesProcesos.doClick();
+        txtIdOrden.setEditable(true);
+
+    }//GEN-LAST:event_btnAnularProcesoActionPerformed
+
+        public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VistaGeneralAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VistaGeneralAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VistaGeneralAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VistaGeneralAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VistaProcesosVenta().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarProcesoVenta;
-    private javax.swing.JButton btnCrearProcesoVenta;
-    private javax.swing.JButton btnEliminarProcesoVenta;
-    private javax.swing.JButton btnModificarProcesoVenta;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JButton btnActualizarOrdenesProcesos;
+    private javax.swing.JButton btnAnularProceso;
+    private javax.swing.JButton btnBuscarOrden;
+    private javax.swing.JButton btnCrearProceso;
+    private javax.swing.JButton btnFirmarOrden;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnModificarProceso;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -382,22 +886,25 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel pnlProcesosVenta;
+    private javax.swing.JTable tblOrdenes;
+    private javax.swing.JTable tblProcesos;
+    private javax.swing.JTextField txtAduana;
+    private javax.swing.JTextField txtCliente;
+    private javax.swing.JTextField txtComision;
+    private javax.swing.JTextField txtEstadoOrden;
+    private javax.swing.JTextField txtEstadoProceso;
+    private javax.swing.JTextField txtFechaFinProceso;
+    private javax.swing.JTextField txtFechaOrden;
+    private javax.swing.JTextField txtFechaProceso;
+    private javax.swing.JTextField txtIdOrden;
+    private javax.swing.JTextField txtIdProceso;
+    private javax.swing.JTextField txtIdUsuario;
+    private javax.swing.JTextField txtPagoServicio;
+    private javax.swing.JTextField txtPagoTransportista;
     // End of variables declaration//GEN-END:variables
 }

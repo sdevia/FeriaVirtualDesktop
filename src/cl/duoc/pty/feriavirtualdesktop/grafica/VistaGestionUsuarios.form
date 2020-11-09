@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="rbtGrupoEstado">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="rbtGrupoActivo">
+    </Component>
+  </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,7 +22,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PnlGestionUsuarios" alignment="0" pref="1481" max="32767" attributes="0"/>
+          <Component id="PnlGestionUsuarios" alignment="0" pref="1692" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -33,10 +39,13 @@
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Gestion de Usuarios">
+            <TitledBorder title="Gesti&#xf3;n de Usuarios">
               <Font PropertyName="font" name="Tahoma" size="24" style="0"/>
             </TitledBorder>
           </Border>
+        </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Por defecto"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
@@ -49,12 +58,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="pnlGridUsuarios" max="32767" attributes="0"/>
-                      <Component id="pnlInputsGestionUsuario" max="32767" attributes="0"/>
                       <Component id="pnlbtnUsuarios" max="32767" attributes="0"/>
+                      <Component id="pnlInputsGestionUsuario" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -97,94 +106,99 @@
                           <Component id="txtApellido" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="lblTipoUsuario" min="-2" max="-2" attributes="0"/>
                           <Component id="lblEstadoUsuario" min="-2" max="-2" attributes="0"/>
                           <Component id="lblActivoUsuario" min="-2" max="-2" attributes="0"/>
                           <Component id="lblDireccionUsuario" min="-2" max="-2" attributes="0"/>
                           <Component id="txtDireccionUsuario" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="cbxTipoUsuario" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="cbxEstadoUsuario" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="cbxActivoUsuario" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="txtTipoUsuario" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="rbtEstadoCreado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbtActivoBloqueado" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="98" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="rbtActivoHabilitado" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbtEstadoAutorizado" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblEmailUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblClaveUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTelefonoUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblComunaUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTelefonoUsuario" alignment="0" pref="250" max="32767" attributes="0"/>
-                          <Component id="txtEmailUsuario" alignment="0" max="32767" attributes="0"/>
-                          <Component id="vbxComunaUsuario" pref="250" max="32767" attributes="0"/>
-                          <Component id="pwfClaveUsuario" alignment="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtTelefonoUsuario" alignment="0" max="32767" attributes="0"/>
+                          <Component id="pwfClaveUsuario" alignment="0" pref="307" max="32767" attributes="0"/>
+                          <Component id="lblClaveUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFechaCreacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEmailUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTelefonoUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtfechaCreacion" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtEmailUsuario" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace pref="306" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblComunaUsuario" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="lblTipoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="llIdUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTipoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="llIdUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFechaCreacion" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                              <Component id="cbxTipoUsuario" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="vbxComunaUsuario" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtIdUsuario" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtIdUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txtTipoUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txtfechaCreacion" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblEstadoUsuario" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblRutUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cbxEstadoUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="txtRut" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblActivoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cbxActivoUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="txtNombre" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblDireccionUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblApellidoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtDireccionUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="txtApellido" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="txtEmailUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblEstadoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblClaveUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="lblClaveUsuario" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="pwfClaveUsuario" min="-2" pref="42" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblTelefonoUsuario" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="txtTelefonoUsuario" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblEmailUsuario" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRutUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtRut" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="rbtEstadoCreado" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbtEstadoAutorizado" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="pwfClaveUsuario" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblActivoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTelefonoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtNombre" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txtTelefonoUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="rbtActivoBloqueado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtActivoHabilitado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblApellidoUsuario" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblDireccionUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEmailUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtDireccionUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="txtEmailUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtApellido" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -241,6 +255,9 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRutActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombre">
               <Properties>
@@ -333,89 +350,71 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblComunaUsuario">
+            <Component class="javax.swing.JLabel" name="lblFechaCreacion">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Comuna"/>
+                <Property name="text" type="java.lang.String" value="Fecha Creaci&#xf3;n Usuario"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cbxTipoUsuario">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxTipoUsuarioActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cbxEstadoUsuario">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxEstadoUsuarioActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cbxActivoUsuario">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxActivoUsuarioActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="vbxComunaUsuario">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vbxComunaUsuarioActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JPasswordField" name="pwfClaveUsuario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtTipoUsuario">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTipoUsuarioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtfechaCreacion">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtEstadoCreado">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="rbtGrupoEstado"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Creado"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtEstadoCreadoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtEstadoAutorizado">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="rbtGrupoEstado"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Autorizado"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtActivoBloqueado">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="rbtGrupoActivo"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Bloqueado"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="rbtActivoHabilitado">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="rbtGrupoActivo"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Habilitado"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -432,13 +431,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Component id="btnCrearUsuario" min="-2" pref="197" max="-2" attributes="0"/>
-                      <EmptySpace pref="183" max="32767" attributes="0"/>
+                      <Component id="btnLimpiar" min="-2" pref="197" max="-2" attributes="0"/>
+                      <EmptySpace pref="479" max="32767" attributes="0"/>
                       <Component id="btnBuscarUsuario" min="-2" pref="197" max="-2" attributes="0"/>
-                      <EmptySpace pref="183" max="32767" attributes="0"/>
+                      <EmptySpace pref="480" max="32767" attributes="0"/>
                       <Component id="btnActualizarUsuario" min="-2" pref="197" max="-2" attributes="0"/>
-                      <EmptySpace pref="185" max="32767" attributes="0"/>
-                      <Component id="btnEliminarUsuario" min="-2" pref="197" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -448,17 +445,16 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="22" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnCrearUsuario" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="btnLimpiar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                           <Component id="btnBuscarUsuario" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                           <Component id="btnActualizarUsuario" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="btnEliminarUsuario" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnCrearUsuario">
+            <Component class="javax.swing.JButton" name="btnLimpiar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="48" green="bb" red="fd" type="rgb"/>
@@ -469,13 +465,16 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Crear"/>
+                <Property name="text" type="java.lang.String" value="Limpiar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                     <BevelBorder/>
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscarUsuario">
               <Properties>
@@ -517,25 +516,9 @@
                   </Border>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnEliminarUsuario">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="3f" green="34" red="e5" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Eliminar"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                    <BevelBorder/>
-                  </Border>
-                </Property>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarUsuarioActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

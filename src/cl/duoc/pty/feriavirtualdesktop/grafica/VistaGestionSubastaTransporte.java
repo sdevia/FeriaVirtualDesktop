@@ -5,6 +5,38 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
+import cl.duoc.pty.feriavirtualdesktop.entidades.DetalleSubasta;
+import cl.duoc.pty.feriavirtualdesktop.entidades.OrdenProcesoEtapa;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Proceso;
+import cl.duoc.pty.feriavirtualdesktop.entidades.ProcesoListar;
+import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProcesoListar;
+import cl.duoc.pty.feriavirtualdesktop.entidades.Subasta;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMOrdenProcesoEtapa;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMProcesoSubasta;
+import cl.duoc.pty.feriavirtualdesktop.entidades.TMSubasta;
+import cl.duoc.pty.feriavirtualdesktop.negocio.ProcesoController;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import javafx.scene.control.DatePicker;
+import javax.swing.RowFilter;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author bruunildo
@@ -16,6 +48,8 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
      */
     public VistaGestionSubastaTransporte() {
         initComponents();
+        inicializarTabla();
+        inicializarTablaDetalleSubasta();
     }
 
     /**
@@ -30,133 +64,115 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtIdSubasta = new javax.swing.JTextField();
+        lblFechaProceso = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        dtpFechaTerminoSubasta = new org.jdesktop.swingx.JXDatePicker();
+        dtpFechaInicioSubasta = new org.jdesktop.swingx.JXDatePicker();
+        jLabel4 = new javax.swing.JLabel();
+        txtIdProceso = new javax.swing.JTextField();
+        txtEstado = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         btnCrearSubastaTransporte = new javax.swing.JButton();
-        btnBuscarSubastaTransporte = new javax.swing.JButton();
         btnModificarSubastaTransporte = new javax.swing.JButton();
         btnEliminarSubastaTransporte = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblVentasSubasta = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDetalleSubasta = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtIdVenta = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtTipoVenta = new javax.swing.JTextField();
+        txtPesoMaximo = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        btnBuscarSubastaTransporte = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestion de Subastas Transporte", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestión de Subastas Transporte", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("ID Subasta");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("ID Venta");
+        txtIdSubasta.setEditable(false);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Rut Cliente");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Peso Máximo");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Tipo de Transporte");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Fecha Inicio de Proceso");
-
-        jTextField6.setText("jTextField1");
+        lblFechaProceso.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblFechaProceso.setText("Fecha Inicio Subasta");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Fecha Termino de Proceso");
+        jLabel7.setText("Fecha Término de Subasta");
 
-        jTextField7.setText("jTextField1");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Estado");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dtpFechaInicioSubasta.setEnabled(false);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Tipo de Venta");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("ID Proceso");
+
+        txtIdProceso.setEditable(false);
+
+        txtEstado.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtIdProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFechaProceso)
+                                    .addComponent(jLabel4)
+                                    .addComponent(dtpFechaInicioSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(dtpFechaTerminoSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(69, 69, 69)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 471, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100))
+                            .addComponent(txtIdSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel7)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFechaProceso)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dtpFechaInicioSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dtpFechaTerminoSubasta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -164,82 +180,228 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         btnCrearSubastaTransporte.setBackground(new java.awt.Color(253, 187, 52));
         btnCrearSubastaTransporte.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnCrearSubastaTransporte.setForeground(new java.awt.Color(255, 255, 255));
-        btnCrearSubastaTransporte.setText("Crear");
+        btnCrearSubastaTransporte.setText("Crear Subasta");
         btnCrearSubastaTransporte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnBuscarSubastaTransporte.setBackground(new java.awt.Color(253, 187, 52));
-        btnBuscarSubastaTransporte.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnBuscarSubastaTransporte.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscarSubastaTransporte.setText("Buscar");
-        btnBuscarSubastaTransporte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCrearSubastaTransporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearSubastaTransporteActionPerformed(evt);
+            }
+        });
 
         btnModificarSubastaTransporte.setBackground(new java.awt.Color(253, 187, 52));
         btnModificarSubastaTransporte.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnModificarSubastaTransporte.setForeground(new java.awt.Color(255, 255, 255));
-        btnModificarSubastaTransporte.setText("Modificar");
+        btnModificarSubastaTransporte.setText("Modificar Subasta");
         btnModificarSubastaTransporte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnModificarSubastaTransporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarSubastaTransporteActionPerformed(evt);
+            }
+        });
 
         btnEliminarSubastaTransporte.setBackground(new java.awt.Color(229, 52, 63));
         btnEliminarSubastaTransporte.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnEliminarSubastaTransporte.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarSubastaTransporte.setText("Eliminar");
+        btnEliminarSubastaTransporte.setText("Bajar Subasta");
         btnEliminarSubastaTransporte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEliminarSubastaTransporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarSubastaTransporteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(btnCrearSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnModificarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addGap(564, 564, 564)
+                .addComponent(btnCrearSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnModificarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrearSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        tblVentasSubasta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblVentasSubasta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVentasSubastaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblVentasSubasta);
+
+        tblDetalleSubasta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblDetalleSubasta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDetalleSubastaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblDetalleSubasta);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel6.setText("Procesos");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel9.setText("Subastas");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(jLabel6)
+                .addGap(459, 459, 459)
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel9))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("ID Proceso");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Tipo de Venta");
+
+        txtTipoVenta.setEditable(false);
+
+        txtPesoMaximo.setEditable(false);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setText("Peso Máximo");
+
+        btnBuscarSubastaTransporte.setBackground(new java.awt.Color(253, 187, 52));
+        btnBuscarSubastaTransporte.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnBuscarSubastaTransporte.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarSubastaTransporte.setText("Buscar Proceso");
+        btnBuscarSubastaTransporte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnBuscarSubastaTransporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarSubastaTransporteActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setBackground(new java.awt.Color(253, 187, 52));
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel10)
+                                    .addComponent(txtTipoVenta)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtPesoMaximo))
+                                .addGap(418, 418, 418))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(btnBuscarSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(81, 81, 81)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtTipoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnBuscarSubastaTransporte))
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPesoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,31 +420,288 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarSubastaTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSubastaTransporteActionPerformed
+        // TODO add your handling code here:
+        //buscarSubastansporte();
+        buscarProceso();
+    }//GEN-LAST:event_btnBuscarSubastaTransporteActionPerformed
+
+    private void btnCrearSubastaTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearSubastaTransporteActionPerformed
+        // TODO add your handling code here:
+        crearSubasta();
+    }//GEN-LAST:event_btnCrearSubastaTransporteActionPerformed
+
+    private void tblVentasSubastaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVentasSubastaMouseClicked
+        // TODO add your handling code here:
+        seleccionarRegistro();
+    }//GEN-LAST:event_tblVentasSubastaMouseClicked
+
+    private void btnModificarSubastaTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarSubastaTransporteActionPerformed
+        // TODO add your handling code here:
+        modificarSubasta();
+    }//GEN-LAST:event_btnModificarSubastaTransporteActionPerformed
+
+    private void tblDetalleSubastaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDetalleSubastaMouseClicked
+        // TODO add your handling code here:
+        seleccionarRegistroSubasta();
+    }//GEN-LAST:event_tblDetalleSubastaMouseClicked
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnEliminarSubastaTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSubastaTransporteActionPerformed
+        // TODO add your handling code here:
+        bajarSubasta();
+    }//GEN-LAST:event_btnEliminarSubastaTransporteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarSubastaTransporte;
     private javax.swing.JButton btnCrearSubastaTransporte;
     private javax.swing.JButton btnEliminarSubastaTransporte;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificarSubastaTransporte;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private org.jdesktop.swingx.JXDatePicker dtpFechaInicioSubasta;
+    private org.jdesktop.swingx.JXDatePicker dtpFechaTerminoSubasta;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblFechaProceso;
+    private javax.swing.JTable tblDetalleSubasta;
+    private javax.swing.JTable tblVentasSubasta;
+    private javax.swing.JTextField txtEstado;
+    private javax.swing.JTextField txtIdProceso;
+    private javax.swing.JTextField txtIdSubasta;
+    private javax.swing.JTextField txtIdVenta;
+    private javax.swing.JTextField txtPesoMaximo;
+    private javax.swing.JTextField txtTipoVenta;
     // End of variables declaration//GEN-END:variables
+
+    private void buscarSubastansporte() {
+
+        RespuestaProcesoListar listaProceso = new RespuestaProcesoListar();
+        listaProceso = ProcesoController.listarProceso();
+                
+         if(listaProceso.isExito()){
+             
+        Predicate<Proceso> byEstado = proceso -> proceso.getEstadoProceso().equals("PENDIENTE");  
+        List<Proceso> result = listaProceso.getProcesos().stream().filter(byEstado).collect(Collectors.toList());
+        TMProcesoSubasta modelo;
+        modelo = new TMProcesoSubasta(result);
+        tblVentasSubasta.setModel(modelo);
+         }else
+         {
+         
+         }
+        
+    }
+
+    private void inicializarTabla() {
+       
+        
+        List<Proceso> procesos = new ArrayList<>();
+        TMProcesoSubasta modelo;
+        modelo = new TMProcesoSubasta(procesos);
+        tblVentasSubasta.setModel(modelo);
+        
+        
+        
+        
+    }
+
+  
+    private void seleccionarRegistro() {
+
+        try {
+            int i = tblVentasSubasta.getSelectedRow();
+            TableModel model = tblVentasSubasta.getModel();
+            
+            
+            int valorEntero = (int) Math.floor(Math.random()*(5000-300+1)+300);
+            String[] tipVenta = {"Interna", "Externa"};
+            int valorEntero2 = (int) Math.floor(Math.random()*(1-0+1)+0);
+            String idVenta = model.getValueAt(i,0).toString();
+            String tipoVenta = tipVenta[valorEntero2];
+            String pesoMaximo = String.valueOf(valorEntero); 
+            String fechaString = model.getValueAt(i,5).toString();
+            Date fechaInicioSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(fechaString);
+            //ZoneId stgo = ZoneId.of("America/Santiago");
+           // LocalDate date =  LocalDate.now(stgo);
+                    
+                    
+                   // LocalDate.now(ZoneId.of("Chile/Continental"));
+            //Date fechaFinSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(date.toString());
+
+            txtIdVenta.setText(idVenta);
+            txtTipoVenta.setText(tipoVenta);
+            txtPesoMaximo.setText(pesoMaximo);
+            dtpFechaInicioSubasta.setDate(fechaInicioSubasta);
+            txtIdProceso.setText(idVenta);
+            //dtpFechaTerminoSubasta.setDate(fechaFinSubasta);
+  
+        } catch (ParseException ex) {
+            Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+
+    }
+
+    private void inicializarTablaDetalleSubasta() {
+        List<Subasta> subastas = new ArrayList<>();
+        TMSubasta modelo;
+        modelo = new TMSubasta(subastas);
+        tblDetalleSubasta.setModel(modelo);
+        buscarSubastansporte();
+    }
+    
+
+ private void crearSubasta() {
+         int idsubasta = (int) Math.floor(Math.random()*(10-1+1)+1);
+         Date fechaSubasta = dtpFechaInicioSubasta.getDate();
+         Date FechaTerminoSubasta = dtpFechaTerminoSubasta.getDate();
+         int idProceso = Integer.valueOf(txtIdVenta.getText());
+         ArrayList<DetalleSubasta> arrayList = new ArrayList<>();
+        
+        Subasta objSubasta = new Subasta(idsubasta, fechaSubasta, FechaTerminoSubasta, true, idProceso, arrayList);
+        
+        
+        TMSubasta model = (TMSubasta)tblDetalleSubasta.getModel();
+        List<Subasta> subastas =  model.subastas;
+        
+        
+        
+        //List<Subasta> subastas = new ArrayList<Subasta>();
+        subastas.add(objSubasta);
+        TMSubasta modelo;
+        modelo = new TMSubasta(subastas);
+        tblDetalleSubasta.setModel(modelo);
+        
+        limpiar();
+   }
+
+    private void seleccionarRegistroSubasta() {
+        try {
+            int i = tblDetalleSubasta.getSelectedRow();
+            TableModel model = tblDetalleSubasta.getModel();
+
+            String idProceso = model.getValueAt(i,0).toString();
+            String idSubasta = model.getValueAt(i,1).toString();
+            String estado = model.getValueAt(i,4).toString();
+            String fechaString = model.getValueAt(i,2).toString();
+            String fechaFinString = model.getValueAt(i,3).toString();
+            Date fechaInicioSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fechaString);
+            Date fechaFinSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinString);
+            
+            txtIdProceso.setText(idProceso);
+            txtIdSubasta.setText(idSubasta);
+            txtEstado.setText(estado);
+            dtpFechaInicioSubasta.setDate(fechaInicioSubasta);
+            dtpFechaTerminoSubasta.setDate(fechaFinSubasta);
+        } catch (ParseException ex) {
+            Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    private void limpiar() {
+        txtIdVenta.setText("");
+        txtTipoVenta.setText("");
+        txtPesoMaximo.setText("");
+        txtIdSubasta.setText("");
+        txtIdProceso.setText("");
+        txtEstado.setText("");
+        dtpFechaInicioSubasta.setDate(null);
+        dtpFechaTerminoSubasta.setDate(null);
+
+      
+    }
+
+private void modificarSubasta() {
+         int idsubasta = Integer.valueOf(txtIdSubasta.getText());
+         Date fechaSubasta = dtpFechaInicioSubasta.getDate();
+         Date FechaTerminoSubasta = dtpFechaTerminoSubasta.getDate();
+         int idProceso = Integer.valueOf(txtIdProceso.getText());
+         ArrayList<DetalleSubasta> arrayList = new ArrayList<>();
+        
+        Subasta objSubasta = new Subasta(idsubasta, fechaSubasta, FechaTerminoSubasta, true, idProceso, arrayList);
+        
+        TMSubasta model = (TMSubasta)tblDetalleSubasta.getModel();
+        List<Subasta> subastas =  model.subastas;
+        int eli = 0;
+        for (int i = 0; i < subastas.size(); i++) {
+            if (subastas.get(i).getIdSubasta()==idsubasta){
+                eli=i;
+                break;
+            }
+        }
+        subastas.remove(eli);
+        
+        //List<Subasta> subastas = new ArrayList<Subasta>();
+        subastas.add(objSubasta);
+        TMSubasta modelo;
+        modelo = new TMSubasta(subastas);
+        tblDetalleSubasta.setModel(modelo);
+        
+        limpiar();
+    }
+
+    private void bajarSubasta() {
+       int idsubasta = Integer.valueOf(txtIdSubasta.getText());
+         Date fechaSubasta = dtpFechaInicioSubasta.getDate();
+         Date FechaTerminoSubasta = dtpFechaTerminoSubasta.getDate();
+         int idProceso = Integer.valueOf(txtIdProceso.getText());
+         ArrayList<DetalleSubasta> arrayList = new ArrayList<>();
+        
+        Subasta objSubasta = new Subasta(idsubasta, fechaSubasta, FechaTerminoSubasta, false, idProceso, arrayList);
+        
+        TMSubasta model = (TMSubasta)tblDetalleSubasta.getModel();
+        List<Subasta> subastas =  model.subastas;
+        int eli = 0;
+        for (int i = 0; i < subastas.size(); i++) {
+            if (subastas.get(i).getIdSubasta()==idsubasta){
+                eli=i;
+                break;
+            }
+        }
+        subastas.remove(eli);
+        
+        //List<Subasta> subastas = new ArrayList<Subasta>();
+        subastas.add(objSubasta);
+        TMSubasta modelo;
+        modelo = new TMSubasta(subastas);
+        tblDetalleSubasta.setModel(modelo);
+        
+        limpiar();
+    }
+
+    /**
+     * PARA KATHY
+     */
+    private void buscarProceso() {
+       
+        TMProcesoSubasta tm =  (TMProcesoSubasta)tblVentasSubasta.getModel();
+        TableRowSorter<TMProcesoSubasta> tr = new TableRowSorter<TMProcesoSubasta>(tm);
+        tblVentasSubasta.setRowSorter(tr);
+        String quer = txtIdVenta.getText();
+        tr.setRowFilter(RowFilter.regexFilter("^(?i)" + quer, 0));
+        
+       
+        
+    }
+
 }

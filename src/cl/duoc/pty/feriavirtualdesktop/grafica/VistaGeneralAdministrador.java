@@ -18,11 +18,13 @@ import javax.swing.border.Border;
 public class VistaGeneralAdministrador extends javax.swing.JFrame {
     
     
-    VistaGestionUsuarioss vistaGestionUsuarioss = new VistaGestionUsuarioss();
+    VistaGestionUsuarios vistaGestionUsuarios = new VistaGestionUsuarios();
     VistaProcesosVenta vistaProcesosVenta = new VistaProcesosVenta();
     VistaGestionSubastaTransporte vistaGestionSubastasTransportes = new VistaGestionSubastaTransporte();
-    VistaReportesSubastas vistaReportesSubastas = new VistaReportesSubastas();
+    VistaReportesAdministrador vistaReportesAdministrador = new VistaReportesAdministrador();
     CardLayout vista;
+    
+    public static String session;
     /**
      * Creates new form VistaGeneralAdministrador
      */
@@ -95,7 +97,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
         lblMenu.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblMenu.setForeground(new java.awt.Color(43, 172, 192));
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMenu.setText("Menu");
+        lblMenu.setText("Menú");
         lblMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel3.setBackground(new java.awt.Color(43, 172, 192));
@@ -113,7 +115,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
 
         btnGestionUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         btnGestionUsuarios.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnGestionUsuarios.setText("Gestion de Usuarios");
+        btnGestionUsuarios.setText("Gestión de Usuarios");
         btnGestionUsuarios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(43, 172, 192), 1, true));
         btnGestionUsuarios.setBorderPainted(false);
         btnGestionUsuarios.setRequestFocusEnabled(false);
@@ -155,7 +157,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
 
         btnGestionSubastaTransporte.setBackground(new java.awt.Color(255, 255, 255));
         btnGestionSubastaTransporte.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnGestionSubastaTransporte.setText("Gestion de Subasta Transporte");
+        btnGestionSubastaTransporte.setText("Gestión de Subasta Transporte");
         btnGestionSubastaTransporte.setBorder(null);
         btnGestionSubastaTransporte.setBorderPainted(false);
         btnGestionSubastaTransporte.setRequestFocusEnabled(false);
@@ -176,7 +178,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
 
         btnReportesVentas.setBackground(new java.awt.Color(255, 255, 255));
         btnReportesVentas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnReportesVentas.setText("Reportes Subastas");
+        btnReportesVentas.setText("Reportes");
         btnReportesVentas.setBorder(null);
         btnReportesVentas.setBorderPainted(false);
         btnReportesVentas.setRequestFocusEnabled(false);
@@ -198,7 +200,8 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
         btnConfiguracion.setBackground(new java.awt.Color(4, 169, 16));
         btnConfiguracion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfiguracion.setText("Configuracion");
+        btnConfiguracion.setText("Configuración");
+        btnConfiguracion.setEnabled(false);
 
         btnCerrarSesion.setBackground(new java.awt.Color(4, 169, 16));
         btnCerrarSesion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -311,7 +314,8 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionSubastaTransporteMouseExited
 
     private void btnGestionUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionUsuariosActionPerformed
-       pnlAdministradorDinamico.add(vistaGestionUsuarioss,"alta");
+        VistaGestionUsuarios vistaGestionUsuarios = new VistaGestionUsuarios();
+        pnlAdministradorDinamico.add(vistaGestionUsuarios,"alta");
        vista.show(pnlAdministradorDinamico, "alta");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
@@ -325,7 +329,8 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionUsuariosActionPerformed
 
     private void btnGestionSubastaTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionSubastaTransporteActionPerformed
-       pnlAdministradorDinamico.add(vistaGestionSubastasTransportes,"alta");
+        VistaGestionSubastaTransporte vistaGestionSubastasTransportes = new VistaGestionSubastaTransporte();
+        pnlAdministradorDinamico.add(vistaGestionSubastasTransportes,"alta");
        vista.show(pnlAdministradorDinamico, "alta");
        SwingUtilities.updateComponentTreeUI(this);
        this.repaint();
@@ -340,7 +345,8 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReportesVentasMouseExited
 
     private void btnReportesVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesVentasActionPerformed
-       pnlAdministradorDinamico.add(vistaReportesSubastas,"alta");
+        VistaReportesAdministrador vistaReportesAdministrador = new VistaReportesAdministrador();
+        pnlAdministradorDinamico.add(vistaReportesAdministrador,"alta");
        vista.show(pnlAdministradorDinamico, "alta");
        SwingUtilities.updateComponentTreeUI(this);
        this.repaint();
@@ -351,10 +357,12 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnProcesosVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesosVentaActionPerformed
-       pnlAdministradorDinamico.add(vistaProcesosVenta,"alta");
+        VistaProcesosVenta vistaProcesosVenta = new VistaProcesosVenta();
+        pnlAdministradorDinamico.add(vistaProcesosVenta,"alta");
        vista.show(pnlAdministradorDinamico, "alta");
        SwingUtilities.updateComponentTreeUI(this);
        this.repaint();
+       
     }//GEN-LAST:event_btnProcesosVentaActionPerformed
 
     /**

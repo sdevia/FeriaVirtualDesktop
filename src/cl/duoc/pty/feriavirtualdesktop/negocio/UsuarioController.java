@@ -9,6 +9,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
+import cl.duoc.pty.feriavirtualdesktop.grafica.VistaGeneralAdministrador;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,8 @@ public class UsuarioController {
 
             //Validar si el campo idUsuario no está vacio o que no sea nulo
             if (idUsuario != null && !idUsuario.isEmpty()) {
-                parametros.add(new Parametro("idSession", "session"));
+                //parametros.add(new Parametro("idSession", "session"));
+                parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
                 resultado = servicioApi.Get("Usuario/" + idUsuario, parametros);
 
                 usuario = g.fromJson(resultado, RespuestaUsuario.class);
@@ -52,7 +54,7 @@ public class UsuarioController {
 
             } else {
                 parametros.add(new Parametro("idperfil", "0"));
-                parametros.add(new Parametro("idSession", "session"));
+                parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
                 parametros.add(new Parametro("servicio", "FRT"));
                 resultado = servicioApi.Get("usuario/perfil", parametros);
 
@@ -76,6 +78,47 @@ public class UsuarioController {
         }
 
         return listaUsuario;
+    }
+    
+    public static RespuestaUsuario actualizarUsuario(Usuario usuario){
+    
+        RespuestaUsuario ru = new RespuestaUsuario();
+        
+        try{
+        
+             ApiController servicioApi = new ApiController();
+            List<Parametro> parametros = new ArrayList<Parametro>();
+            String jsonUsuario = "";
+            String resultado = "";
+            Gson g = new Gson();
+            
+              if (usuario != null) {
+                //parametros.add(new Parametro("idSession", "session"));
+                parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
+
+                jsonUsuario = g.toJson(usuario);
+ 
+                resultado = servicioApi.Post("usuario/" + usuario.getIdUsuario() +"/modificar/" , jsonUsuario, parametros);
+
+                ru = g.fromJson(resultado, RespuestaUsuario.class);
+                if (ru != null) {
+                    if (ru.isExito()) {
+                        return ru;
+                    }
+                }
+
+            } 
+            if (resultado == null) {
+                ru.setExito(false);
+                ru.setMensaje("No fue posbible traer los datos");
+                return ru;
+            }
+        } catch (Exception e) {
+            System.out.println("Se ha producido un error al obtener la información " + e);
+            
+            //throw new Error y eso mostrarlo en un componente
+        } 
+        return ru;
     }
 
 }

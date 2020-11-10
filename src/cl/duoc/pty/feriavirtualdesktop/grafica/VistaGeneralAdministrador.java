@@ -55,6 +55,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
         btnReportesVentas = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
+        btnCategoriasProductos = new javax.swing.JButton();
         pnlAdministradorDinamico = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -206,10 +207,30 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
         btnCerrarSesion.setBackground(new java.awt.Color(4, 169, 16));
         btnCerrarSesion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.setText("Cerrar Sesión");
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
+            }
+        });
+
+        btnCategoriasProductos.setBackground(new java.awt.Color(255, 255, 255));
+        btnCategoriasProductos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCategoriasProductos.setText("Categorias Productos");
+        btnCategoriasProductos.setBorder(null);
+        btnCategoriasProductos.setRequestFocusEnabled(false);
+        btnCategoriasProductos.setSelected(true);
+        btnCategoriasProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCategoriasProductosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCategoriasProductosMouseExited(evt);
+            }
+        });
+        btnCategoriasProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriasProductosActionPerformed(evt);
             }
         });
 
@@ -233,6 +254,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
                             .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(btnCategoriasProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlbtnAdmin2Layout.setVerticalGroup(
             pnlbtnAdmin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,11 +265,13 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnGestionUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnProcesosVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCategoriasProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGestionSubastaTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReportesVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,6 +389,18 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnProcesosVentaActionPerformed
 
+    private void btnCategoriasProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriasProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCategoriasProductosActionPerformed
+
+    private void btnCategoriasProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasProductosMouseEntered
+        btnCategoriasProductos.setBackground(new Color(253,187,72));
+    }//GEN-LAST:event_btnCategoriasProductosMouseEntered
+
+    private void btnCategoriasProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasProductosMouseExited
+       btnCategoriasProductos.setBackground(Color.white);
+    }//GEN-LAST:event_btnCategoriasProductosMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -401,6 +437,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCategoriasProductos;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnGestionSubastaTransporte;

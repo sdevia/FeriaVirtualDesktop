@@ -224,10 +224,15 @@ public class VistaLogin extends javax.swing.JFrame {
         valida = new ValidacionRut();
 
         String rut = txtIdentificador.getText();
-        String rutFormateado = valida.FormatearRUT(rut);
+        
+        if(!rut.isEmpty()) {
+            String rutFormateado = valida.FormatearRUT(rut);
+            txtIdentificador.setText(rutFormateado);
+        }
+        
 
         
-        txtIdentificador.setText(rutFormateado);
+        
     }//GEN-LAST:event_txtIdentificadorFocusLost
 
     /**

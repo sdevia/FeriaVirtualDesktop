@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +51,12 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         initComponents();
         inicializarTabla();
         inicializarTablaDetalleSubasta();
+        Locale.setDefault(new Locale("es"));
     }
+    
+    /*
+    
+    */
 
     /**
      * This method is called from within the constructor to initialize the form.

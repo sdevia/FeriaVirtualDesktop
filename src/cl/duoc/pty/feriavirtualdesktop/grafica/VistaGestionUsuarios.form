@@ -267,6 +267,7 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtRutFocusLost"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRutActionPerformed"/>
               </Events>
             </Component>
@@ -283,6 +284,9 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtApellidoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTipoUsuario">
               <Properties>

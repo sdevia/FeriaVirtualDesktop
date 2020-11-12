@@ -30,5 +30,22 @@ public class Formatos {
         }
         return frase;
     }
+    
+    public static boolean SoloLetras(String cadena) {
+
+        cadena = cadena;
+
+        char[] cfr = cadena.toCharArray();
+
+        for (int i = 0; i < cadena.length(); i++)
+		{
+			char caracter = cadena.toUpperCase().charAt(i);
+			int valorASCII = (int)caracter;
+			if (valorASCII != 165 && (valorASCII < 65 || valorASCII > 90) && valorASCII !=32 )
+				return false;
+		}
+ 
+	return true;
+    }
 
 }

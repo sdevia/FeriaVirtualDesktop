@@ -10,6 +10,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
+import cl.duoc.pty.feriavirtualdesktop.utils.Formatos;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
 import java.sql.Array;
 import java.util.ArrayList;
@@ -144,6 +145,11 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         lblApellidoUsuario.setText("Apellido");
 
         txtRut.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtRut.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRutFocusLost(evt);
+            }
+        });
         txtRut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRutActionPerformed(evt);
@@ -153,6 +159,11 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         txtApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
 
         lblTipoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTipoUsuario.setText("Tipo de Usuario");
@@ -672,7 +683,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
             if (ValidacionRut.validarRut(txtRut.getText())) {
                 TMUsuario modelo;
 
-                String rutGuion = valida.quitarPuntos(txtRut.getText());
+                String rutGuion = valida.FormatearRUT(txtRut.getText());
 
                 List<Usuario> nuevaListaUsuario = new ArrayList<>();
                 Usuario usuario = new Usuario();
@@ -687,7 +698,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
                     }
 
                     if (nuevaListaUsuario.isEmpty()) {
-                        JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "Usuario No Encontrado");
+                        JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "El usuario ingresado no existe");
                     } else {
                         modelo = new TMUsuario(nuevaListaUsuario);
                         tblGestionUsuarios.setModel(modelo);
@@ -696,8 +707,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
                 }
 
             } else {
-                JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "Ingrese Rut Correcto");
-
+                JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "El rut ingresado no es valido");
             }
 
         } catch (Exception e) {
@@ -708,11 +718,91 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
 
     private void btnBuscarApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarApellidoActionPerformed
         // TODO add your handling code here:
+        try {
+            if (Formatos.SoloLetras(txtApellido.getText())) {
+                TMUsuario modelo;
+
+                String apellido = txtApellido.getText();
+
+                List<Usuario> nuevaListaUsuario = new ArrayList<>();
+                Usuario usuario = new Usuario();
+
+                System.out.println(apellido);
+                if (apellido != null && !apellido.isEmpty()) {
+
+                    for (Usuario u : listaUsuario.getUsuarios()) {
+                        //  if (nombre.contains(u.getNombre())) {
+                        if (u.getApellido().toLowerCase().contains(apellido.toLowerCase())) {
+                            nuevaListaUsuario.add(u);
+                        } else {
+                        }
+                    }
+
+                    if (nuevaListaUsuario.isEmpty()) {
+                        JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "El usuario ingresado no existe");
+                    } else {
+                        modelo = new TMUsuario(nuevaListaUsuario);
+                        tblGestionUsuarios.setModel(modelo);
+                    }
+
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "Datos ingresados inválidos");
+            }
+
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnBuscarApellidoActionPerformed
 
     private void btnBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNombreActionPerformed
         // TODO add your handling code here:
+        try {
+            if (Formatos.SoloLetras(txtNombre.getText())) {
+                TMUsuario modelo;
+
+                String nombre = txtNombre.getText();
+
+                List<Usuario> nuevaListaUsuario = new ArrayList<>();
+                Usuario usuario = new Usuario();
+
+                System.out.println(nombre);
+                if (nombre != null && !nombre.isEmpty()) {
+
+                    for (Usuario u : listaUsuario.getUsuarios()) {
+                        //  if (nombre.contains(u.getNombre())) {
+                        if (u.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+                            nuevaListaUsuario.add(u);
+                        } else {
+                        }
+                    }
+
+                    if (nuevaListaUsuario.isEmpty()) {
+                        JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "El usuario ingresado no existe");
+                    } else {
+                        modelo = new TMUsuario(nuevaListaUsuario);
+                        tblGestionUsuarios.setModel(modelo);
+                    }
+
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "Datos ingresados inválidos");
+            }
+
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnBuscarNombreActionPerformed
+
+    private void txtRutFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusLost
+        // TODO add your handling code here:
+        txtRut.setText(ValidacionRut.FormatearRUT(txtRut.getText()));
+    }//GEN-LAST:event_txtRutFocusLost
+
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtApellidoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -182,10 +182,12 @@ public class VistaLogin extends javax.swing.JFrame {
         login.setTipoPerfil(1);
 
         try {
-            admin = LoginController.login(login);
-            usuario = admin.getUsuario();                    
+                             
 
-            if (validacion == true) {
+            if (validacion) {
+                
+                admin = LoginController.login(login);
+                usuario = admin.getUsuario();   
 
                 if (admin.isExito()) {
                     VistaGeneralAdministrador.session = usuario.getSesionId();
@@ -194,8 +196,11 @@ public class VistaLogin extends javax.swing.JFrame {
                     vga.setVisible(true);
                     this.dispose();
 
-                } else {
-                    JOptionPane.showMessageDialog(pnlAdmin, admin.getMensaje());
+                } else if(admin.getMensaje() != null && !admin.getMensaje().isEmpty()){
+                        JOptionPane.showMessageDialog(pnlAdmin, admin.getMensaje());
+                    }else{
+                       JOptionPane.showMessageDialog(pnlAdmin, "Error de conexión");
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(pnlAdmin, "Rut Incorrecto");

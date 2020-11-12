@@ -105,7 +105,13 @@
                           <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtApellido" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnBuscarRut" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBuscarApellido" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBuscarNombre" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="lblTipoUsuario" min="-2" max="-2" attributes="0"/>
                           <Component id="lblEstadoUsuario" min="-2" max="-2" attributes="0"/>
@@ -168,6 +174,7 @@
                               <Component id="txtRut" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="rbtEstadoCreado" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rbtEstadoAutorizado" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBuscarRut" alignment="3" pref="35" max="32767" attributes="0"/>
                           </Group>
                           <Component id="pwfClaveUsuario" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
@@ -183,6 +190,7 @@
                           <Component id="txtTelefonoUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="rbtActivoBloqueado" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="rbtActivoHabilitado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBuscarNombre" alignment="3" pref="35" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -198,7 +206,10 @@
                               <Component id="txtDireccionUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="txtEmailUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtApellido" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="txtApellido" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="btnBuscarApellido" alignment="3" pref="35" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -416,6 +427,57 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Habilitado"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBuscarRut">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="34" green="bb" red="fd" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarRutActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBuscarApellido">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="34" green="bb" red="fd" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarApellidoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBuscarNombre">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="34" green="bb" red="fd" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarNombreActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

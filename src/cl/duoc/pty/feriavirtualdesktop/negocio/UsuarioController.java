@@ -10,9 +10,13 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.grafica.VistaGeneralAdministrador;
+import cl.duoc.pty.feriavirtualdesktop.utils.Formatos;
+import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
+import cl.duoc.pty.feriavirtualdesktop.utils.ValidarRut;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+import jdk.nashorn.internal.objects.NativeString;
 
 /**
  *
@@ -31,10 +35,8 @@ public class UsuarioController {
             List<Parametro> parametros = new ArrayList<Parametro>();
             String resultado = "";
             Gson g = new Gson();
-            
-            
-            //Si 
 
+            //Si 
             //Validar si el campo idUsuario no está vacio o que no sea nulo
             if (idUsuario != null && !idUsuario.isEmpty()) {
                 //parametros.add(new Parametro("idSession", "session"));
@@ -61,6 +63,16 @@ public class UsuarioController {
                 listaUsuario = g.fromJson(resultado, RespuestaUsuarioListar.class);
                 if (listaUsuario != null) {
                     if (listaUsuario.isExito()) {
+                        List<Usuario> lu = new ArrayList<Usuario>();
+                        for (Usuario u : listaUsuario.getUsuarios()) {
+                            u.setRut(ValidacionRut.FormatearRUT(u.getRut()));
+                            u.setApellido(u.getApellido().substring(0, 1).toUpperCase() + u.getApellido().substring(1));
+                            u.setNombre(Formatos.PrimeraMayuscula(u.getNombre()));
+                            u.setDireccion(Formatos.PrimeraMayuscula(u.getDireccion()));
+                            u.setEmail(u.getEmail().toLowerCase());
+                            lu.add(u);
+                        }
+                        listaUsuario.setUsuarios(lu);
                         return listaUsuario;
 
                     }
@@ -79,26 +91,26 @@ public class UsuarioController {
 
         return listaUsuario;
     }
-    
-    public static RespuestaUsuario actualizarUsuario(Usuario usuario){
-    
+
+    public static RespuestaUsuario actualizarUsuario(Usuario usuario) {
+
         RespuestaUsuario ru = new RespuestaUsuario();
-        
-        try{
-        
-             ApiController servicioApi = new ApiController();
+
+        try {
+
+            ApiController servicioApi = new ApiController();
             List<Parametro> parametros = new ArrayList<Parametro>();
             String jsonUsuario = "";
             String resultado = "";
             Gson g = new Gson();
-            
-              if (usuario != null) {
+
+            if (usuario != null) {
                 //parametros.add(new Parametro("idSession", "session"));
                 parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
 
                 jsonUsuario = g.toJson(usuario);
- 
-                resultado = servicioApi.Post("usuario/" + usuario.getIdUsuario() +"/modificar/" , jsonUsuario, parametros);
+
+                resultado = servicioApi.Post("usuario/" + usuario.getIdUsuario() + "/modificar/", jsonUsuario, parametros);
 
                 ru = g.fromJson(resultado, RespuestaUsuario.class);
                 if (ru != null) {
@@ -107,7 +119,7 @@ public class UsuarioController {
                     }
                 }
 
-            } 
+            }
             if (resultado == null) {
                 ru.setExito(false);
                 ru.setMensaje("No fue posbible traer los datos");
@@ -115,9 +127,9 @@ public class UsuarioController {
             }
         } catch (Exception e) {
             System.out.println("Se ha producido un error al obtener la información " + e);
-            
+
             //throw new Error y eso mostrarlo en un componente
-        } 
+        }
         return ru;
     }
 

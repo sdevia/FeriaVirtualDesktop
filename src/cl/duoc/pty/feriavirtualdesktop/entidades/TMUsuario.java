@@ -29,7 +29,7 @@ public class TMUsuario implements TableModel {
 
     @Override
     public int getColumnCount() {
-        return 15;
+        return 13;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class TMUsuario implements TableModel {
         String titulo = null;
         switch (columnIndex) {
             case 0: {
-                titulo = "ID";
+                titulo = "CÓDIGO USUARIO";
                 break;
             }
             case 1: {
@@ -68,31 +68,31 @@ public class TMUsuario implements TableModel {
                 titulo = "DIRECCIÓN";
                 break;
             }
+//            case 8: {
+//                titulo = "CLAVE";
+//                break;
+//            }
+//            case 9: {
+//                titulo = "INTENTOS";
+//                break;
+//            }
             case 8: {
-                titulo = "CLAVE";
-                break;
-            }
-            case 9: {
-                titulo = "INTENTOS";
-                break;
-            }
-            case 10: {
                 titulo = "CAMBIO CLAVE";
                 break;
             }
-            case 11: {
+            case 9: {
                 titulo = "CREACIÓN";
                 break;
             }
-            case 12: {
+            case 10: {
                 titulo = "MODIFICACIÓN";
                 break;
             }
-            case 13: {
+            case 11: {
                 titulo = "IDPERFIL";
                 break;
             }
-            case 14: {
+            case 12: {
                 titulo = "TELÉFONO";
                 break;
             }
@@ -161,31 +161,31 @@ public class TMUsuario implements TableModel {
                 valor = u.getDireccion();
                 break;
             }
+//            case 8: {
+//                valor = u.getClave();
+//                break;
+//            }
+//            case 9: {
+//                valor = Integer.toHexString(u.getIntentos());
+//                break;
+//            }
             case 8: {
-                valor = u.getClave();
-                break;
-            }
-            case 9: {
-                valor = Integer.toHexString(u.getIntentos());
-                break;
-            }
-            case 10: {
                 valor = Boolean.toString(u.isCambiaClave());
                 break;
             }
-            case 11: {
+            case 9: {
                 valor = u.getFechaCreacion();
                 break;
             }
-            case 12: {
+            case 10: {
                 valor = u.getFechaModificacion();
                 break;
             }
-            case 13: {
+            case 11: {
                 valor = Integer.toHexString(u.getIdPerfil());
                 break;
             }
-            case 14: {
+            case 12: {
                 valor = u.getTelefono();
                 break;
             }
@@ -243,31 +243,31 @@ public class TMUsuario implements TableModel {
                 u.setDireccion(aValue.toString());
                 break;
             }
+//            case 8: {
+//                u.setClave(aValue.toString());
+//                break;
+//            }
+//            case 9: {
+//                u.setIntentos(aValue.hashCode());
+//                break;
+//            }
             case 8: {
-                u.setClave(aValue.toString());
-                break;
-            }
-            case 9: {
-                u.setIntentos(aValue.hashCode());
-                break;
-            }
-            case 10: {
                 u.setCambiaClave(aValue.equals(aValue));
                 break;
             }
-            case 11: {
+            case 9: {
                 u.setFechaCreacion(aValue.toString());
                 break;
             }
-            case 12: {
+            case 10: {
                 u.setFechaModificacion(aValue.toString());
                 break;
             }
-            case 13: {
+            case 11: {
                 u.setIdPerfil(aValue.hashCode());
                 break;
             }
-            case 14: {
+            case 12: {
                 u.setTelefono(aValue.toString());
                 break;
             }

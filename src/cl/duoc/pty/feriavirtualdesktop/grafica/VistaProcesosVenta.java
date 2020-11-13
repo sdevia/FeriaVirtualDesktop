@@ -16,7 +16,6 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.TMOrden;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMProceso;
 import cl.duoc.pty.feriavirtualdesktop.negocio.OrdenController;
 import cl.duoc.pty.feriavirtualdesktop.negocio.ProcesoController;
-import cl.duoc.pty.feriavirtualdesktop.utils.ValidarRut;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;

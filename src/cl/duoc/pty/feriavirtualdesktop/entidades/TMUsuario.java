@@ -154,7 +154,7 @@ public class TMUsuario implements TableModel {
                 break;
             }
             case 6: {
-                valor = Boolean.toString(u.isActivo());
+                valor = u.getActivo();
                 break;
             }
             case 7: {
@@ -182,7 +182,7 @@ public class TMUsuario implements TableModel {
                 break;
             }
             case 11: {
-                valor = Integer.toHexString(u.getIdPerfil());
+                valor = u.getIdPerfil();
                 break;
             }
             case 12: {
@@ -236,7 +236,7 @@ public class TMUsuario implements TableModel {
                 break;
             }
             case 6: {
-                u.setActivo(aValue.equals(aValue));
+                u.setActivo(aValue.toString());
                 break;
             }
             case 7: {
@@ -264,7 +264,7 @@ public class TMUsuario implements TableModel {
                 break;
             }
             case 11: {
-                u.setIdPerfil(aValue.hashCode());
+                u.setIdPerfil(aValue.toString());
                 break;
             }
             case 12: {

@@ -21,14 +21,14 @@ public class Usuario {
     private String Apellido;
     private String Email;
     private boolean Estado;
-    private boolean Activo;
+    private String Activo;
     private String Direccion;
     private String Clave;
     private int Intentos;
     private boolean CambiaClave;
     private String FechaCreacion;
     private String FechaModificacion;
-    private int IdPerfil;
+    private String IdPerfil;
     private String Telefono;
     private String ReClave;
     private String SesionId;
@@ -37,7 +37,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int IdUsuario, String Rut, String Nombre, String Apellido, String Email, boolean Estado, boolean Activo, String Direccion, String Clave, int Intentos, boolean CambiaClave, String FechaCreacion, String FechaModificacion, int IdPerfil, String Telefono, String ReClave, String SesionId, String EstadoEdit) {
+    public Usuario(int IdUsuario, String Rut, String Nombre, String Apellido, String Email, boolean Estado, String Activo, String Direccion, String Clave, int Intentos, boolean CambiaClave, String FechaCreacion, String FechaModificacion, String IdPerfil, String Telefono, String ReClave, String SesionId, String EstadoEdit) {
         this.IdUsuario = IdUsuario;
         this.Rut = Rut;
         this.Nombre = Nombre;
@@ -106,11 +106,11 @@ public class Usuario {
         this.Estado = Estado;
     }
 
-    public boolean isActivo() {
+    public String getActivo() {
         return Activo;
     }
 
-    public void setActivo(boolean Activo) {
+    public void setActivo(String Activo) {
         this.Activo = Activo;
     }
 
@@ -162,11 +162,11 @@ public class Usuario {
         this.FechaModificacion = FechaModificacion;
     }
 
-    public int getIdPerfil() {
+    public String getIdPerfil() {
         return IdPerfil;
     }
 
-    public void setIdPerfil(int IdPerfil) {
+    public void setIdPerfil(String IdPerfil) {
         this.IdPerfil = IdPerfil;
     }
 
@@ -202,5 +202,4 @@ public class Usuario {
         this.EstadoEdit = EstadoEdit;
     }
 
-    
 }

@@ -9,7 +9,7 @@ package cl.duoc.pty.feriavirtualdesktop.utils;
  *
  * @author s1mu2
  */
-public class Formatos {
+public class FormatoString {
 
     public static String PrimeraMayuscula(String frase) {
 

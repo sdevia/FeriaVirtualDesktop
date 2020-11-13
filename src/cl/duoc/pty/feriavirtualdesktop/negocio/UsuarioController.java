@@ -10,9 +10,8 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.grafica.VistaGeneralAdministrador;
-import cl.duoc.pty.feriavirtualdesktop.utils.Formatos;
+import cl.duoc.pty.feriavirtualdesktop.utils.FormatoString;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
-import cl.duoc.pty.feriavirtualdesktop.utils.ValidarRut;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,9 +66,43 @@ public class UsuarioController {
                         for (Usuario u : listaUsuario.getUsuarios()) {
                             u.setRut(ValidacionRut.FormatearRUT(u.getRut()));
                             u.setApellido(u.getApellido().substring(0, 1).toUpperCase() + u.getApellido().substring(1));
-                            u.setNombre(Formatos.PrimeraMayuscula(u.getNombre()));
-                            u.setDireccion(Formatos.PrimeraMayuscula(u.getDireccion()));
+                            u.setNombre(FormatoString.PrimeraMayuscula(u.getNombre()));
+                            u.setDireccion(FormatoString.PrimeraMayuscula(u.getDireccion()));
                             u.setEmail(u.getEmail().toLowerCase());
+                            if (u.getActivo() == "true") {
+                                u.setActivo("Vigente");
+                            } else {
+                                u.setActivo("No Vigente");
+                            }
+
+                            switch (Integer.parseInt(u.getIdPerfil().toString())) {
+                                case 1: {
+                                    u.setIdPerfil("Administrador");
+                                    break;
+                                }
+                                case 2: {
+                                    u.setIdPerfil("Productor");
+                                    break;
+                                }
+                                case 3: {
+                                    u.setIdPerfil("Cliente Externo");
+                                    break;
+                                }
+                                case 4: {
+                                    u.setIdPerfil("Cliente Interno");
+                                    break;
+                                }
+                                case 5: {
+                                    u.setIdPerfil("Transportista");
+                                    break;
+                                }
+                                case 6: {
+                                    u.setIdPerfil("Consultor");
+                                    break;
+                                }
+
+                            }
+
                             lu.add(u);
                         }
                         listaUsuario.setUsuarios(lu);

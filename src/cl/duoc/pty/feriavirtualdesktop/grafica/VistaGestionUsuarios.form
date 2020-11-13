@@ -140,7 +140,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblClaveUsuario" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtfechaCreacion1" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="txtfechaModificacion" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="lblCambioClave" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -164,7 +164,7 @@
                           <Component id="txtIdUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="txtTipoUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="txtfechaCreacion" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="txtfechaCreacion1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txtfechaModificacion" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -472,7 +472,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarNombreActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtfechaCreacion1">
+            <Component class="javax.swing.JTextField" name="txtfechaModificacion">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

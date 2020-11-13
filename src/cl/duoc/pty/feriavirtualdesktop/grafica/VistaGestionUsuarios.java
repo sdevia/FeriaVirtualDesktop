@@ -10,7 +10,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
-import cl.duoc.pty.feriavirtualdesktop.utils.Formatos;
+import cl.duoc.pty.feriavirtualdesktop.utils.FormatoString;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +48,30 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         TMUsuario modelo;
         modelo = new TMUsuario(listaUsuario.getUsuarios());
         tblGestionUsuarios.setModel(modelo);
+    }
+    
+    private void limpiarFormulario(){
+    rbtGrupoEstado.clearSelection();
+        txtApellido.setText(null);
+        txtApellido.setText("");
+        txtDireccionUsuario.setText(null);
+        txtDireccionUsuario.setText("");
+        txtEmailUsuario.setText(null);
+        txtEmailUsuario.setText("");
+        txtIdUsuario.setText(null);
+        txtIdUsuario.setText("");
+        txtNombre.setText(null);
+        txtNombre.setText("");
+        txtRut.setText(null);
+        txtRut.setText("");
+        txtTelefonoUsuario.setText(null);
+        txtTelefonoUsuario.setText("");
+        txtTipoUsuario.setText(null);
+        txtTipoUsuario.setText("");
+        txtfechaCreacion.setText(null);
+        txtfechaCreacion.setText("");
+        txtfechaModificacion.setText(null);
+        txtfechaModificacion.setText("");
     }
 
     /**
@@ -87,7 +111,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         btnBuscarRut = new javax.swing.JButton();
         btnBuscarApellido = new javax.swing.JButton();
         btnBuscarNombre = new javax.swing.JButton();
-        txtfechaCreacion1 = new javax.swing.JTextField();
+        txtfechaModificacion = new javax.swing.JTextField();
         txtActivo = new javax.swing.JTextField();
         lblActivoUsuario = new javax.swing.JLabel();
         lblCambioClave = new javax.swing.JLabel();
@@ -233,8 +257,8 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
             }
         });
 
-        txtfechaCreacion1.setEditable(false);
-        txtfechaCreacion1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtfechaModificacion.setEditable(false);
+        txtfechaModificacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         txtActivo.setEditable(false);
         txtActivo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -295,7 +319,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblClaveUsuario)
-                            .addComponent(txtfechaCreacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtfechaModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblCambioClave)
                     .addComponent(txtCambioClave))
                 .addContainerGap(363, Short.MAX_VALUE))
@@ -313,7 +337,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
                     .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtfechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfechaCreacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtfechaModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInputsGestionUsuarioLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -529,11 +553,9 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
             txtActivo.setText("Inactivo");
         }
         
-        if ((Boolean.parseBoolean(model.getValueAt(i, 6).toString())) == true) {
-            rbtVigente.setSelected(Boolean.parseBoolean(model.getValueAt(i, 6).toString()));
-        } else {
-            rbtNoVigente.setSelected(Boolean.parseBoolean(model.getValueAt(i, 6).toString()));
-        }
+        txtActivo.setText(model.getValueAt(i, 6).toString());
+        
+
 
         txtDireccionUsuario.setText(model.getValueAt(i, 7).toString());
         
@@ -544,36 +566,9 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         }
 
         txtfechaCreacion.setText(model.getValueAt(i, 9).toString());
-        txtfechaCreacion1.setText(model.getValueAt(i, 10).toString());
-
-        switch (Integer.parseInt(model.getValueAt(i, 11).toString())) {
-            case 1: {
-                txtTipoUsuario.setText("Administrador");
-                break;
-            }
-            case 2: {
-                txtTipoUsuario.setText("Productor");
-                break;
-            }
-            case 3: {
-                txtTipoUsuario.setText("Cliente Externo");
-                break;
-            }
-            case 4: {
-                txtTipoUsuario.setText("Cliente Interno");
-                break;
-            }
-            case 5: {
-                txtTipoUsuario.setText("Transportista");
-                break;
-            }
-            case 6: {
-                txtTipoUsuario.setText("Consultor");
-                break;
-            }
-
-        }
-
+        txtfechaModificacion.setText(model.getValueAt(i, 10).toString());
+        
+        txtTipoUsuario.setText(model.getValueAt(i, 11).toString());
         txtTelefonoUsuario.setText(model.getValueAt(i, 12).toString());
     }//GEN-LAST:event_tblGestionUsuariosMouseClicked
 
@@ -643,25 +638,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTipoUsuarioActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        rbtGrupoEstado.clearSelection();
-        txtApellido.setText(null);
-        txtApellido.setText("");
-        txtDireccionUsuario.setText(null);
-        txtDireccionUsuario.setText("");
-        txtEmailUsuario.setText(null);
-        txtEmailUsuario.setText("");
-        txtIdUsuario.setText(null);
-        txtIdUsuario.setText("");
-        txtNombre.setText(null);
-        txtNombre.setText("");
-        txtRut.setText(null);
-        txtRut.setText("");
-        txtTelefonoUsuario.setText(null);
-        txtTelefonoUsuario.setText("");
-        txtTipoUsuario.setText(null);
-        txtTipoUsuario.setText("");
-        txtfechaCreacion.setText(null);
-        txtfechaCreacion.setText("");
+        limpiarFormulario();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void rbtVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtVigenteActionPerformed
@@ -704,7 +681,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
 
     private void btnBuscarApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarApellidoActionPerformed
         try {
-            if (Formatos.SoloLetras(txtApellido.getText())) {
+            if (FormatoString.SoloLetras(txtApellido.getText())) {
                 TMUsuario modelo;
                 String apellido = txtApellido.getText();
                 List<Usuario> nuevaListaUsuario = new ArrayList<>();
@@ -733,7 +710,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
 
     private void btnBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNombreActionPerformed
         try {
-            if (Formatos.SoloLetras(txtNombre.getText())) {
+            if (FormatoString.SoloLetras(txtNombre.getText())) {
                 TMUsuario modelo;
 
                 String nombre = txtNombre.getText();
@@ -817,6 +794,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
     private javax.swing.JTextField txtTelefonoUsuario;
     private javax.swing.JTextField txtTipoUsuario;
     private javax.swing.JTextField txtfechaCreacion;
-    private javax.swing.JTextField txtfechaCreacion1;
+    private javax.swing.JTextField txtfechaModificacion;
     // End of variables declaration//GEN-END:variables
 }

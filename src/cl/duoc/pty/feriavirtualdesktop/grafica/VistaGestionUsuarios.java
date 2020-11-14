@@ -10,6 +10,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
+import cl.duoc.pty.feriavirtualdesktop.utils.CosasUsuario;
 import cl.duoc.pty.feriavirtualdesktop.utils.FormatoString;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
 import java.util.ArrayList;
@@ -49,9 +50,9 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         modelo = new TMUsuario(listaUsuario.getUsuarios());
         tblGestionUsuarios.setModel(modelo);
     }
-    
-    private void limpiarFormulario(){
-    rbtGrupoEstado.clearSelection();
+
+    private void limpiarFormulario() {
+        rbtGrupoEstado.clearSelection();
         txtApellido.setText(null);
         txtApellido.setText("");
         txtDireccionUsuario.setText(null);
@@ -72,6 +73,34 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         txtfechaCreacion.setText("");
         txtfechaModificacion.setText(null);
         txtfechaModificacion.setText("");
+    }
+
+    private void buscarRut() {
+        try {
+            if (ValidacionRut.validarRut(txtRut.getText())) {
+                TMUsuario modelo;
+                String rutGuion = valida.FormatearRUT(txtRut.getText());
+                List<Usuario> nuevaListaUsuario = new ArrayList<>();
+                Usuario usuario = new Usuario();
+                System.out.println(rutGuion);
+                if (rutGuion != null && !rutGuion.isEmpty()) {
+                    for (Usuario u : listaUsuario.getUsuarios()) {
+                        if (rutGuion.equals(u.getRut())) {
+                            nuevaListaUsuario.add(u);
+                        }
+                    }
+                    if (nuevaListaUsuario.isEmpty()) {
+                        JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "El usuario ingresado no existe");
+                    } else {
+                        modelo = new TMUsuario(nuevaListaUsuario);
+                        tblGestionUsuarios.setModel(modelo);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "El rut ingresado no es valido");
+            }
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -159,6 +188,9 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
 
         txtRut.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtRut.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRutFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtRutFocusLost(evt);
             }
@@ -170,8 +202,18 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         });
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNombreFocusGained(evt);
+            }
+        });
 
         txtApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtApellidoFocusGained(evt);
+            }
+        });
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoActionPerformed(evt);
@@ -190,7 +232,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         txtDireccionUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblEmailUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblEmailUsuario.setText("E-mail");
+        lblEmailUsuario.setText("Email");
 
         txtEmailUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -217,6 +259,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         txtfechaCreacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         rbtGrupoEstado.add(rbtVigente);
+        rbtVigente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtVigente.setText("Vigente");
         rbtVigente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +268,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         });
 
         rbtGrupoEstado.add(rbtNoVigente);
+        rbtNoVigente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtNoVigente.setText("No Vigente");
 
         btnBuscarRut.setBackground(new java.awt.Color(253, 187, 52));
@@ -353,7 +397,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
                                 .addGap(30, 30, 30)
                                 .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBuscarRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(btnBuscarRut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInputsGestionUsuarioLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblCambioClave)
@@ -368,7 +412,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
                         .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTelefonoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBuscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                             .addComponent(rbtVigente)
                             .addComponent(rbtNoVigente))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -547,18 +591,16 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         txtApellido.setText(model.getValueAt(i, 3).toString());
         txtEmailUsuario.setText(model.getValueAt(i, 4).toString());
 
-        if ((Boolean.parseBoolean(model.getValueAt(i, 5).toString())) == true) {
-            txtActivo.setText("Activo");
+        if (model.getValueAt(i, 5) == "Vigente") {
+            rbtVigente.setSelected(true);
         } else {
-            txtActivo.setText("Inactivo");
+            rbtNoVigente.setSelected(true);
         }
-        
-        txtActivo.setText(model.getValueAt(i, 6).toString());
-        
 
+        txtActivo.setText(model.getValueAt(i, 6).toString());
 
         txtDireccionUsuario.setText(model.getValueAt(i, 7).toString());
-        
+
         if ((Boolean.parseBoolean(model.getValueAt(i, 8).toString())) == true) {
             txtCambioClave.setText("Si");
         } else {
@@ -567,7 +609,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
 
         txtfechaCreacion.setText(model.getValueAt(i, 9).toString());
         txtfechaModificacion.setText(model.getValueAt(i, 10).toString());
-        
+
         txtTipoUsuario.setText(model.getValueAt(i, 11).toString());
         txtTelefonoUsuario.setText(model.getValueAt(i, 12).toString());
     }//GEN-LAST:event_tblGestionUsuariosMouseClicked
@@ -589,8 +631,8 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
                 || rbtVigente.getText().isEmpty()) {
             showMessageDialog(null, "Hay campos vacíos", "Información", JOptionPane.WARNING_MESSAGE);
         } else {
-  ///////////// REVISAR POR QUE EL CODIGO NO VA ACA 
-        
+            ///////////// REVISAR POR QUE EL CODIGO NO VA ACA 
+
         }
 
         RespuestaUsuario ru = new RespuestaUsuario();
@@ -609,19 +651,42 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
             usuario.setTelefono(txtTelefonoUsuario.getText());
             usuario.setDireccion(txtDireccionUsuario.getText());
             usuario.setEmail(txtEmailUsuario.getText());
+            usuario.setRut(ValidacionRut.quitarPuntos(txtRut.getText()));
+            usuario.setIdPerfil(String.valueOf(CosasUsuario.perfilUsuarioInt(txtTipoUsuario.getText())));
+            usuario.setFechaCreacion("2000-01-01T00:00:00");
+            usuario.setFechaModificacion("2000-01-01T00:00:00");
+            
 
             if (rbtVigente.isSelected()) {
-                usuario.setEstado(true);
+                usuario.setEstado("true");
             }
             if (rbtNoVigente.isSelected()) {
-                usuario.setEstado(false);
+                usuario.setEstado("false");
             }
+            
+            if (txtActivo.getText().equals("Si")) {
+                usuario.setActivo("true");
+            }else{
+                usuario.setActivo("false");
+            }
+            
+            if (txtCambioClave.getText().equals("Si")) {
+                usuario.setCambiaClave("true");
+            }else{
+                usuario.setCambiaClave("false");
+            }
+            
+            
+            
         }
         ru = UsuarioController.actualizarUsuario(usuario);
 
         if (ru.isExito()) {
 
             TMUsuario modelo;
+            listaUsuario.getUsuarios().clear(); 
+            listaUsuario.getUsuarios().add(ru.getUsuario());
+                    
             modelo = new TMUsuario(listaUsuario.getUsuarios());
             tblGestionUsuarios.setModel(modelo);
         }
@@ -631,6 +696,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
 
     private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
         // TODO add your handling code here:
+        buscarRut();
     }//GEN-LAST:event_txtRutActionPerformed
 
     private void txtTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoUsuarioActionPerformed
@@ -646,36 +712,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_rbtVigenteActionPerformed
 
     private void btnBuscarRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRutActionPerformed
-        try {
-            if (ValidacionRut.validarRut(txtRut.getText())) {
-
-                TMUsuario modelo;
-                String rutGuion = valida.FormatearRUT(txtRut.getText());
-
-                List<Usuario> nuevaListaUsuario = new ArrayList<>();
-                Usuario usuario = new Usuario();
-
-                System.out.println(rutGuion);
-                if (rutGuion != null && !rutGuion.isEmpty()) {
-
-                    for (Usuario u : listaUsuario.getUsuarios()) {
-                        if (rutGuion.equals(u.getRut())) {
-                            nuevaListaUsuario.add(u);
-                        }
-                    }
-
-                    if (nuevaListaUsuario.isEmpty()) {
-                        JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "El usuario ingresado no existe");
-                    } else {
-                        modelo = new TMUsuario(nuevaListaUsuario);
-                        tblGestionUsuarios.setModel(modelo);
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "El rut ingresado no es valido");
-            }
-        } catch (Exception e) {
-        }
+        buscarRut();
 
     }//GEN-LAST:event_btnBuscarRutActionPerformed
 
@@ -744,14 +781,30 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarNombreActionPerformed
 
     private void txtRutFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusLost
-        txtRut.setText(ValidacionRut.FormatearRUT(txtRut.getText()));
-
+        if (txtRut.getText() != null && !txtRut.getText().isEmpty()) {
+            txtRut.setText(ValidacionRut.FormatearRUT(txtRut.getText()));
+        }
     }//GEN-LAST:event_txtRutFocusLost
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_txtApellidoActionPerformed
+
+    private void txtRutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusGained
+        // TODO add your handling code here:
+        limpiarFormulario();
+    }//GEN-LAST:event_txtRutFocusGained
+
+    private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
+        // TODO add your handling code here:
+        limpiarFormulario();
+    }//GEN-LAST:event_txtNombreFocusGained
+
+    private void txtApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusGained
+        // TODO add your handling code here:
+        limpiarFormulario();
+    }//GEN-LAST:event_txtApellidoFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

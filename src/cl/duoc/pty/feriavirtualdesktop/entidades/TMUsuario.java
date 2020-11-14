@@ -150,7 +150,7 @@ public class TMUsuario implements TableModel {
                 break;
             }
             case 5: {
-                valor = Boolean.toString(u.isEstado());
+                valor = u.getEstado();
                 break;
             }
             case 6: {
@@ -170,7 +170,7 @@ public class TMUsuario implements TableModel {
 //                break;
 //            }
             case 8: {
-                valor = Boolean.toString(u.isCambiaClave());
+                valor = u.getCambiaClave();
                 break;
             }
             case 9: {
@@ -232,7 +232,7 @@ public class TMUsuario implements TableModel {
                 break;
             }
             case 5: {
-                u.setEstado(aValue.equals(aValue));
+                u.setEstado(aValue.toString());
                 break;
             }
             case 6: {
@@ -252,7 +252,7 @@ public class TMUsuario implements TableModel {
 //                break;
 //            }
             case 8: {
-                u.setCambiaClave(aValue.equals(aValue));
+                u.setCambiaClave(aValue.toString());
                 break;
             }
             case 9: {

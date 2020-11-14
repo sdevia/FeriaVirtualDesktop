@@ -20,12 +20,12 @@ public class Usuario {
     private String Nombre;
     private String Apellido;
     private String Email;
-    private boolean Estado;
+    private String Estado;
     private String Activo;
     private String Direccion;
     private String Clave;
     private int Intentos;
-    private boolean CambiaClave;
+    private String CambiaClave;
     private String FechaCreacion;
     private String FechaModificacion;
     private String IdPerfil;
@@ -37,7 +37,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int IdUsuario, String Rut, String Nombre, String Apellido, String Email, boolean Estado, String Activo, String Direccion, String Clave, int Intentos, boolean CambiaClave, String FechaCreacion, String FechaModificacion, String IdPerfil, String Telefono, String ReClave, String SesionId, String EstadoEdit) {
+    public Usuario(int IdUsuario, String Rut, String Nombre, String Apellido, String Email, String Estado, String Activo, String Direccion, String Clave, int Intentos, String CambiaClave, String FechaCreacion, String FechaModificacion, String IdPerfil, String Telefono, String ReClave, String SesionId, String EstadoEdit) {
         this.IdUsuario = IdUsuario;
         this.Rut = Rut;
         this.Nombre = Nombre;
@@ -98,11 +98,11 @@ public class Usuario {
         this.Email = Email;
     }
 
-    public boolean isEstado() {
+    public String getEstado() {
         return Estado;
     }
 
-    public void setEstado(boolean Estado) {
+    public void setEstado(String Estado) {
         this.Estado = Estado;
     }
 
@@ -138,11 +138,11 @@ public class Usuario {
         this.Intentos = Intentos;
     }
 
-    public boolean isCambiaClave() {
+    public String getCambiaClave() {
         return CambiaClave;
     }
 
-    public void setCambiaClave(boolean CambiaClave) {
+    public void setCambiaClave(String CambiaClave) {
         this.CambiaClave = CambiaClave;
     }
 
@@ -202,4 +202,5 @@ public class Usuario {
         this.EstadoEdit = EstadoEdit;
     }
 
+    
 }

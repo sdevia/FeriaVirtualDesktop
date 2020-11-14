@@ -10,12 +10,12 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.grafica.VistaGeneralAdministrador;
+import cl.duoc.pty.feriavirtualdesktop.utils.CosasUsuario;
 import cl.duoc.pty.feriavirtualdesktop.utils.FormatoString;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
-import jdk.nashorn.internal.objects.NativeString;
 
 /**
  *
@@ -49,7 +49,7 @@ public class UsuarioController {
                         List<Usuario> usr = new ArrayList<Usuario>();
                         usr.add(usuario.getUsuario());
                         listaUsuario.setUsuarios(usr);
-                        return listaUsuario;
+                        listaUsuario = formatearUsuario(listaUsuario);
                     }
                 }
 
@@ -62,52 +62,7 @@ public class UsuarioController {
                 listaUsuario = g.fromJson(resultado, RespuestaUsuarioListar.class);
                 if (listaUsuario != null) {
                     if (listaUsuario.isExito()) {
-                        List<Usuario> lu = new ArrayList<Usuario>();
-                        for (Usuario u : listaUsuario.getUsuarios()) {
-                            u.setRut(ValidacionRut.FormatearRUT(u.getRut()));
-                            u.setApellido(u.getApellido().substring(0, 1).toUpperCase() + u.getApellido().substring(1));
-                            u.setNombre(FormatoString.PrimeraMayuscula(u.getNombre()));
-                            u.setDireccion(FormatoString.PrimeraMayuscula(u.getDireccion()));
-                            u.setEmail(u.getEmail().toLowerCase());
-                            if (u.getActivo() == "true") {
-                                u.setActivo("Vigente");
-                            } else {
-                                u.setActivo("No Vigente");
-                            }
-
-                            switch (Integer.parseInt(u.getIdPerfil().toString())) {
-                                case 1: {
-                                    u.setIdPerfil("Administrador");
-                                    break;
-                                }
-                                case 2: {
-                                    u.setIdPerfil("Productor");
-                                    break;
-                                }
-                                case 3: {
-                                    u.setIdPerfil("Cliente Externo");
-                                    break;
-                                }
-                                case 4: {
-                                    u.setIdPerfil("Cliente Interno");
-                                    break;
-                                }
-                                case 5: {
-                                    u.setIdPerfil("Transportista");
-                                    break;
-                                }
-                                case 6: {
-                                    u.setIdPerfil("Consultor");
-                                    break;
-                                }
-
-                            }
-
-                            lu.add(u);
-                        }
-                        listaUsuario.setUsuarios(lu);
-                        return listaUsuario;
-
+                        listaUsuario = formatearUsuario(listaUsuario);
                     }
                 }
             }  // conn.disconnect();
@@ -148,7 +103,8 @@ public class UsuarioController {
                 ru = g.fromJson(resultado, RespuestaUsuario.class);
                 if (ru != null) {
                     if (ru.isExito()) {
-                        return ru;
+                                            
+                        return formatearActualizar(ru);
                     }
                 }
 
@@ -166,4 +122,79 @@ public class UsuarioController {
         return ru;
     }
 
+    private static RespuestaUsuarioListar formatearUsuario(RespuestaUsuarioListar listaUsuario) {
+        List<Usuario> lu = new ArrayList<Usuario>();
+        for (Usuario u : listaUsuario.getUsuarios()) {
+            u.setRut(ValidacionRut.FormatearRUT(u.getRut()));
+            u.setApellido(u.getApellido().substring(0, 1).toUpperCase() + u.getApellido().substring(1));
+            u.setNombre(FormatoString.PrimeraMayuscula(u.getNombre()));
+            u.setDireccion(FormatoString.PrimeraMayuscula(u.getDireccion()));
+            u.setEmail(u.getEmail().toLowerCase());
+            u.setFechaModificacion(FormatoString.FechasFormato(u.getFechaModificacion()));
+            u.setFechaCreacion(FormatoString.FechasFormato(u.getFechaCreacion()));
+            u.setTelefono(FormatoString.fonoFormato(u.getTelefono()));
+
+            if (u.getCambiaClave() == "true") {
+                u.setCambiaClave("Si");
+            } else {
+                u.setCambiaClave("No");
+            }
+
+            if (u.getEstado() == "true") {
+                u.setEstado("Vigente");
+            } else {
+                u.setEstado("No Vigente");
+            }
+
+            if (u.getActivo() == "true") {
+                u.setActivo("Si");
+            } else {
+                u.setActivo("No");
+            }
+
+            u.setIdPerfil(CosasUsuario.perfilUsuarioString(Integer.parseInt(u.getIdPerfil())));
+
+            lu.add(u);
+        }
+        listaUsuario.setUsuarios(lu);
+        return listaUsuario;
+    }
+
+    private static RespuestaUsuario formatearActualizar(RespuestaUsuario ru) {
+       
+           
+            ru.getUsuario().setRut(ValidacionRut.FormatearRUT(ru.getUsuario().getRut()));
+//            u.setApellido(ru.getUsuario().getApellido().substring(0, 1).toUpperCase() + ru.getUsuario().getApellido().substring(1));
+//            u.setNombre(FormatoString.PrimeraMayuscula(ru.getUsuario().getNombre()));
+//            u.setDireccion(FormatoString.PrimeraMayuscula(ru.getUsuario().getDireccion()));
+//            u.setEmail(ru.getUsuario().getEmail().toLowerCase());
+//            u.setFechaModificacion(FormatoString.FechasFormato(ru.getUsuario().getFechaModificacion()));
+//            u.setFechaCreacion(FormatoString.FechasFormato(ru.getUsuario().getFechaCreacion()));
+//            u.setTelefono(FormatoString.fonoFormato(ru.getUsuario().getTelefono()));
+//
+//            if (ru.getUsuario().getCambiaClave() == "true") {
+//                u.setCambiaClave("Si");
+//            } else {
+//                u.setCambiaClave("No");
+//            }
+//
+//            if (ru.getUsuario().getEstado() == "true") {
+//                u.setEstado("Vigente");
+//            } else {
+//                u.setEstado("No Vigente");
+//            }
+//
+//            if (ru.getUsuario().getActivo() == "true") {
+//                u.setActivo("Si");
+//            } else {
+//                u.setActivo("No");
+//            }
+//
+//            u.setIdPerfil(CosasUsuario.perfilUsuarioString(Integer.parseInt(ru.getUsuario().getIdPerfil())));
+//
+//           
+//        
+        return ru;
+    }
+    
 }

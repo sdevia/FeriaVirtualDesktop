@@ -183,7 +183,7 @@
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="txtRut" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <Component id="btnBuscarRut" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnBuscarRut" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -203,7 +203,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtNombre" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="txtTelefonoUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="btnBuscarNombre" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="btnBuscarNombre" alignment="3" pref="35" max="32767" attributes="0"/>
                                   <Component id="rbtVigente" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="rbtNoVigente" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -285,6 +285,7 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtRutFocusGained"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtRutFocusLost"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRutActionPerformed"/>
               </Events>
@@ -295,6 +296,9 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNombreFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtApellido">
               <Properties>
@@ -303,6 +307,7 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtApellidoFocusGained"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtApellidoActionPerformed"/>
               </Events>
             </Component>
@@ -342,7 +347,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="E-mail"/>
+                <Property name="text" type="java.lang.String" value="Email"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtEmailUsuario">
@@ -407,6 +412,9 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="rbtGrupoEstado"/>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Vigente"/>
               </Properties>
               <Events>
@@ -417,6 +425,9 @@
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="rbtGrupoEstado"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="No Vigente"/>
               </Properties>

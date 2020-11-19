@@ -27,7 +27,7 @@ import javax.swing.table.TableModel;
  *
  * @author s1mu2
  */
-public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionListener{
+public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionListener {
 
     /**
      * Creates new form VistaGestionUsuarioss
@@ -41,8 +41,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         inicializarTabla();
         setearBotones();
     }
-    
-    
+
     private void setearBotones() {
         btnActualizarUsuario.setEnabled(true);
         btnBuscarUsuario.setEnabled(true);
@@ -52,7 +51,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         btnBuscarApellido.setEnabled(true);
 
     }
-        
 
     @Override
     public boolean action(Event evt, Object what) {
@@ -118,6 +116,12 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         }
     }
 
+    
+    
+    
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,7 +147,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         lblDireccionUsuario = new javax.swing.JLabel();
         txtDireccionUsuario = new javax.swing.JTextField();
         lblEmailUsuario = new javax.swing.JLabel();
-        txtEmailUsuario = new javax.swing.JTextField();
         lblClaveUsuario = new javax.swing.JLabel();
         lblTelefonoUsuario = new javax.swing.JLabel();
         txtTelefonoUsuario = new javax.swing.JTextField();
@@ -160,6 +163,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         lblActivoUsuario = new javax.swing.JLabel();
         lblCambioClave = new javax.swing.JLabel();
         txtCambioClave = new javax.swing.JTextField();
+        txtEmailUsuario = new javax.swing.JTextField();
         pnlbtnUsuarios = new javax.swing.JPanel();
         btnLimpiar = new javax.swing.JButton();
         btnBuscarUsuario = new javax.swing.JButton();
@@ -194,9 +198,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
 
         txtRut.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtRut.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtRutFocusGained(evt);
-            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtRutFocusLost(evt);
             }
@@ -208,18 +209,8 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         });
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNombreFocusGained(evt);
-            }
-        });
 
         txtApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtApellidoFocusGained(evt);
-            }
-        });
 
         lblTipoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTipoUsuario.setText("Tipo de Usuario");
@@ -230,12 +221,12 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         lblDireccionUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblDireccionUsuario.setText("Dirección");
 
+        txtDireccionUsuario.setEditable(false);
+        txtDireccionUsuario.setBackground(new java.awt.Color(204, 204, 204));
         txtDireccionUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblEmailUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmailUsuario.setText("Email");
-
-        txtEmailUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblClaveUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblClaveUsuario.setText("Modificación");
@@ -243,6 +234,8 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         lblTelefonoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTelefonoUsuario.setText("Teléfono");
 
+        txtTelefonoUsuario.setEditable(false);
+        txtTelefonoUsuario.setBackground(new java.awt.Color(204, 204, 204));
         txtTelefonoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblFechaCreacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -312,6 +305,8 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         txtCambioClave.setBackground(new java.awt.Color(204, 204, 204));
         txtCambioClave.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        txtEmailUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout pnlInputsGestionUsuarioLayout = new javax.swing.GroupLayout(pnlInputsGestionUsuario);
         pnlInputsGestionUsuario.setLayout(pnlInputsGestionUsuarioLayout);
         pnlInputsGestionUsuarioLayout.setHorizontalGroup(
@@ -332,37 +327,37 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
                     .addComponent(btnBuscarRut)
                     .addComponent(btnBuscarApellido)
                     .addComponent(btnBuscarNombre))
-                .addGap(158, 158, 158)
+                .addGap(128, 128, 128)
+                .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblTipoUsuario)
+                    .addComponent(lblEstadoUsuario)
+                    .addComponent(txtActivo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addGroup(pnlInputsGestionUsuarioLayout.createSequentialGroup()
+                        .addComponent(rbtVigente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rbtNoVigente))
+                    .addComponent(txtTipoUsuario)
+                    .addComponent(lblActivoUsuario)
+                    .addComponent(lblEmailUsuario)
+                    .addComponent(txtEmailUsuario))
+                .addGap(170, 170, 170)
                 .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblTipoUsuario)
-                        .addComponent(lblEstadoUsuario)
-                        .addComponent(lblDireccionUsuario)
-                        .addComponent(txtDireccionUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addComponent(txtActivo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                        .addComponent(lblTelefonoUsuario)
+                        .addComponent(txtTelefonoUsuario)
                         .addGroup(pnlInputsGestionUsuarioLayout.createSequentialGroup()
-                            .addComponent(rbtVigente)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rbtNoVigente))
-                        .addComponent(txtTipoUsuario))
-                    .addComponent(lblActivoUsuario))
-                .addGap(203, 203, 203)
-                .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblEmailUsuario)
-                    .addComponent(lblTelefonoUsuario)
-                    .addComponent(txtEmailUsuario)
-                    .addComponent(txtTelefonoUsuario)
-                    .addGroup(pnlInputsGestionUsuarioLayout.createSequentialGroup()
-                        .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFechaCreacion))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblClaveUsuario)
-                            .addComponent(txtfechaModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lblCambioClave)
-                    .addComponent(txtCambioClave))
-                .addContainerGap(363, Short.MAX_VALUE))
+                            .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtfechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFechaCreacion))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblClaveUsuario)
+                                .addComponent(txtfechaModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblCambioClave)
+                        .addComponent(txtCambioClave))
+                    .addComponent(lblDireccionUsuario)
+                    .addComponent(txtDireccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlInputsGestionUsuarioLayout.setVerticalGroup(
             pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,19 +407,16 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
                             .addComponent(rbtVigente)
                             .addComponent(rbtNoVigente))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblApellidoUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblDireccionUsuario)
-                        .addComponent(lblEmailUsuario)))
+                .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblApellidoUsuario)
+                    .addComponent(lblEmailUsuario)
+                    .addComponent(lblDireccionUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtDireccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnBuscarApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                .addGroup(pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(txtDireccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -479,7 +471,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         pnlbtnUsuariosLayout.setVerticalGroup(
             pnlbtnUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlbtnUsuariosLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(pnlbtnUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -545,9 +537,9 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         PnlGestionUsuariosLayout.setVerticalGroup(
             PnlGestionUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlGestionUsuariosLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addContainerGap()
                 .addComponent(pnlInputsGestionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlbtnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlGridUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -686,9 +678,13 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarFormulario();
+        inicializarTabla();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnBuscarRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRutActionPerformed
+
+
+
         buscarRut();
 
     }//GEN-LAST:event_btnBuscarRutActionPerformed
@@ -762,21 +758,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
             txtRut.setText(ValidacionRut.FormatearRUT(txtRut.getText()));
         }
     }//GEN-LAST:event_txtRutFocusLost
-
-    private void txtRutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusGained
-        // TODO add your handling code here:
-        limpiarFormulario();
-    }//GEN-LAST:event_txtRutFocusGained
-
-    private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-        // TODO add your handling code here:
-        limpiarFormulario();
-    }//GEN-LAST:event_txtNombreFocusGained
-
-    private void txtApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoFocusGained
-        // TODO add your handling code here:
-        limpiarFormulario();
-    }//GEN-LAST:event_txtApellidoFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -32,7 +32,8 @@ public class VistaLogin extends javax.swing.JFrame {
     }
 
     /**
-     * Metodo para Validar que un Administrador puede ingrear al sistema; Verifica Rut y Pass
+     * Metodo para Validar que un Administrador puede ingrear al sistema;
+     * Verifica Rut y Pass
      */
     private void login() {
 
@@ -232,12 +233,6 @@ public class VistaLogin extends javax.swing.JFrame {
 
     private void txtIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificadorActionPerformed
         // TODO add your handling code here:
-        txtClave.requestFocus();
-    }//GEN-LAST:event_txtIdentificadorActionPerformed
-
-
-    private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
-        // TODO add your handling code here:
         ValidacionRut valida;
         valida = new ValidacionRut();
 
@@ -249,9 +244,15 @@ public class VistaLogin extends javax.swing.JFrame {
                 String rutFormateado = valida.FormatearRUT(rut);
                 txtIdentificador.setText(rutFormateado);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(pnlAdmin, "Rut Incorrecto");
         }
+        txtClave.requestFocus();
+    }//GEN-LAST:event_txtIdentificadorActionPerformed
+
+
+    private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
+        // TODO add your handling code here:
 
 
     }//GEN-LAST:event_txtIdentificadorFocusLost

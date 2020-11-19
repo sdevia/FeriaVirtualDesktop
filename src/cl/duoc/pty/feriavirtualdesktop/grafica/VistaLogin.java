@@ -10,6 +10,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.Login;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.LoginController;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFormattedTextField;
@@ -30,8 +31,8 @@ public class VistaLogin extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
-
-    /**
+    
+        /**
      * Metodo para Validar que un Administrador puede ingrear al sistema;
      * Verifica Rut y Pass
      */
@@ -101,6 +102,7 @@ public class VistaLogin extends javax.swing.JFrame {
         txtClave = new javax.swing.JPasswordField();
         btnCerrar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Feria Virtual v1.0.0");
@@ -109,10 +111,12 @@ public class VistaLogin extends javax.swing.JFrame {
         pnlAdmin.setBorder(new javax.swing.border.MatteBorder(null));
         pnlAdmin.setToolTipText("");
 
-        lblIdentificador.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblIdentificador.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblIdentificador.setForeground(new java.awt.Color(255, 255, 255));
         lblIdentificador.setText("Rut");
 
-        lblClave.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblClave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblClave.setForeground(new java.awt.Color(255, 255, 255));
         lblClave.setText("Clave");
 
         txtIdentificador.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -128,7 +132,8 @@ public class VistaLogin extends javax.swing.JFrame {
             }
         });
 
-        lblTituloLogin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTituloLogin.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTituloLogin.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTituloLogin.setText("Ingreso Administrador");
 
@@ -139,45 +144,64 @@ public class VistaLogin extends javax.swing.JFrame {
             }
         });
 
-        btnCerrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCerrar.setBackground(new java.awt.Color(253, 187, 52));
+        btnCerrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrar.setText("Salir");
+        btnCerrar.setBorder(null);
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
             }
         });
 
-        btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnIngresar.setBackground(new java.awt.Color(253, 187, 52));
+        btnIngresar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("Ingresar");
+        btnIngresar.setBorder(null);
+        btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnIngresarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnIngresarMouseExited(evt);
+            }
+        });
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/duoc/pty/feriavirtualdesktop/grafica/imagenes/icono.png"))); // NOI18N
+
         javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
         pnlAdmin.setLayout(pnlAdminLayout);
         pnlAdminLayout.setHorizontalGroup(
             pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTituloLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlAdminLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
+            .addComponent(lblTituloLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
-                                .addComponent(lblClave)
-                                .addGap(50, 50, 50)))
-                        .addGap(2, 2, 2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
                         .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtClave)
-                            .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(70, Short.MAX_VALUE))
+                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblClave))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                                    .addComponent(txtIdentificador)))
+                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
         pnlAdminLayout.setVerticalGroup(
             pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,18 +209,20 @@ public class VistaLogin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTituloLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(35, 35, 35)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(lblIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblClave))
-                .addGap(18, 18, 18)
+                .addGap(61, 61, 61)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCerrar)
-                    .addComponent(btnIngresar))
-                .addGap(41, 41, 41))
+                    .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,9 +236,9 @@ public class VistaLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -221,8 +247,8 @@ public class VistaLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-        login();
 
+        login();
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
@@ -248,14 +274,33 @@ public class VistaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(pnlAdmin, "Rut Incorrecto");
         }
         txtClave.requestFocus();
-    }//GEN-LAST:event_txtIdentificadorActionPerformed
 
+    }//GEN-LAST:event_txtIdentificadorActionPerformed
 
     private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
         // TODO add your handling code here:
+        ValidacionRut valida;
+        valida = new ValidacionRut();
 
+        String rut = txtIdentificador.getText();
+        
+        if(!rut.isEmpty()) {
+            String rutFormateado = valida.FormatearRUT(rut);
+            txtIdentificador.setText(rutFormateado);
+        }
+        
 
+        
+        
     }//GEN-LAST:event_txtIdentificadorFocusLost
+
+    private void btnIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseEntered
+        btnIngresar.setBackground(new Color(0,153,0));
+    }//GEN-LAST:event_btnIngresarMouseEntered
+
+    private void btnIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseExited
+       btnIngresar.setBackground(new Color(253,187,72));
+    }//GEN-LAST:event_btnIngresarMouseExited
 
     private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
         // TODO add your handling code here:
@@ -289,6 +334,8 @@ public class VistaLogin extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -302,6 +349,7 @@ public class VistaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblClave;
     private javax.swing.JLabel lblIdentificador;
     private javax.swing.JLabel lblTituloLogin;

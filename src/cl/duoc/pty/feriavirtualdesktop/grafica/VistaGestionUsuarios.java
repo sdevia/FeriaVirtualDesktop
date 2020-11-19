@@ -44,7 +44,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
 
     private void setearBotones() {
         btnActualizarUsuario.setEnabled(true);
-        btnBuscarUsuario.setEnabled(true);
         btnLimpiar.setEnabled(true);
         btnBuscarRut.setEnabled(true);
         btnBuscarNombre.setEnabled(true);
@@ -166,7 +165,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         txtEmailUsuario = new javax.swing.JTextField();
         pnlbtnUsuarios = new javax.swing.JPanel();
         btnLimpiar = new javax.swing.JButton();
-        btnBuscarUsuario = new javax.swing.JButton();
         btnActualizarUsuario = new javax.swing.JButton();
         pnlGridUsuarios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -357,7 +355,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
                         .addComponent(txtCambioClave))
                     .addComponent(lblDireccionUsuario)
                     .addComponent(txtDireccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(426, Short.MAX_VALUE))
         );
         pnlInputsGestionUsuarioLayout.setVerticalGroup(
             pnlInputsGestionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,17 +431,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
             }
         });
 
-        btnBuscarUsuario.setBackground(new java.awt.Color(253, 187, 72));
-        btnBuscarUsuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnBuscarUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscarUsuario.setText("Buscar");
-        btnBuscarUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnBuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarUsuarioActionPerformed(evt);
-            }
-        });
-
         btnActualizarUsuario.setBackground(new java.awt.Color(253, 187, 72));
         btnActualizarUsuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnActualizarUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -460,22 +447,20 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         pnlbtnUsuariosLayout.setHorizontalGroup(
             pnlbtnUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlbtnUsuariosLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(376, 376, 376)
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
-                .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(335, 335, 335)
+                .addGap(239, 239, 239)
                 .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(307, 307, 307))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlbtnUsuariosLayout.setVerticalGroup(
             pnlbtnUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlbtnUsuariosLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(pnlbtnUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pnlGridUsuarios.setBackground(new java.awt.Color(255, 255, 255));
@@ -557,13 +542,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
             .addComponent(PnlGestionUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
-        listaUsuario = UsuarioController.buscarUsuario(txtIdUsuario.getText());
-        TMUsuario modelo;
-        modelo = new TMUsuario(listaUsuario.getUsuarios());
-        tblGestionUsuarios.setModel(modelo);
-    }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
 
     private void tblGestionUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGestionUsuariosMouseClicked
         int i = tblGestionUsuarios.getSelectedRow();
@@ -766,7 +744,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
     private javax.swing.JButton btnBuscarApellido;
     private javax.swing.JButton btnBuscarNombre;
     private javax.swing.JButton btnBuscarRut;
-    private javax.swing.JButton btnBuscarUsuario;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblActivoUsuario;

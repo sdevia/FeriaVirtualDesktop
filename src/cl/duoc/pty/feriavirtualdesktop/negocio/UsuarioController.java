@@ -10,7 +10,7 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.grafica.VistaGeneralAdministrador;
-import cl.duoc.pty.feriavirtualdesktop.utils.CosasUsuario;
+import cl.duoc.pty.feriavirtualdesktop.utils.perfilUsuario;
 import cl.duoc.pty.feriavirtualdesktop.utils.FormatoString;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
 import com.google.gson.Gson;
@@ -103,7 +103,7 @@ public class UsuarioController {
                 ru = g.fromJson(resultado, RespuestaUsuario.class);
                 if (ru != null) {
                     if (ru.isExito()) {
-                                            
+
                         return formatearActualizar(ru);
                     }
                 }
@@ -152,7 +152,7 @@ public class UsuarioController {
                 u.setActivo("No");
             }
 
-            u.setIdPerfil(CosasUsuario.perfilUsuarioString(Integer.parseInt(u.getIdPerfil())));
+            u.setIdPerfil(perfilUsuario.perfilUsuarioString(Integer.parseInt(u.getIdPerfil())));
 
             lu.add(u);
         }
@@ -161,40 +161,37 @@ public class UsuarioController {
     }
 
     private static RespuestaUsuario formatearActualizar(RespuestaUsuario ru) {
-       
-           
-            ru.getUsuario().setRut(ValidacionRut.FormatearRUT(ru.getUsuario().getRut()));
-//            u.setApellido(ru.getUsuario().getApellido().substring(0, 1).toUpperCase() + ru.getUsuario().getApellido().substring(1));
-//            u.setNombre(FormatoString.PrimeraMayuscula(ru.getUsuario().getNombre()));
-//            u.setDireccion(FormatoString.PrimeraMayuscula(ru.getUsuario().getDireccion()));
-//            u.setEmail(ru.getUsuario().getEmail().toLowerCase());
-//            u.setFechaModificacion(FormatoString.FechasFormato(ru.getUsuario().getFechaModificacion()));
-//            u.setFechaCreacion(FormatoString.FechasFormato(ru.getUsuario().getFechaCreacion()));
-//            u.setTelefono(FormatoString.fonoFormato(ru.getUsuario().getTelefono()));
-//
-//            if (ru.getUsuario().getCambiaClave() == "true") {
-//                u.setCambiaClave("Si");
-//            } else {
-//                u.setCambiaClave("No");
-//            }
-//
-//            if (ru.getUsuario().getEstado() == "true") {
-//                u.setEstado("Vigente");
-//            } else {
-//                u.setEstado("No Vigente");
-//            }
-//
-//            if (ru.getUsuario().getActivo() == "true") {
-//                u.setActivo("Si");
-//            } else {
-//                u.setActivo("No");
-//            }
-//
-//            u.setIdPerfil(CosasUsuario.perfilUsuarioString(Integer.parseInt(ru.getUsuario().getIdPerfil())));
-//
-//           
-//        
+
+        ru.getUsuario().setRut(ValidacionRut.FormatearRUT(ru.getUsuario().getRut()));
+        ru.getUsuario().setApellido(ru.getUsuario().getApellido().substring(0, 1).toUpperCase() + ru.getUsuario().getApellido().substring(1));
+        ru.getUsuario().setNombre(FormatoString.PrimeraMayuscula(ru.getUsuario().getNombre()));
+        ru.getUsuario().setDireccion(FormatoString.PrimeraMayuscula(ru.getUsuario().getDireccion()));
+        ru.getUsuario().setEmail(ru.getUsuario().getEmail().toLowerCase());
+        ru.getUsuario().setFechaModificacion(FormatoString.FechasFormato(ru.getUsuario().getFechaModificacion()));
+        ru.getUsuario().setFechaCreacion(FormatoString.FechasFormato(ru.getUsuario().getFechaCreacion()));
+        ru.getUsuario().setTelefono(FormatoString.fonoFormato(ru.getUsuario().getTelefono()));
+
+        if (ru.getUsuario().getCambiaClave() == "true") {
+            ru.getUsuario().setCambiaClave("Si");
+        } else {
+           ru.getUsuario().setCambiaClave("No");
+        }
+
+        if (ru.getUsuario().getEstado() == "true") {
+            ru.getUsuario().setEstado("Vigente");
+        } else {
+            ru.getUsuario().setEstado("No Vigente");
+        }
+
+        if (ru.getUsuario().getActivo() == "true") {
+            ru.getUsuario().setActivo("Si");
+        } else {
+            ru.getUsuario().setActivo("No");
+        }
+
+        ru.getUsuario().setIdPerfil(perfilUsuario.perfilUsuarioString(Integer.parseInt(ru.getUsuario().getIdPerfil())));
+
         return ru;
     }
-    
+
 }

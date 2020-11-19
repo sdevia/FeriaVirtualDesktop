@@ -7,15 +7,15 @@ package cl.duoc.pty.feriavirtualdesktop.utils;
 
 /**
  *
- * @author Administrator
+ * @author s1mul
  */
 public class ValidacionRut {
 
     /**
-     * Metodo que recibe un rut y lo retorna con formato 11.111.111-1
+     * Metodo que recibe un rut y lo formatea
      *
      * @param rut
-     * @return
+     * @return el rut con formato 11.111.111-1
      */
     public static String FormatearRUT(String rut) {
 
@@ -36,10 +36,10 @@ public class ValidacionRut {
     }
 
     /**
-     * Metodo para validar que un rut es valido
+     * Método para validar si el Rut es un Rut Valido
      *
      * @param rut
-     * @return
+     * @return true / false
      */
     public static boolean validarRut(String rut) {
 
@@ -66,24 +66,12 @@ public class ValidacionRut {
         return validacion;
     }
 
-    
-//    public static String formataerRutApi(String rut) {
-//
-//        int cont = 0;
-//        String format;
-//        rut = rut.replace("", ".");
-//        rut = rut.replace("-", "");
-//        format = "-" + rut.substring(rut.length() - 1);
-//        for (int i = rut.length() - 2; i >= 0; i--) {
-//            format = rut.substring(i, i + 1) + format;
-//            cont++;
-//            if (cont == 3 && i != 0) {
-//                format = "." + format;
-//                cont = 0;
-//            }
-//        }
-//        return format;
-//    }
+    /**
+     * Metodo que quita los puntos a un rut
+     *
+     * @param rut
+     * @return rut sin puntos
+     */
 
     public static String quitarPuntos(String rut) {
 

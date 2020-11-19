@@ -9,7 +9,13 @@ package cl.duoc.pty.feriavirtualdesktop.utils;
  *
  * @author s1mu2
  */
-public class CosasUsuario {
+public class perfilUsuario {
+    
+/**
+ * Convierte un ID de Usario en Un String con la descripcion
+ * @param idperfil
+ * @return 
+ */    
     
     public static String perfilUsuarioString(int idperfil){
             String nombrePerfil="";
@@ -44,36 +50,42 @@ public class CosasUsuario {
             return nombrePerfil;
     }
     
+    
+    /**
+     * Convierte la descripcion de un susuario en un int como ID de Perfil
+     * @param idperfil
+     * @return 
+     */
     public static int perfilUsuarioInt(String idperfil){
-            int nombrePerfil=0;
+            int idPerfil=0;
             
             switch (idperfil) {
                 case "Administrador": {
-                    nombrePerfil=1;
+                    idPerfil=1;
                     break;
                 }
                 case "Productor": {
-                    nombrePerfil=2;
+                    idPerfil=2;
                     break;
                 }
                 case "Cliente Externo": {
-                    nombrePerfil=3;
+                    idPerfil=3;
                     break;
                 }
                 case "Cliente Interno": {
-                    nombrePerfil=4;
+                    idPerfil=4;
                     break;
                 }
                 case "Transportista": {
-                    nombrePerfil=5;
+                    idPerfil=5;
                     break;
                 }
                 case "Consultor": {
-                    nombrePerfil=6;
+                    idPerfil=6;
                     break;
                 }
 
             }
-            return nombrePerfil;
+            return idPerfil;
     }
 }

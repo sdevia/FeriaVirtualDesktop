@@ -10,9 +10,13 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
-import cl.duoc.pty.feriavirtualdesktop.utils.CosasUsuario;
+import cl.duoc.pty.feriavirtualdesktop.utils.perfilUsuario;
 import cl.duoc.pty.feriavirtualdesktop.utils.FormatoString;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
+import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
+import java.awt.Event;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,7 +27,7 @@ import javax.swing.table.TableModel;
  *
  * @author s1mu2
  */
-public class VistaGestionUsuarios extends javax.swing.JPanel {
+public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionListener{
 
     /**
      * Creates new form VistaGestionUsuarioss
@@ -37,11 +41,22 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         inicializarTabla();
         setearBotones();
     }
-
+    
+    
     private void setearBotones() {
         btnActualizarUsuario.setEnabled(true);
         btnBuscarUsuario.setEnabled(true);
         btnLimpiar.setEnabled(true);
+        btnBuscarRut.setEnabled(true);
+        btnBuscarNombre.setEnabled(true);
+        btnBuscarApellido.setEnabled(true);
+
+    }
+        
+
+    @Override
+    public boolean action(Event evt, Object what) {
+        return super.action(evt, what); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void inicializarTabla() {
@@ -165,17 +180,8 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         llIdUsuario.setText("Código Usuario");
 
         txtIdUsuario.setEditable(false);
+        txtIdUsuario.setBackground(new java.awt.Color(204, 204, 204));
         txtIdUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtIdUsuario.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                txtIdUsuarioComponentAdded(evt);
-            }
-        });
-        txtIdUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdUsuarioActionPerformed(evt);
-            }
-        });
 
         lblRutUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblRutUsuario.setText("Rut");
@@ -214,11 +220,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
                 txtApellidoFocusGained(evt);
             }
         });
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
-            }
-        });
 
         lblTipoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTipoUsuario.setText("Tipo de Usuario");
@@ -248,24 +249,16 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         lblFechaCreacion.setText("Creación");
 
         txtTipoUsuario.setEditable(false);
+        txtTipoUsuario.setBackground(new java.awt.Color(204, 204, 204));
         txtTipoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTipoUsuarioActionPerformed(evt);
-            }
-        });
 
         txtfechaCreacion.setEditable(false);
+        txtfechaCreacion.setBackground(new java.awt.Color(204, 204, 204));
         txtfechaCreacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         rbtGrupoEstado.add(rbtVigente);
         rbtVigente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtVigente.setText("Vigente");
-        rbtVigente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtVigenteActionPerformed(evt);
-            }
-        });
 
         rbtGrupoEstado.add(rbtNoVigente);
         rbtNoVigente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -302,9 +295,11 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         });
 
         txtfechaModificacion.setEditable(false);
+        txtfechaModificacion.setBackground(new java.awt.Color(204, 204, 204));
         txtfechaModificacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         txtActivo.setEditable(false);
+        txtActivo.setBackground(new java.awt.Color(204, 204, 204));
         txtActivo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         lblActivoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -314,6 +309,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         lblCambioClave.setText("Debe cambiar clave");
 
         txtCambioClave.setEditable(false);
+        txtCambioClave.setBackground(new java.awt.Color(204, 204, 204));
         txtCambioClave.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout pnlInputsGestionUsuarioLayout = new javax.swing.GroupLayout(pnlInputsGestionUsuario);
@@ -614,14 +610,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         txtTelefonoUsuario.setText(model.getValueAt(i, 12).toString());
     }//GEN-LAST:event_tblGestionUsuariosMouseClicked
 
-    private void txtIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdUsuarioActionPerformed
-
-    private void txtIdUsuarioComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtIdUsuarioComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdUsuarioComponentAdded
-
     private void btnActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarUsuarioActionPerformed
         if (txtTelefonoUsuario.getText().isEmpty()
                 || txtDireccionUsuario.getText().isEmpty()
@@ -652,10 +640,9 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
             usuario.setDireccion(txtDireccionUsuario.getText());
             usuario.setEmail(txtEmailUsuario.getText());
             usuario.setRut(ValidacionRut.quitarPuntos(txtRut.getText()));
-            usuario.setIdPerfil(String.valueOf(CosasUsuario.perfilUsuarioInt(txtTipoUsuario.getText())));
+            usuario.setIdPerfil(String.valueOf(perfilUsuario.perfilUsuarioInt(txtTipoUsuario.getText())));
             usuario.setFechaCreacion("2000-01-01T00:00:00");
             usuario.setFechaModificacion("2000-01-01T00:00:00");
-            
 
             if (rbtVigente.isSelected()) {
                 usuario.setEstado("true");
@@ -663,30 +650,28 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
             if (rbtNoVigente.isSelected()) {
                 usuario.setEstado("false");
             }
-            
+
             if (txtActivo.getText().equals("Si")) {
                 usuario.setActivo("true");
-            }else{
+            } else {
                 usuario.setActivo("false");
             }
-            
+
             if (txtCambioClave.getText().equals("Si")) {
                 usuario.setCambiaClave("true");
-            }else{
+            } else {
                 usuario.setCambiaClave("false");
             }
-            
-            
-            
+
         }
         ru = UsuarioController.actualizarUsuario(usuario);
 
         if (ru.isExito()) {
 
             TMUsuario modelo;
-            listaUsuario.getUsuarios().clear(); 
+            listaUsuario.getUsuarios().clear();
             listaUsuario.getUsuarios().add(ru.getUsuario());
-                    
+
             modelo = new TMUsuario(listaUsuario.getUsuarios());
             tblGestionUsuarios.setModel(modelo);
         }
@@ -699,17 +684,9 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         buscarRut();
     }//GEN-LAST:event_txtRutActionPerformed
 
-    private void txtTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTipoUsuarioActionPerformed
-
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarFormulario();
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void rbtVigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtVigenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtVigenteActionPerformed
 
     private void btnBuscarRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRutActionPerformed
         buscarRut();
@@ -786,11 +763,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtRutFocusLost
 
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_txtApellidoActionPerformed
-
     private void txtRutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusGained
         // TODO add your handling code here:
         limpiarFormulario();
@@ -849,4 +821,9 @@ public class VistaGestionUsuarios extends javax.swing.JPanel {
     private javax.swing.JTextField txtfechaCreacion;
     private javax.swing.JTextField txtfechaModificacion;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

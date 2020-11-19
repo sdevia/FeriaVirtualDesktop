@@ -16,15 +16,15 @@ import javax.swing.border.Border;
  * @author bruunildo
  */
 public class VistaGeneralAdministrador extends javax.swing.JFrame {
-    
-    
+
     VistaGestionUsuarios vistaGestionUsuarios = new VistaGestionUsuarios();
     VistaProcesosVenta vistaProcesosVenta = new VistaProcesosVenta();
     VistaGestionSubastaTransporte vistaGestionSubastasTransportes = new VistaGestionSubastaTransporte();
     VistaReportesAdministrador vistaReportesAdministrador = new VistaReportesAdministrador();
     CardLayout vista;
-    
+
     public static String session;
+
     /**
      * Creates new form VistaGeneralAdministrador
      */
@@ -313,16 +313,16 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGestionUsuariosMouseEntered
-        
-        btnGestionUsuarios.setBackground(new Color(253,187,72));
+
+        btnGestionUsuarios.setBackground(new Color(253, 187, 72));
     }//GEN-LAST:event_btnGestionUsuariosMouseEntered
 
     private void btnGestionUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGestionUsuariosMouseExited
-       btnGestionUsuarios.setBackground(Color.white);
+        btnGestionUsuarios.setBackground(Color.white);
     }//GEN-LAST:event_btnGestionUsuariosMouseExited
 
     private void btnProcesosVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProcesosVentaMouseEntered
-        btnProcesosVenta.setBackground(new Color(253,187,72));
+        btnProcesosVenta.setBackground(new Color(253, 187, 72));
     }//GEN-LAST:event_btnProcesosVentaMouseEntered
 
     private void btnProcesosVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProcesosVentaMouseExited
@@ -330,50 +330,45 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProcesosVentaMouseExited
 
     private void btnGestionSubastaTransporteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGestionSubastaTransporteMouseEntered
-        btnGestionSubastaTransporte.setBackground(new Color(253,187,72));
+        btnGestionSubastaTransporte.setBackground(new Color(253, 187, 72));
     }//GEN-LAST:event_btnGestionSubastaTransporteMouseEntered
 
     private void btnGestionSubastaTransporteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGestionSubastaTransporteMouseExited
-     btnGestionSubastaTransporte.setBackground(Color.white);
+        btnGestionSubastaTransporte.setBackground(Color.white);
     }//GEN-LAST:event_btnGestionSubastaTransporteMouseExited
 
     private void btnGestionUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionUsuariosActionPerformed
         VistaGestionUsuarios vistaGestionUsuarios = new VistaGestionUsuarios();
-        pnlAdministradorDinamico.add(vistaGestionUsuarios,"alta");
-       vista.show(pnlAdministradorDinamico, "alta");
+        pnlAdministradorDinamico.add(vistaGestionUsuarios, "alta");
+        vista.show(pnlAdministradorDinamico, "alta");
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
-        
-        
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnGestionUsuariosActionPerformed
 
     private void btnGestionSubastaTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionSubastaTransporteActionPerformed
         VistaGestionSubastaTransporte vistaGestionSubastasTransportes = new VistaGestionSubastaTransporte();
-        pnlAdministradorDinamico.add(vistaGestionSubastasTransportes,"alta");
-       vista.show(pnlAdministradorDinamico, "alta");
-       SwingUtilities.updateComponentTreeUI(this);
-       this.repaint();
+        pnlAdministradorDinamico.add(vistaGestionSubastasTransportes, "alta");
+        vista.show(pnlAdministradorDinamico, "alta");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
     }//GEN-LAST:event_btnGestionSubastaTransporteActionPerformed
 
     private void btnReportesVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesVentasMouseEntered
-       btnReportesVentas.setBackground(new Color(253,187,72));
+        btnReportesVentas.setBackground(new Color(253, 187, 72));
     }//GEN-LAST:event_btnReportesVentasMouseEntered
 
     private void btnReportesVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportesVentasMouseExited
-       btnReportesVentas.setBackground(Color.white);
+        btnReportesVentas.setBackground(Color.white);
     }//GEN-LAST:event_btnReportesVentasMouseExited
 
     private void btnReportesVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesVentasActionPerformed
         VistaReportesAdministrador vistaReportesAdministrador = new VistaReportesAdministrador();
-        pnlAdministradorDinamico.add(vistaReportesAdministrador,"alta");
-       vista.show(pnlAdministradorDinamico, "alta");
-       SwingUtilities.updateComponentTreeUI(this);
-       this.repaint();
+        pnlAdministradorDinamico.add(vistaReportesAdministrador, "alta");
+        vista.show(pnlAdministradorDinamico, "alta");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
     }//GEN-LAST:event_btnReportesVentasActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
@@ -382,23 +377,29 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
 
     private void btnProcesosVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesosVentaActionPerformed
         VistaProcesosVenta vistaProcesosVenta = new VistaProcesosVenta();
-        pnlAdministradorDinamico.add(vistaProcesosVenta,"alta");
-       vista.show(pnlAdministradorDinamico, "alta");
-       SwingUtilities.updateComponentTreeUI(this);
-       this.repaint();
-       
+        pnlAdministradorDinamico.add(vistaProcesosVenta, "alta");
+        vista.show(pnlAdministradorDinamico, "alta");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+
     }//GEN-LAST:event_btnProcesosVentaActionPerformed
 
     private void btnCategoriasProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriasProductosActionPerformed
         // TODO add your handling code here:
+        VistaCategoriaProductos vistaCategoriaProductos = new VistaCategoriaProductos();
+        pnlAdministradorDinamico.add(vistaCategoriaProductos, "alta");
+        vista.show(pnlAdministradorDinamico, "alta");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+
     }//GEN-LAST:event_btnCategoriasProductosActionPerformed
 
     private void btnCategoriasProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasProductosMouseEntered
-        btnCategoriasProductos.setBackground(new Color(253,187,72));
+        btnCategoriasProductos.setBackground(new Color(253, 187, 72));
     }//GEN-LAST:event_btnCategoriasProductosMouseEntered
 
     private void btnCategoriasProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCategoriasProductosMouseExited
-       btnCategoriasProductos.setBackground(Color.white);
+        btnCategoriasProductos.setBackground(Color.white);
     }//GEN-LAST:event_btnCategoriasProductosMouseExited
 
     /**

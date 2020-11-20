@@ -31,13 +31,12 @@ public class VistaLogin extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
-    
-        /**
+
+    /**
      * Metodo para Validar que un Administrador puede ingrear al sistema;
      * Verifica Rut y Pass
      */
     private void login() {
-
         Login login = new Login();
         Administrador admin = new Administrador();
 
@@ -45,42 +44,29 @@ public class VistaLogin extends javax.swing.JFrame {
 
         ValidacionRut valida;
         valida = new ValidacionRut();
-
         boolean validacion = ValidacionRut.validarRut(txtIdentificador.getText());
-
-        /**
-         * Prueba Validar RUT
-         */
         login.setRut(txtIdentificador.getText());
         login.setClave(txtClave.getText());
         login.setTipoPerfil(1);
 
         try {
-
             if (validacion) {
-
                 admin = LoginController.login(login);
                 usuario = admin.getUsuario();
-
                 if (admin.isExito()) {
                     VistaGeneralAdministrador.session = usuario.getSesionId();
-
                     VistaGeneralAdministrador vga = new VistaGeneralAdministrador();
                     vga.setVisible(true);
                     this.dispose();
-
                 } else if (admin.getMensaje() != null && !admin.getMensaje().isEmpty()) {
                     JOptionPane.showMessageDialog(pnlAdmin, admin.getMensaje());
                 } else {
                     JOptionPane.showMessageDialog(pnlAdmin, "Error de conexión");
-
                 }
             } else {
                 JOptionPane.showMessageDialog(pnlAdmin, "Rut Incorrecto");
             }
-
         } catch (Exception e) {
-            //System.out.println("Error al obtener los datos del usuario" + e);
             JOptionPane.showMessageDialog(pnlAdmin, "Error" + e);
         }
     }
@@ -247,9 +233,7 @@ public class VistaLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-
         login();
-
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
@@ -261,10 +245,8 @@ public class VistaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         ValidacionRut valida;
         valida = new ValidacionRut();
-
         String rut = txtIdentificador.getText();
         boolean validacion = ValidacionRut.validarRut(txtIdentificador.getText());
-
         if (validacion) {
             if (!rut.isEmpty()) {
                 String rutFormateado = valida.FormatearRUT(rut);
@@ -274,32 +256,25 @@ public class VistaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(pnlAdmin, "Rut Incorrecto");
         }
         txtClave.requestFocus();
-
     }//GEN-LAST:event_txtIdentificadorActionPerformed
 
     private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
         // TODO add your handling code here:
         ValidacionRut valida;
         valida = new ValidacionRut();
-
         String rut = txtIdentificador.getText();
-        
-        if(!rut.isEmpty()) {
+        if (!rut.isEmpty()) {
             String rutFormateado = valida.FormatearRUT(rut);
             txtIdentificador.setText(rutFormateado);
         }
-        
-
-        
-        
     }//GEN-LAST:event_txtIdentificadorFocusLost
 
     private void btnIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseEntered
-        btnIngresar.setBackground(new Color(0,153,0));
+        btnIngresar.setBackground(new Color(0, 153, 0));
     }//GEN-LAST:event_btnIngresarMouseEntered
 
     private void btnIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseExited
-       btnIngresar.setBackground(new Color(253,187,72));
+        btnIngresar.setBackground(new Color(253, 187, 72));
     }//GEN-LAST:event_btnIngresarMouseExited
 
     private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed

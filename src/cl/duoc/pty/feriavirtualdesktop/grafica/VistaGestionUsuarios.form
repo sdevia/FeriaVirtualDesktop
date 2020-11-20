@@ -20,7 +20,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PnlGestionUsuarios" alignment="0" pref="1692" max="32767" attributes="0"/>
+          <Component id="PnlGestionUsuarios" alignment="0" pref="1738" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -98,86 +98,117 @@
                           <Component id="llIdUsuario" min="-2" max="-2" attributes="0"/>
                           <Component id="lblRutUsuario" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNombreUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtIdUsuario" pref="250" max="32767" attributes="0"/>
+                          <Component id="txtIdUsuario" max="32767" attributes="0"/>
                           <Component id="txtRut" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtApellido" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtApellido" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnBuscarRut" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnBuscarApellido" min="-2" max="-2" attributes="0"/>
                           <Component id="btnBuscarNombre" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBuscarApellido" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblTipoUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEstadoUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtActivo" pref="250" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="rbtVigente" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="rbtNoVigente" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtTipoUsuario" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblActivoUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmailUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEmailUsuario" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblTelefonoUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTelefonoUsuario" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtfechaCreacion" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <Component id="lblFechaCreacion" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblClaveUsuario" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtfechaModificacion" min="-2" pref="120" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="lblCambioClave" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtCambioClave" max="32767" attributes="0"/>
+                          <Component id="txtTipoUsuario" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtEmailUsuario" alignment="1" max="32767" attributes="0"/>
+                              <Component id="txtActivo" alignment="1" min="-2" pref="350" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lblDireccionUsuario" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtDireccionUsuario" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="lblTipoUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblActivoUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEstadoUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEmailUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="426" max="32767" attributes="0"/>
+                      <EmptySpace pref="241" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblFechaCreacion" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtfechaCreacion" min="-2" pref="160" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtfechaModificacion" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <Component id="lblClaveUsuario" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="txtDireccionUsuario" min="-2" pref="350" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="txtCambioClave" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtTelefonoUsuario" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblCambioClave" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTelefonoUsuario" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDireccionUsuario" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblTipoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="llIdUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblFechaCreacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblClaveUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtIdUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="txtTipoUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="txtfechaCreacion" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="txtfechaModificacion" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lblTipoUsuario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtTipoUsuario" min="-2" pref="35" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblRutUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblActivoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lblActivoUsuario" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtActivo" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblEstadoUsuario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="rbtNoVigente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbtVigente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblEmailUsuario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtEmailUsuario" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblFechaCreacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblClaveUsuario" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtfechaCreacion" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="txtfechaModificacion" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="txtCambioClave" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lblTelefonoUsuario" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblCambioClave" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="75" pref="75" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="txtTelefonoUsuario" min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblDireccionUsuario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtDireccionUsuario" min="-2" pref="35" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="llIdUsuario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtIdUsuario" min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -185,42 +216,28 @@
                                           <Component id="txtRut" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                           <Component id="btnBuscarRut" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="lblNombreUsuario" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                      <Component id="lblRutUsuario" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="lblCambioClave" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtCambioClave" min="-2" pref="35" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTelefonoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblEstadoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtNombre" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="txtTelefonoUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="btnBuscarNombre" alignment="3" pref="35" max="32767" attributes="0"/>
-                                  <Component id="rbtVigente" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rbtNoVigente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnBuscarNombre" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblApellidoUsuario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtApellido" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="btnBuscarApellido" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblApellidoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmailUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDireccionUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtApellido" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="btnBuscarApellido" alignment="3" pref="35" max="32767" attributes="0"/>
-                          <Component id="txtDireccionUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="txtEmailUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -538,9 +555,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="376" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
                       <Component id="btnLimpiar" min="-2" pref="197" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
                       <Component id="btnActualizarUsuario" min="-2" pref="197" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -593,7 +610,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Actualizar"/>
+                <Property name="text" type="java.lang.String" value="Guardar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                     <BevelBorder/>
@@ -616,11 +633,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">

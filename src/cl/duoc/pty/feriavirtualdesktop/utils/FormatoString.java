@@ -26,7 +26,6 @@ public class FormatoString {
                 frase = String.copyValueOf(cfr);
             }
 
-            System.out.print(cfr[i]);
         }
         return frase;
     }

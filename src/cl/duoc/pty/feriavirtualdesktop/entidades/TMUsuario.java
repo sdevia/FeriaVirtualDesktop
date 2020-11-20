@@ -68,14 +68,6 @@ public class TMUsuario implements TableModel {
                 titulo = "DIRECCIÓN";
                 break;
             }
-//            case 8: {
-//                titulo = "CLAVE";
-//                break;
-//            }
-//            case 9: {
-//                titulo = "INTENTOS";
-//                break;
-//            }
             case 8: {
                 titulo = "CAMBIO CLAVE";
                 break;
@@ -96,19 +88,6 @@ public class TMUsuario implements TableModel {
                 titulo = "TELÉFONO";
                 break;
             }
-//                case 15: {
-//                    titulo = "RECLAVE";
-//                    break;
-//                }
-//                case 16: {
-//                    titulo = "SESIÓN ID";
-//                    break;
-//                }
-//                case 17: {
-//                    titulo = "ESTADO EDITADO";
-//                    break;
-//                }
-
         }
         return titulo;
     }
@@ -161,14 +140,6 @@ public class TMUsuario implements TableModel {
                 valor = u.getDireccion();
                 break;
             }
-//            case 8: {
-//                valor = u.getClave();
-//                break;
-//            }
-//            case 9: {
-//                valor = Integer.toHexString(u.getIntentos());
-//                break;
-//            }
             case 8: {
                 valor = u.getCambiaClave();
                 break;
@@ -189,19 +160,6 @@ public class TMUsuario implements TableModel {
                 valor = u.getTelefono();
                 break;
             }
-//                case 15: {
-//                    valor = u.getReClave();
-//                    break;
-//                }
-//                case 16: {
-//                    valor = u.getSesionId();
-//                    break;
-//                }
-//                case 17: {
-//                    valor = u.getEstadoEdit();
-//                    break;
-//                }
-
         }
         return valor;
 
@@ -243,14 +201,6 @@ public class TMUsuario implements TableModel {
                 u.setDireccion(aValue.toString());
                 break;
             }
-//            case 8: {
-//                u.setClave(aValue.toString());
-//                break;
-//            }
-//            case 9: {
-//                u.setIntentos(aValue.hashCode());
-//                break;
-//            }
             case 8: {
                 u.setCambiaClave(aValue.toString());
                 break;
@@ -271,21 +221,7 @@ public class TMUsuario implements TableModel {
                 u.setTelefono(aValue.toString());
                 break;
             }
-//                case 15: {
-//                    u.setReClave(aValue.toString());
-//                    break;
-//                }
-//                case 16: {
-//                    u.setSesionId(aValue.toString());
-//                    break;
-//                }
-//                case 17: {
-//                    u.setEstadoEdit(aValue.toString());
-//                    break;
-//                }
-
         }
-
     }
 
     @Override

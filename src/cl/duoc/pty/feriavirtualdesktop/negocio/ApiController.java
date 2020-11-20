@@ -56,15 +56,12 @@ public class ApiController {
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, trustAllCerts, new java.security.SecureRandom());
             HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-            // Create all-trusting host name verifier
             HostnameVerifier allHostsValid = new HostnameVerifier() {
                 public boolean verify(String hostname, SSLSession session) {
                     return true;
                 }
             };
-            // Install the all-trusting host verifier
             HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-            /* End of the fix*/
             String param = "?";
             for (final Parametro myparam : parametros) {
                 param += myparam.Name + "=" + myparam.Value+"&";
@@ -72,16 +69,9 @@ public class ApiController {
             URL url = new URL(urlApi + recurso+param);//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
-            //conn.setDoInput(true);
             conn.setRequestProperty("Content-Type", "application/json;charset=UTF-16");
             conn.setRequestMethod("GET");
-            //conn.setRequestProperty("Accept", "application/json");
-            //String jsonInputString = "{idperfil: \"" + idPerfil + "\", idSession: \"" + idSession + "\", servicio: \"" + servicio +"\"}";
-//            System.out.println(">>>" + jsonInputString);
-//            try (OutputStream os = conn.getOutputStream()) {
-//                byte[] input = jsonInputString.getBytes("UTF-16");
-//                os.write(input, 0, input.length);
-//            }
+
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP Error code : "
                         + conn.getResponseCode());

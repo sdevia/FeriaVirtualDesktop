@@ -655,7 +655,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
             //Date fechaFinSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(date.toString());
 
             txtIdProceso1.setText(idProceso);
-            lblComision.setText("$" + comision);
+            lblComision.setText(comision + "%" );
             lblValorAduana.setText("$" + valorAduana);
             lblPagoPorServicio.setText("$" + pagoPorServicio);
             lblFecha.setText(fechaProceso);

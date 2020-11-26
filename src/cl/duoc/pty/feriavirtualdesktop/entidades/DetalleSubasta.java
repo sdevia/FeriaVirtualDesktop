@@ -19,8 +19,8 @@ public class DetalleSubasta {
         private int IdSubasta;
         private int IdUsuario;
         
-        private DetalleSubasta() {
-            Estado = "ENPROCESO";
+        public DetalleSubasta() {
+            Estado = "EN_PROCESO";
         }
 
     public int getIdDetalle() {

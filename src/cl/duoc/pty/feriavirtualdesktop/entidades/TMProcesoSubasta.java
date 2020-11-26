@@ -38,7 +38,7 @@ public class TMProcesoSubasta implements TableModel  {
         String titulo = null;
             switch (columnIndex) {
                 case 0: {
-                    titulo = "ID PROCESO";
+                    titulo = "N°PROCESO";
                     break;
                 }
                 case 1: {
@@ -58,11 +58,11 @@ public class TMProcesoSubasta implements TableModel  {
                     break;
                 }
                 case 5: {
-                    titulo = "FECHA PROCESO";
+                    titulo = "FECHA";
                     break;
                 }
                 case 6: {
-                    titulo = "ESTADO PROCESO";
+                    titulo = "ESTADO";
                     break;
                 }
 
@@ -114,9 +114,16 @@ public class TMProcesoSubasta implements TableModel  {
                 }
                 case 6: {
                     valor = p.getEstadoProceso();
+                    
+                    if (valor.equals("EN_PROCESO")){
+                        valor = "EN PROCESO";
+                    }else {
+                        valor = valor;
+                }
+                    }
                     break;
                 }
-            }
+            
             return valor;
     }
 

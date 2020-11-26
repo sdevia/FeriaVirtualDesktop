@@ -22,6 +22,24 @@ public class Subasta {
 
     public Subasta() {
     }
+    
+   /*  public Subasta(Date FechaSubasta, Date FechaTermino, boolean Estado, int IdProceso) {
+        this.FechaSubasta = FechaSubasta;
+        this.FechaTermino = FechaTermino;
+        this.Estado = Estado;
+        this.IdProceso = IdProceso;
+        
+    }
+    
+    public Subasta(int IdSubasta, Date FechaSubasta, Date FechaTermino, boolean Estado, int IdProceso) {
+        this.IdSubasta = IdSubasta;
+        this.FechaSubasta = FechaSubasta;
+        this.FechaTermino = FechaTermino;
+        this.Estado = Estado;
+        this.IdProceso = IdProceso;
+        
+    }
+    */
 
     public Subasta(int IdSubasta, Date FechaSubasta, Date FechaTermino, boolean Estado, int IdProceso, List<DetalleSubasta> DetalleSubasta) {
         this.IdSubasta = IdSubasta;
@@ -31,6 +49,8 @@ public class Subasta {
         this.IdProceso = IdProceso;
         this.DetalleSubasta = DetalleSubasta;
     }
+    
+    
 
     public int getIdSubasta() {
         return IdSubasta;

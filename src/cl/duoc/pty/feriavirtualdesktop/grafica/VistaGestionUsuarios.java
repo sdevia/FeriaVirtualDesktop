@@ -13,7 +13,7 @@ import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
 import cl.duoc.pty.feriavirtualdesktop.utils.perfilUsuario;
 import cl.duoc.pty.feriavirtualdesktop.utils.FormatoString;
 import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
-import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
+import java.awt.Color;
 import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -122,6 +122,9 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
 
         txtRut.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtRut.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                busquedaRut(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtRutFocusLost(evt);
             }
@@ -133,8 +136,18 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         });
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                modificacionNombre(evt);
+            }
+        });
 
         txtApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                modificacionApellido(evt);
+            }
+        });
 
         lblTipoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTipoUsuario.setText("Tipo de Usuario");
@@ -176,6 +189,16 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         rbtGrupoEstado.add(rbtVigente);
         rbtVigente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtVigente.setText("Vigente");
+        rbtVigente.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                modificacionVigente(evt);
+            }
+        });
+        rbtVigente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                modificacionEstadoActivo(evt);
+            }
+        });
 
         rbtGrupoEstado.add(rbtNoVigente);
         rbtNoVigente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -185,6 +208,14 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         btnBuscarRut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBuscarRut.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarRut.setText("Buscar");
+        btnBuscarRut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarRutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarRutMouseExited(evt);
+            }
+        });
         btnBuscarRut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarRutActionPerformed(evt);
@@ -195,6 +226,14 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         btnBuscarApellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBuscarApellido.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarApellido.setText("Buscar");
+        btnBuscarApellido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarApellidoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarApellidoMouseExited(evt);
+            }
+        });
         btnBuscarApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarApellidoActionPerformed(evt);
@@ -205,6 +244,14 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         btnBuscarNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBuscarNombre.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarNombre.setText("Buscar");
+        btnBuscarNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarNombreMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarNombreMouseExited(evt);
+            }
+        });
         btnBuscarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarNombreActionPerformed(evt);
@@ -230,6 +277,11 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         txtCambioClave.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         txtEmailUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtEmailUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                modificacionEmail(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlInputsGestionUsuarioLayout = new javax.swing.GroupLayout(pnlInputsGestionUsuario);
         pnlInputsGestionUsuario.setLayout(pnlInputsGestionUsuarioLayout);
@@ -365,6 +417,14 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseExited(evt);
+            }
+        });
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -376,6 +436,14 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         btnActualizarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarUsuario.setText("Guardar");
         btnActualizarUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnActualizarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnActualizarUsuarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnActualizarUsuarioMouseExited(evt);
+            }
+        });
         btnActualizarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarUsuarioActionPerformed(evt);
@@ -499,17 +567,13 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         } else {
             rbtNoVigente.setSelected(true);
         }
-
         txtActivo.setText(model.getValueAt(i, 6).toString());
-
         txtDireccionUsuario.setText(model.getValueAt(i, 7).toString());
-
         if ((Boolean.parseBoolean(model.getValueAt(i, 8).toString())) == true) {
             txtCambioClave.setText("Si");
         } else {
             txtCambioClave.setText("No");
         }
-
         txtfechaCreacion.setText(model.getValueAt(i, 9).toString());
         txtfechaModificacion.setText(model.getValueAt(i, 10).toString());
 
@@ -526,66 +590,8 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
                 || rbtVigente.getText().isEmpty()) {
             showMessageDialog(null, "Hay campos vacíos", "Información", JOptionPane.WARNING_MESSAGE);
         } else {
-            ///////////// REVISAR POR QUE EL CODIGO NO VA ACA 
-
+            actualizarUsuario();
         }
-
-        RespuestaUsuario ru = new RespuestaUsuario();
-        Usuario usuario = new Usuario();
-        RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
-
-        listaUsuario = UsuarioController.buscarUsuario(txtIdUsuario.getText());
-
-        usuario = listaUsuario.getUsuarios().get(0);
-
-        if (txtTelefonoUsuario.getText() != null
-                || txtDireccionUsuario.getText() != null
-                || txtEmailUsuario.getText() != null
-                || rbtNoVigente.getText() != null
-                || rbtVigente.getText() != null) {
-            usuario.setNombre(txtNombre.getText());
-            usuario.setApellido(txtApellido.getText());
-            usuario.setTelefono(txtTelefonoUsuario.getText());
-            usuario.setDireccion(txtDireccionUsuario.getText());
-            usuario.setEmail(txtEmailUsuario.getText());
-            usuario.setRut(ValidacionRut.quitarPuntos(txtRut.getText()));
-            usuario.setIdPerfil(String.valueOf(perfilUsuario.perfilUsuarioInt(txtTipoUsuario.getText())));
-            usuario.setFechaCreacion("2000-01-01T00:00:00");
-            usuario.setFechaModificacion("2000-01-01T00:00:00");
-
-            if (rbtVigente.isSelected()) {
-                usuario.setEstado("true");
-            }
-            if (rbtNoVigente.isSelected()) {
-                usuario.setEstado("false");
-            }
-
-            if (txtActivo.getText().equals("Si")) {
-                usuario.setActivo("true");
-            } else {
-                usuario.setActivo("false");
-            }
-
-            if (txtCambioClave.getText().equals("Si")) {
-                usuario.setCambiaClave("true");
-            } else {
-                usuario.setCambiaClave("false");
-            }
-
-        }
-        ru = UsuarioController.actualizarUsuario(usuario);
-
-        if (ru.isExito()) {
-
-            TMUsuario modelo;
-            listaUsuario.getUsuarios().clear();
-            listaUsuario.getUsuarios().add(ru.getUsuario());
-
-            modelo = new TMUsuario(listaUsuario.getUsuarios());
-            tblGestionUsuarios.setModel(modelo);
-        }
-
-
     }//GEN-LAST:event_btnActualizarUsuarioActionPerformed
 
     private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
@@ -615,6 +621,99 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
             txtRut.setText(ValidacionRut.FormatearRUT(txtRut.getText()));
         }
     }//GEN-LAST:event_txtRutFocusLost
+
+    private void modificacionNombre(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_modificacionNombre
+        // TODO add your handling code here:
+        if (!txtNombre.getText().equals("")) {
+            btnActualizarUsuario.setEnabled(true);
+        } else {
+            btnActualizarUsuario.setEnabled(false);            
+        }        
+    }//GEN-LAST:event_modificacionNombre
+
+    private void modificacionApellido(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_modificacionApellido
+        // TODO add your handling code here:
+        if (!txtApellido.getText().equals("")) {
+            btnActualizarUsuario.setEnabled(true);
+        } else {
+            btnActualizarUsuario.setEnabled(false);
+        }
+    }//GEN-LAST:event_modificacionApellido
+
+    private void modificacionEmail(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_modificacionEmail
+        // TODO add your handling code here:
+         if (!txtEmailUsuario.getText().equals("")) {
+            btnActualizarUsuario.setEnabled(true);
+        } else {
+            btnActualizarUsuario.setEnabled(false);
+        }
+    }//GEN-LAST:event_modificacionEmail
+
+    private void busquedaRut(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_busquedaRut
+        // TODO add your handling code here:
+        limpiarFormulario();
+        setearBotones();
+    }//GEN-LAST:event_busquedaRut
+
+    private void modificacionVigente(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_modificacionVigente
+        // TODO add your handling code here:
+        btnActualizarUsuario.setEnabled(true);
+    }//GEN-LAST:event_modificacionVigente
+
+    private void modificacionEstadoActivo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificacionEstadoActivo
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_modificacionEstadoActivo
+
+    private void btnLimpiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseEntered
+        // TODO add your handling code here:
+        btnLimpiar.setBackground(new Color(0, 153, 0));
+    }//GEN-LAST:event_btnLimpiarMouseEntered
+
+    private void btnActualizarUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarUsuarioMouseEntered
+        // TODO add your handling code here:
+         btnActualizarUsuario.setBackground(new Color(0, 153, 0));
+    }//GEN-LAST:event_btnActualizarUsuarioMouseEntered
+
+    private void btnBuscarRutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarRutMouseEntered
+        // TODO add your handling code here:
+         btnBuscarRut.setBackground(new Color(0, 153, 0));
+    }//GEN-LAST:event_btnBuscarRutMouseEntered
+
+    private void btnBuscarNombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarNombreMouseEntered
+        // TODO add your handling code here:
+        btnBuscarNombre.setBackground(new Color(0, 153, 0));
+    }//GEN-LAST:event_btnBuscarNombreMouseEntered
+
+    private void btnBuscarApellidoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarApellidoMouseEntered
+        // TODO add your handling code here:
+        btnBuscarApellido.setBackground(new Color(0, 153, 0));
+    }//GEN-LAST:event_btnBuscarApellidoMouseEntered
+
+    private void btnBuscarRutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarRutMouseExited
+        // TODO add your handling code here:
+        btnBuscarRut.setBackground(new Color(253, 187, 72));
+    }//GEN-LAST:event_btnBuscarRutMouseExited
+
+    private void btnBuscarNombreMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarNombreMouseExited
+        // TODO add your handling code here:
+        btnBuscarNombre.setBackground(new Color(253, 187, 72));
+    }//GEN-LAST:event_btnBuscarNombreMouseExited
+
+    private void btnBuscarApellidoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarApellidoMouseExited
+        // TODO add your handling code here:
+        btnBuscarApellido.setBackground(new Color(253, 187, 72));
+    }//GEN-LAST:event_btnBuscarApellidoMouseExited
+
+    private void btnLimpiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseExited
+        // TODO add your handling code here:
+        btnLimpiar.setBackground(new Color(253, 187, 72));
+    }//GEN-LAST:event_btnLimpiarMouseExited
+
+    private void btnActualizarUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarUsuarioMouseExited
+        // TODO add your handling code here:
+        btnActualizarUsuario.setBackground(new Color(253, 187, 72));
+    }//GEN-LAST:event_btnActualizarUsuarioMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -663,16 +762,16 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-/**
- * Método para activar los botones 
- */
+
+    /**
+     * Método para activar los botones
+     */
     private void setearBotones() {
-        btnActualizarUsuario.setEnabled(true);
+        btnActualizarUsuario.setEnabled(false);
         btnLimpiar.setEnabled(true);
         btnBuscarRut.setEnabled(true);
         btnBuscarNombre.setEnabled(true);
         btnBuscarApellido.setEnabled(true);
-
     }
 
     /**
@@ -711,6 +810,7 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
         txtfechaCreacion.setText("");
         txtfechaModificacion.setText(null);
         txtfechaModificacion.setText("");
+        setearBotones();
     }
 
     /**
@@ -817,5 +917,77 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
             }
         } catch (Exception e) {
         }
+    }
+
+    /**
+     * Método que actualiza al usuario: Nombre, Apellido, Estado, Correo
+     */
+    private void actualizarUsuario() {
+        RespuestaUsuario ru = new RespuestaUsuario();
+        Usuario usuario = new Usuario();
+        RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
+        listaUsuario = UsuarioController.buscarUsuario(txtIdUsuario.getText());
+        usuario = listaUsuario.getUsuarios().get(0);
+        String validaEstado = "";
+        if (rbtNoVigente.isSelected()) {
+            validaEstado = "false";
+        } else {
+            validaEstado = "true";
+        }
+
+        if ( //                !usuario.getNombre().equals(txtNombre.getText())
+                //                || !usuario.getApellido().equals((txtApellido.getText()))
+                //                || !usuario.getEmail().equals((txtEmailUsuario.getText()))
+                //                || 
+                !usuario.getEstado().equals(validaEstado)) {
+            int opcion = JOptionPane.showConfirmDialog(null, "Está seguro que desea guardar los cambios", "Datos de Usuario", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+            if (opcion == 0) {
+                if (txtTelefonoUsuario.getText() != null
+                        || txtDireccionUsuario.getText() != null
+                        || txtEmailUsuario.getText() != null
+                        || rbtNoVigente.getText() != null
+                        || rbtVigente.getText() != null) {
+                    usuario.setNombre(txtNombre.getText());
+                    usuario.setApellido(txtApellido.getText());
+                    usuario.setTelefono(txtTelefonoUsuario.getText());
+                    usuario.setDireccion(txtDireccionUsuario.getText());
+                    usuario.setEmail(txtEmailUsuario.getText());
+                    usuario.setRut(ValidacionRut.quitarPuntos(txtRut.getText()));
+                    usuario.setIdPerfil(String.valueOf(perfilUsuario.perfilUsuarioInt(txtTipoUsuario.getText())));
+                    usuario.setFechaCreacion("2000-01-01T00:00:00");
+                    usuario.setFechaModificacion("2000-01-01T00:00:00");
+                    if (rbtVigente.isSelected()) {
+                        usuario.setEstado("true");
+                    }
+                    if (rbtNoVigente.isSelected()) {
+                        usuario.setEstado("false");
+                    }
+                    if (txtActivo.getText().equals("Si")) {
+                        usuario.setActivo("true");
+                    } else {
+                        usuario.setActivo("false");
+                    }
+                    if (txtCambioClave.getText().equals("Si")) {
+                        usuario.setCambiaClave("true");
+                    } else {
+                        usuario.setCambiaClave("false");
+                    }
+                }
+                ru = UsuarioController.actualizarUsuario(usuario);
+                if (ru.isExito()) {
+                    TMUsuario modelo;
+                    listaUsuario.getUsuarios().clear();
+                    listaUsuario.getUsuarios().add(ru.getUsuario());
+                    modelo = new TMUsuario(listaUsuario.getUsuarios());
+                    tblGestionUsuarios.setModel(modelo);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(pnlInputsGestionUsuario, "No se realizarán cambios");
+
+        }
+
     }
 }

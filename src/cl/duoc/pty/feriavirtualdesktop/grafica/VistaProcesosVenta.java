@@ -183,11 +183,6 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
 
         txtFechaOrden.setEditable(false);
         txtFechaOrden.setBackground(new java.awt.Color(204, 204, 204));
-        txtFechaOrden.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaOrdenActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Fecha");
@@ -207,10 +202,10 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         txtEstadoOrden.setEditable(false);
         txtEstadoOrden.setBackground(new java.awt.Color(204, 204, 204));
         txtEstadoOrden.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtEstadoOrdenInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtEstadoOrden.addActionListener(new java.awt.event.ActionListener() {
@@ -360,7 +355,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtIdProceso, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPagoTransportista))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtAduana, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
@@ -661,10 +656,6 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEstadoOrdenActionPerformed
 
-    private void txtFechaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaOrdenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaOrdenActionPerformed
-
     private void txtIdOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdOrdenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdOrdenActionPerformed
@@ -682,6 +673,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         btnFirmarOrden.setEnabled(false);
         limpiarCampos();
         txtIdOrden.setEditable(true);
+        btnActualizarOrdenesProcesos.doClick();
     }//GEN-LAST:event_btnFirmarOrdenActionPerformed
 
     private void tblProcesosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProcesosMouseClicked

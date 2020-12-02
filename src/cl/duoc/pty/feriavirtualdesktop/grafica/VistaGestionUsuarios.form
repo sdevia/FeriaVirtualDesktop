@@ -306,9 +306,6 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modificacionNombre"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtApellido">
               <Properties>
@@ -316,9 +313,6 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modificacionApellido"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTipoUsuario">
               <Properties>
@@ -430,10 +424,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Vigente"/>
               </Properties>
-              <Events>
-                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="modificacionVigente"/>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="modificacionEstadoActivo"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtNoVigente">
               <Properties>
@@ -558,9 +548,6 @@
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modificacionEmail"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

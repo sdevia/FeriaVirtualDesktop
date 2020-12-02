@@ -107,6 +107,7 @@ public class VistaLogin extends javax.swing.JFrame {
 
         txtIdentificador.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtIdentificador.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtIdentificador.setText("15538372-0");
         txtIdentificador.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtIdentificadorFocusLost(evt);

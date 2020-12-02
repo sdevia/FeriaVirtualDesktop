@@ -30,7 +30,7 @@ public class TMProcesoSubasta implements TableModel  {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 8;
     }
 
     @Override
@@ -63,6 +63,10 @@ public class TMProcesoSubasta implements TableModel  {
                 }
                 case 6: {
                     titulo = "ESTADO";
+                    break;
+                }
+                case 7: {
+                    titulo = "FECHA MAX SUBASTA";
                     break;
                 }
 
@@ -120,8 +124,14 @@ public class TMProcesoSubasta implements TableModel  {
                     }else {
                         valor = valor;
                 }
-                    }
                     break;
+                    }
+                case 7: {
+                    valor = format.format(p.getFechaMaxSubasta());
+                    break;
+                    
+                }
+
                 }
             
             return valor;
@@ -157,6 +167,10 @@ public class TMProcesoSubasta implements TableModel  {
                 }
                 case 6: {
                     p.setEstadoProceso(aValue.toString());
+                    break;
+                }
+                case 7: {
+                    p.setFechaMaxSubasta((Date)aValue);
                     break;
                 }
     }

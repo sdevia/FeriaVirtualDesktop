@@ -22,12 +22,13 @@ public class Proceso {
     private String EstadoProceso;
     private int IdOrden;
     private int IdUsuario;
+    private Date FechaMaxSubasta;
     
     public Proceso() {
         
     }
 
-    public Proceso(int IdProceso, int Comision, int ValorAduana, int PagoPorServicio, int PagoTransportista, Date FechaProceso, Date FechaFinProceso, String EstadoProceso, int IdOrden, int IdUsuario) {
+    public Proceso(int IdProceso, int Comision, int ValorAduana, int PagoPorServicio, int PagoTransportista, Date FechaProceso, Date FechaFinProceso, String EstadoProceso, int IdOrden, int IdUsuario, Date FechaMaxSubasta) {
         this.IdProceso = IdProceso;
         this.Comision = Comision;
         this.ValorAduana = ValorAduana;
@@ -38,6 +39,7 @@ public class Proceso {
         this.EstadoProceso = EstadoProceso;
         this.IdOrden = IdOrden;
         this.IdUsuario = IdUsuario;
+        this.FechaMaxSubasta = FechaMaxSubasta;
     }
 
     public int getIdProceso() {
@@ -118,6 +120,14 @@ public class Proceso {
 
     public void setIdUsuario(int IdUsuario) {
         this.IdUsuario = IdUsuario;
+    }
+    
+     public Date getFechaMaxSubasta() {
+        return FechaMaxSubasta;
+    }
+
+    public void setFechaMaxSubasta(Date FechaMaxSubasta) {
+        this.FechaMaxSubasta = FechaMaxSubasta;
     }
     
     

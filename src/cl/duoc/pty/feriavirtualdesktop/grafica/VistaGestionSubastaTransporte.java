@@ -39,6 +39,7 @@ import javafx.scene.control.DatePicker;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.RowFilter;
+import javax.swing.RowFilter.ComparisonType;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -257,7 +258,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("ID Proceso");
+        jLabel4.setText("N° Proceso");
 
         txtIdProceso.setEditable(false);
         txtIdProceso.setMaximumSize(new java.awt.Dimension(77, 22));
@@ -272,7 +273,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         jLabel7.setText("Fecha Término de Subasta");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("ID Subasta");
+        jLabel1.setText("N° Subasta");
 
         txtIdSubasta.setEditable(false);
         txtIdSubasta.setMaximumSize(new java.awt.Dimension(77, 22));
@@ -608,6 +609,8 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
         //pago transporte
         tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
+        //fecha max subasta
+        tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(3));
         
          }else
          {
@@ -649,13 +652,13 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
             Date fechaInicioSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(fechaString);
             //ZoneId stgo = ZoneId.of("America/Santiago");
            // LocalDate date =  LocalDate.now(stgo);
-                    
-           
-                   // LocalDate.now(ZoneId.of("Chile/Continental"));
+            String fechaMaxSubastaString = model.getValueAt(1,7).toString();
+           Date fechaMaxSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(fechaMaxSubastaString);
+            // LocalDate.now(ZoneId.of("Chile/Continental"));
             //Date fechaFinSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(date.toString());
 
             txtIdProceso1.setText(idProceso);
-            lblComision.setText("$" + comision);
+            lblComision.setText(comision + "%" );
             lblValorAduana.setText("$" + valorAduana);
             lblPagoPorServicio.setText("$" + pagoPorServicio);
             lblFecha.setText(fechaProceso);
@@ -666,7 +669,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
             btnCrearSubastaTransporte.setEnabled(true);
             rbtnVigente.setSelected(true);
            
-        
+         dtpFechaTerminoSubasta.getMonthView().setUpperBound(fechaMaxSubasta);
   
         } catch (ParseException ex) {
             Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
@@ -705,7 +708,7 @@ dtpFechaTerminoSubasta.getMonthView().setLowerBound(new Date());
         if(dtpFechaTerminoSubasta.getDate() != null){
         
             int idProceso = Integer.valueOf(txtIdProceso1.getText());
-            Date fechaSubasta = dtpFechaInicioSubasta.getDate();
+            Date fechaSubasta = new Date();//dtpFechaInicioSubasta.getDate();
             Date FechaTerminoSubasta = dtpFechaTerminoSubasta.getDate();
             RespuestaSubasta creacionSubasta = new RespuestaSubasta();
             Subasta subasta = new Subasta();
@@ -988,8 +991,6 @@ private void modificarSubasta() {
          }
     }
 
- 
     
-        
 
 }

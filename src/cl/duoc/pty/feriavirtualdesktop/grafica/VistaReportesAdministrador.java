@@ -182,7 +182,7 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
         );
 
         cbxTipoReporteAdministrador.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cbxTipoReporteAdministrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el Reporte a mostrar..", "Usuarios Creados en Plataforma", "Procesos de Venta Finalizados", "Total Procesos de Venta", "Procesos de Subasta Transp. Finalizados", "Total Procesos Subasta Transp.", "Total Ordenes Generadas" }));
+        cbxTipoReporteAdministrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el Reporte a mostrar..", "Usuarios Creados en Plataforma", "Total Ordenes Generadas" }));
         cbxTipoReporteAdministrador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -211,7 +211,7 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
                     .addComponent(btnReportesAdminsGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxTipoReporteAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +227,7 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

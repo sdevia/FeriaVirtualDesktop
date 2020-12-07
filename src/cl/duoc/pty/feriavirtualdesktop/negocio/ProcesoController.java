@@ -74,4 +74,32 @@ public class ProcesoController {
                 
         return creaProceso;
     }
+    
+     public static RespuestaProcesoListar listaProcesoById(int idOrden) {
+        RespuestaProcesoListar listaProceso = new RespuestaProcesoListar();
+
+        try {
+
+            ApiController servicioApi = new ApiController();
+            List<Parametro> parametros = new ArrayList<Parametro>();
+            String resultado = "";
+
+            Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+            parametros.add(new Parametro("idOrden", String.valueOf(idOrden)));
+            parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
+            resultado = servicioApi.Get("Admin/Orden/{idOrden}/Procesos", parametros);
+
+            listaProceso = g.fromJson(resultado, RespuestaProcesoListar.class);
+                if (listaProceso != null) {
+                    if (listaProceso.isExito()) {
+                        return listaProceso;
+                    }
+                }
+
+        } catch (Exception e) {
+            System.out.println("Se ha producido un error al obtener la información " + e);
+        }
+
+        return listaProceso;
+    }
 }

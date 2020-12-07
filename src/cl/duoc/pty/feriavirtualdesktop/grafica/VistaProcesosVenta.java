@@ -50,6 +50,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         listarOrdenes();
         listarProcesos();
         setearBotones();
+        dtpFechaFinProceso.getMonthView().setLowerBound(new Date());
 
     }
     
@@ -107,7 +108,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         txtAduana.setText("");
         txtPagoServicio.setText("");
         txtIdUsuario.setText("");
-        txtFechaFinProceso.setText("");
+        dtpFechaFinProceso.getMonthView().setLowerBound(new Date());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -146,11 +147,12 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         txtIdUsuario = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        txtFechaFinProceso = new javax.swing.JTextField();
         btnFirmarOrden = new javax.swing.JButton();
         btnCrearProceso = new javax.swing.JButton();
         btnModificarProceso = new javax.swing.JButton();
         btnAnularProceso = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        dtpFechaFinProceso = new org.jdesktop.swingx.JXDatePicker();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrdenes = new javax.swing.JTable();
@@ -307,6 +309,8 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
             }
         });
 
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -324,6 +328,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnFirmarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel1)
                         .addComponent(txtFechaOrden, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,9 +339,10 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                             .addComponent(txtIdOrden)
                             .addGap(18, 18, 18)
                             .addComponent(btnBuscarOrden)
-                            .addGap(6, 6, 6)))
-                    .addComponent(btnFirmarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(131, 131, 131)
+                            .addGap(6, 6, 6))))
+                .addGap(87, 87, 87)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCrearProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -344,7 +350,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                         .addComponent(btnModificarProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnAnularProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(363, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtEstadoProceso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
@@ -357,87 +363,93 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                             .addComponent(txtPagoTransportista))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtAduana, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtAduana, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
                                 .addComponent(jLabel16)
                                 .addComponent(jLabel13)
                                 .addComponent(jLabel7)
                                 .addComponent(jLabel12)
-                                .addComponent(txtFechaFinProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtComision))
-                            .addComponent(txtPagoServicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dtpFechaFinProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPagoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(130, 130, 130))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtComision, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIdUsuario))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(txtAduana))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtFechaProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIdOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtComision, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFechaOrden, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                            .addComponent(txtEstadoProceso)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(jLabel2))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIdUsuario))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)
+                                .addComponent(txtAduana))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtFechaProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtFechaOrden)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtEstadoProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPagoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(41, 41, 41))))
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPagoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPagoTransportista, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(txtEstadoOrden)
-                    .addComponent(txtFechaFinProceso))
-                .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFirmarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCrearProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificarProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAnularProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(dtpFechaFinProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtEstadoOrden)
+                            .addComponent(txtPagoTransportista, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnFirmarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCrearProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnModificarProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAnularProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addComponent(jSeparator1)))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -577,7 +589,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         txtAduana.setText("");
         txtPagoServicio.setText("");
         txtIdUsuario.setText("");
-        txtFechaFinProceso.setText("");
+        //dtpFechaFinProceso.setText("");
         
         setearBotones();
         
@@ -600,10 +612,10 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         Proceso proceso = new Proceso();
         
         Date fechaProceso = new Date();
-        Date fechaFinProceso = new Date();
+        Date fechaFinProceso = dtpFechaFinProceso.getDate();
         
         try {
-            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinProceso.toString());
             fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
         } catch (ParseException ex) {
             System.out.println("Error "+ex);
@@ -633,6 +645,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
 
     private void tblOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdenesMouseClicked
         
+        buscarProcesoPorIdOrden();
         txtIdOrden.setEditable(false);
         int i = tblOrdenes.getSelectedRow();
         TableModel model = tblOrdenes.getModel();
@@ -684,21 +697,29 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
 
         btnModificarProceso.setEnabled(true);
         
-        int i = tblProcesos.getSelectedRow();
-        TableModel model = tblProcesos.getModel();
+        try { 
+            int i = tblProcesos.getSelectedRow();
+            TableModel model = tblProcesos.getModel();
+
+            String fechaFinString = model.getValueAt(i,3).toString();
+            Date fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinString);
+
+            txtIdOrden.setText(model.getValueAt(i,0).toString());
+            txtIdProceso.setText(model.getValueAt(i,1).toString());
+            txtAduana.setText(model.getValueAt(i,2).toString());
+            txtPagoServicio.setText(model.getValueAt(i,3).toString());
+            txtPagoTransportista.setText(model.getValueAt(i,4).toString());
+            txtFechaProceso.setText(model.getValueAt(i,5).toString());
+            txtEstadoProceso.setText(model.getValueAt(i,6).toString());
+            txtComision.setText(model.getValueAt(i,7).toString());
+            dtpFechaFinProceso.setDate(fechaFinProceso);
+
+            if(!"ANULADO".equals(txtEstadoProceso.getText())) {
+                btnAnularProceso.setEnabled(true);
+            }
         
-        txtIdOrden.setText(model.getValueAt(i,0).toString());
-        txtIdProceso.setText(model.getValueAt(i,1).toString());
-        txtAduana.setText(model.getValueAt(i,2).toString());
-        txtPagoServicio.setText(model.getValueAt(i,3).toString());
-        txtPagoTransportista.setText(model.getValueAt(i,4).toString());
-        txtFechaProceso.setText(model.getValueAt(i,5).toString());
-        txtEstadoProceso.setText(model.getValueAt(i,6).toString());
-        txtComision.setText(model.getValueAt(i,7).toString());
-        txtFechaFinProceso.setText(model.getValueAt(i,9).toString());
-        
-        if(!"ANULADO".equals(txtEstadoProceso.getText())) {
-            btnAnularProceso.setEnabled(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_tblProcesosMouseClicked
@@ -735,6 +756,8 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtEstadoOrdenInputMethodTextChanged
 
     private void btnCrearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProcesoActionPerformed
+       
+        dtpFechaFinProceso.getMonthView().setLowerBound(new Date());
         if(txtIdOrden.getText().isEmpty() ||
                 txtComision.getText().isEmpty() ||
                 txtAduana.getText().isEmpty() ||
@@ -747,10 +770,10 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         Proceso proceso = new Proceso();
         
         Date fechaProceso = new Date();
-        Date fechaFinProceso = new Date();
+        Date fechaFinProceso = dtpFechaFinProceso.getDate();
         
         try {
-            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinProceso.toString());
             fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
         } catch (ParseException ex) {
             System.out.println("Error "+ex);
@@ -788,14 +811,14 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         Proceso proceso = new Proceso();
         
         Date fechaProceso = new Date();
-        Date fechaFinProceso = new Date();
+        Date fechaFinProceso = dtpFechaFinProceso.getDate();
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z YYYY");
         //ZonedDateTime today = ZonedDateTime.now();
         
         
         try {
             //today = ZonedDateTime.parse(txtFechaFinProceso.getText(), formatter).plusMonths(1);
-            fechaFinProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaFinProceso.getText());
+            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinProceso.toString());
             fechaProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaProceso.getText());
         } catch (ParseException ex) {
             System.out.println("Error "+ex);
@@ -864,6 +887,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     private javax.swing.JButton btnFirmarOrden;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificarProceso;
+    private org.jdesktop.swingx.JXDatePicker dtpFechaFinProceso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -881,6 +905,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel pnlProcesosVenta;
     private javax.swing.JTable tblOrdenes;
     private javax.swing.JTable tblProcesos;
@@ -889,7 +914,6 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     private javax.swing.JTextField txtComision;
     private javax.swing.JTextField txtEstadoOrden;
     private javax.swing.JTextField txtEstadoProceso;
-    private javax.swing.JTextField txtFechaFinProceso;
     private javax.swing.JTextField txtFechaOrden;
     private javax.swing.JTextField txtFechaProceso;
     private javax.swing.JTextField txtIdOrden;
@@ -898,4 +922,27 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     private javax.swing.JTextField txtPagoServicio;
     private javax.swing.JTextField txtPagoTransportista;
     // End of variables declaration//GEN-END:variables
+
+    private void buscarProcesoPorIdOrden() {
+           int i = tblOrdenes.getSelectedRow();
+           TableModel model = tblOrdenes.getModel();
+           int idOrden = Integer.parseInt(model.getValueAt(i,0).toString()); 
+           
+           RespuestaProcesoListar listaProceso = new RespuestaProcesoListar();
+           listaProceso = ProcesoController.listaProcesoById(idOrden);
+           if(listaProceso.isExito()){
+             
+      
+        List<Proceso> procesos = listaProceso.getProcesos();
+        TMProceso modelo;
+        modelo = new TMProceso(procesos);
+        tblProcesos.setModel(modelo);
+         }else
+         {
+            showMessageDialog(null, "No existen procesos asociados a la Orden seleccionada ","Información",JOptionPane.WARNING_MESSAGE);
+         }
+    }
+
+
+
 }

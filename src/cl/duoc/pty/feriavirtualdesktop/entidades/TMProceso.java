@@ -29,7 +29,7 @@ public class TMProceso implements TableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 9;
     }
 
     @Override
@@ -37,22 +37,42 @@ public class TMProceso implements TableModel {
         String titulo = null;
         switch (columnIndex) {
             case 0: {
-                titulo = "ID ORDEN";
+                titulo = "ORDEN";
                 break;
             }
-            case 1: {
-                titulo = "ID PROCESO";
+            case 7: {
+                titulo = "COMISION";
+                break;
+            }
+            case 6: {
+                titulo = "VALOR ADUANA";
+                break;
+            }
+            case 3: {
+                titulo = "PAGO POR SERVICIO";
+                break;
+            }
+            case 4: {
+                titulo = "PAGO TRANSPORTISTA";
+                break;
+            }
+            case 5: {
+                titulo = "FECHA PROCESO";
                 break;
             }
             case 2: {
                 titulo = "ESTADO";
                 break;
             }
-            case 3: {
-                titulo = "FECHA INICIO PROCESO";
+            case 1: {
+                titulo = "PROCESO";
                 break;
             }
-            case 4: {
+            case 8: {
+                titulo = "ID CLIENTE";
+                break;
+            }
+            case 9: {
                 titulo = "FECHA FIN PROCESO";
                 break;
             }
@@ -80,21 +100,43 @@ public class TMProceso implements TableModel {
                 valor = Integer.toString(p.getIdOrden());
                 break;
             }
-            case 1: {
-                valor = Integer.toString(p.getIdProceso());
+            case 7: {
+                /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+                valor = formatter.format(o.getFechaOrden());*/
+                valor = Integer.toString(p.getComision());
+                break;
+            }
+            case 6: {
+                valor = Integer.toString(p.getValorAduana());
+                break;
+            }
+            case 3: {
+                valor = Integer.toString(p.getPagoPorServicio());
+                break;
+            }
+            case 4: {
+                valor = Integer.toString(p.getPagoTransportista());
+                break;
+            }
+            case 5: {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                valor = sdf.format(p.getFechaProceso());
+
                 break;
             }
             case 2: {
                 valor = (p.getEstadoProceso());
                 break;
             }
-            case 3: {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                valor = sdf.format(p.getFechaProceso());
-
+            case 1: {
+                valor = Integer.toString(p.getIdProceso());
                 break;
             }
-            case 4: {
+            case 8: {
+                valor = Integer.toString(p.getIdUsuario());
+                break;
+            }
+            case 9: {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 valor = sdf.format(p.getFechaFinProceso());
                 break;
@@ -116,7 +158,7 @@ public class TMProceso implements TableModel {
                 p.setComision(aValue.hashCode());
                 break;
             }
-            case 2: {
+            case 6: {
                 p.setValorAduana(aValue.hashCode());
                 break;
             }

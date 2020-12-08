@@ -29,7 +29,7 @@ public class TMOrden implements TableModel{
     
     @Override
       public int getColumnCount(){
-       return 4;
+       return 8;
    }
       
      @Override
@@ -37,19 +37,35 @@ public class TMOrden implements TableModel{
             String titulo = null;
             switch (columnIndex) {
                 case 0: {
-                    titulo = "IDORDEN";
+                    titulo = "ORDEN";
                     break;
                 }
                 case 1: {
-                    titulo = "FECHAORDEN";
+                    titulo = "FECHA";
                     break;
                 }
                 case 2: {
-                    titulo = "ESTADO";
+                    titulo = "FIRMACONTRATO";
                     break;
                 }
                 case 3: {
-                    titulo = "PRECIOVENTA";
+                    titulo = "FECHAFIRMACONTRATO";
+                    break;
+                }
+                case 4: {
+                    titulo = "ESTADO";
+                    break;
+                }
+                case 5: {
+                    titulo = "PRECIO VENTA";
+                    break;
+                }
+                case 6: {
+                    titulo = "IDCLIENTEEXTERNO";
+                    break;
+                }
+                case 7: {
+                    titulo = "IDCLIENTEINTERNO";
                     break;
                 }
             }
@@ -84,11 +100,28 @@ public class TMOrden implements TableModel{
                     break;
                 }
                 case 2: {
-                    valor = o.getEstado();
+                    valor = Boolean.toString(o.isFirmaContrato());
                     break;
                 }
                 case 3: {
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+                    valor = sdf2.format(o.getFechaFirmaContrato());
+                    break;
+                }
+                case 4: {
+                    valor = o.getEstado();
+                    break;
+                }
+                case 5: {
                     valor = Double.toString(o.getPrecioVenta());
+                    break;
+                }
+                case 6: {
+                    valor = Integer.toString(o.getIdClienteExterno());
+                    break;
+                }
+                case 7: {
+                    valor = Integer.toString(o.getIdClienteInterno());
                     break;
                 }
 
@@ -112,13 +145,30 @@ public class TMOrden implements TableModel{
                     break;
                 }
                 case 2: {
-                    o.setEstado(aValue.toString());
+                    o.setFirmaContrato((boolean) aValue);
                     break;
                 }
                 case 3: {
+                    o.setFechaFirmaContrato((Date) aValue);
+                    break;
+                }
+                case 4: {
+                    o.setEstado(aValue.toString());
+                    break;
+                }
+                case 5: {
                     o.setPrecioVenta((double) aValue);
                     break;
                 }
+                case 6: {
+                    o.setIdClienteExterno((int) aValue);
+                    break;
+                }
+                case 7: {
+                    o.setIdClienteInterno((int) aValue);
+                    break;
+                }
+
             }
             
         }

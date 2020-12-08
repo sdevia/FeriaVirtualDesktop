@@ -102,4 +102,25 @@ public class ProcesoController {
 
         return listaProceso;
     }
+     
+    public static boolean cerrarProceso(int idProceso) {
+        String resultado = "";
+        
+        try {
+            ApiController servicioApi = new ApiController();
+            List<Parametro> parametros = new ArrayList<Parametro>();
+            //String resultado = "";
+
+            Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+            parametros.add(new Parametro("idProceso", String.valueOf(idProceso)));
+            parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
+            resultado = servicioApi.Get("Admin/Proceso/{idProceso}/Ganador", parametros);
+            
+            
+        } catch (Exception e) {
+            System.out.println("No fue posible cerrar el proceso " + e);
+        }
+                
+        return Boolean.parseBoolean(resultado.trim());
+    }
 }

@@ -10,6 +10,8 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaCategoria;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaCategoriaListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMCategoria;
 import cl.duoc.pty.feriavirtualdesktop.negocio.CategoriaController;
+import cl.duoc.pty.feriavirtualdesktop.utils.FormatoString;
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +31,8 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
     /**
      * Creates new form VistaCategoriaProductos
      */
+    private RespuestaCategoriaListar listaCategorias = new RespuestaCategoriaListar();
+    
     public VistaCategoriaProductos() {
         initComponents();
         inicializarTabla();
@@ -59,6 +63,8 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
         txtDescripcionCategoriaProducto.setText("");
         txtFechaCreacionCategoria.setText("");
         txtFechaModificacionCategoriaProducto.setText("");
+        txtDescripcionCategoriaIngles.setText("");
+        txtNombreCategoriaIngles.setText("");
     }
     
     
@@ -185,7 +191,7 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
                 .addComponent(btnCrearCategoriaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(315, 315, 315)
                 .addComponent(btnModificarCategoriaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
                 .addComponent(btnLimpiarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(161, 161, 161))
         );
@@ -230,7 +236,7 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
         lblIdCategoriaProducto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblIdCategoriaProducto.setText("ID Categoriá");
 
-        cbxEstadoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Habilitado", "Desabilitado" }));
+        cbxEstadoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Estado…", "Habilitado", "Desabilitado" }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Nombre Categoría en Ingles");
@@ -251,7 +257,7 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
                     .addComponent(txtNombreCategoriaProducto)
                     .addComponent(jLabel1)
                     .addComponent(txtNombreCategoriaIngles, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblDescripcionCategoriaProducto)
                     .addComponent(txtDescripcionCategoriaProducto)
@@ -360,9 +366,9 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
         txtDescripcionCategoriaIngles.setText(model.getValueAt(i,4).toString());
         String opcion = (model.getValueAt(i,5).toString()); 
         if (opcion == "Habilitado") {
-            cbxEstadoCategoria.setSelectedIndex(0);
-        }else {
             cbxEstadoCategoria.setSelectedIndex(1);
+        }else {
+            cbxEstadoCategoria.setSelectedIndex(2);
         }
         txtFechaCreacionCategoria.setText(model.getValueAt(i,6).toString());
         txtFechaModificacionCategoriaProducto.setText(model.getValueAt(i,7).toString());
@@ -381,6 +387,8 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
         txtDescripcionCategoriaIngles.setText("");
         txtFechaCreacionCategoria.setText("");
         txtFechaModificacionCategoriaProducto.setText("");
+        inicializarTabla();
+        listarCategorias();
     }//GEN-LAST:event_btnLimpiarCategoriaActionPerformed
 
     private void btnCrearCategoriaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCategoriaProductoActionPerformed
@@ -511,5 +519,36 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
     private javax.swing.JTextField txtNombreCategoriaProducto;
     // End of variables declaration//GEN-END:variables
 
+    private void buscarProducto() {
+        try {
+            if (txtNombreCategoriaProducto.getText().isEmpty()) {
+                showMessageDialog(null, "Debe Ingresar un Producto", "Información", JOptionPane.WARNING_MESSAGE);
+            } else {
+                if (FormatoString.SoloLetras(txtNombreCategoriaProducto.getText())) {
+                    TMCategoria modelo;
+                    String nombreCategoria = txtNombreCategoriaProducto.getText();
+                    List<Categoria> nuevaListaCategoria = new ArrayList<>();
+                    Categoria categoria = new Categoria();
+                    if (nombreCategoria != null && !nombreCategoria.isEmpty()) {
+                        for (Categoria c : listaCategorias.getCategorias()) {
+                            if (c.getNombreCategoria().toLowerCase().contains(nombreCategoria.toLowerCase())) {
+                                nuevaListaCategoria.add(c);
+                            } else {
+                            }
+                        }
+                        if (nuevaListaCategoria.isEmpty()) {
+                            JOptionPane.showMessageDialog(PnlCategoriaProducto, "La Categoria ingresado no existe");
+                        } else {
+                            modelo = new TMCategoria(nuevaListaCategoria);
+                            tblCategorias.setModel(modelo);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(PnlCategoriaProducto, "Datos ingresados inválidos");
+                }
+            }
+        } catch (Exception e) {
+        }
+    }
 
 }

@@ -23,9 +23,6 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.TableModel;
 import java.awt.event.*;
-import javax.swing.AbstractButton;
-import javax.swing.ButtonModel;
-import javax.swing.event.ChangeEvent;
 
 /**
  *
@@ -812,7 +809,6 @@ public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionLi
                     Usuario usuario = new Usuario();
                     if (nombre != null && !nombre.isEmpty()) {
                         for (Usuario u : listaUsuario.getUsuarios()) {
-                            //  if (nombre.contains(u.getNombre())) {
                             if (u.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
                                 nuevaListaUsuario.add(u);
                             } else {

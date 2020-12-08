@@ -53,7 +53,6 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
         btnProcesosVenta = new javax.swing.JButton();
         btnGestionSubastaTransporte = new javax.swing.JButton();
         btnReportesVentas = new javax.swing.JButton();
-        btnConfiguracion = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         btnCategoriasProductos = new javax.swing.JButton();
         pnlAdministradorDinamico = new javax.swing.JPanel();
@@ -198,12 +197,6 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
             }
         });
 
-        btnConfiguracion.setBackground(new java.awt.Color(4, 169, 16));
-        btnConfiguracion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnConfiguracion.setForeground(new java.awt.Color(255, 255, 255));
-        btnConfiguracion.setText("Configuración");
-        btnConfiguracion.setEnabled(false);
-
         btnCerrarSesion.setBackground(new java.awt.Color(4, 169, 16));
         btnCerrarSesion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,7 +209,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
 
         btnCategoriasProductos.setBackground(new java.awt.Color(255, 255, 255));
         btnCategoriasProductos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnCategoriasProductos.setText("Categorias Productos");
+        btnCategoriasProductos.setText("Categorías Productos");
         btnCategoriasProductos.setBorder(null);
         btnCategoriasProductos.setRequestFocusEnabled(false);
         btnCategoriasProductos.setSelected(true);
@@ -249,9 +242,7 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlbtnAdmin2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pnlbtnAdmin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(btnCategoriasProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -274,8 +265,6 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReportesVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -440,7 +429,6 @@ public class VistaGeneralAdministrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCategoriasProductos;
     private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnGestionSubastaTransporte;
     private javax.swing.JButton btnGestionUsuarios;
     private javax.swing.JButton btnProcesosVenta;

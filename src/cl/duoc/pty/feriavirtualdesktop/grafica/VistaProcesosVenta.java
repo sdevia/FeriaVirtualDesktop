@@ -890,7 +890,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
 
     private void btnCerrarProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarProcesoActionPerformed
         boolean cerrarProceso;
-        System.out.println(Integer.valueOf(txtIdProceso.getText()));
+        
         cerrarProceso = ProcesoController.cerrarProceso(Integer.valueOf(txtIdProceso.getText()));
         if(cerrarProceso) {
             showMessageDialog(null,"El proceso fue cerrado anticipadamente" ,"Información",JOptionPane.WARNING_MESSAGE);

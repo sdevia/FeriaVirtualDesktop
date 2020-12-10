@@ -271,6 +271,12 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Fecha Término de Subasta");
 
+        dtpFechaTerminoSubasta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dtpFechaTerminoSubastaActionPerformed(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("N° Subasta");
 
@@ -545,6 +551,10 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
           metodoBtnBuscarSubasta();
     }//GEN-LAST:event_txtIdProceso1PropertyChange
 
+    private void dtpFechaTerminoSubastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dtpFechaTerminoSubastaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dtpFechaTerminoSubastaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgroupVigencia;
@@ -716,9 +726,17 @@ dtpFechaTerminoSubasta.getMonthView().setLowerBound(new Date());
             TableModel model = tblProceso.getModel();
             
             
+            String pattern = "dd/MM/yyyy";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+            String inicio = simpleDateFormat.format(new Date());
+            String fin = simpleDateFormat.format(FechaTerminoSubasta);
+            
+            
         try {
-            fechaSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fechaSubasta.toString());
-            FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(FechaTerminoSubasta.toString());
+            
+            fechaSubasta = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(inicio);
+            FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fin);
             
         } catch (ParseException ex) {
             Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
@@ -853,10 +871,20 @@ private void modificarSubasta() {
         RespuestaSubasta creacionSubasta = new RespuestaSubasta();
         Subasta subasta = new Subasta();
        
+        
+            String pattern = "dd/MM/yyyy";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+            String inicio = simpleDateFormat.format(fechaSubasta);
+            String fin = simpleDateFormat.format(FechaTerminoSubasta);
+        
+        
+        
+        
         try {
-            fechaSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fechaSubasta.toString());
+            fechaSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(inicio);
             //fechaSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(picker.getDate().toString());
-            FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(FechaTerminoSubasta.toString());
+            FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fin);
             
         } catch (ParseException ex) {
             Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
@@ -900,9 +928,16 @@ private void modificarSubasta() {
         RespuestaSubasta creacionSubasta = new RespuestaSubasta();
         Subasta subasta = new Subasta();
        
+            String pattern = "dd/MM/yyyy";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+            String inicio = simpleDateFormat.format(fechaSubasta);
+            String fin = simpleDateFormat.format(FechaTerminoSubasta);
+        
+        
         try {
-            fechaSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fechaSubasta.toString());
-            FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(FechaTerminoSubasta.toString());
+            fechaSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(inicio);
+            FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fin);
             
         } catch (ParseException ex) {
             Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,9 +7,10 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class RespuestaCategoria {
+
     private boolean Exito;
     private String Mensaje;
     private Proceso Proceso;
@@ -47,7 +48,4 @@ public class RespuestaCategoria {
         this.Proceso = Proceso;
     }
 
-    
-    
-    
 }

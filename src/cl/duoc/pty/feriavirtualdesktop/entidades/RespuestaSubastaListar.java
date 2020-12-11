@@ -12,6 +12,7 @@ import java.util.List;
  * @author Eduardo
  */
 public class RespuestaSubastaListar {
+
     private boolean Exito;
     private String Mensaje;
     private List<Subasta> Subastas;
@@ -48,6 +49,5 @@ public class RespuestaSubastaListar {
     public void setSubastas(List<Subasta> Subastas) {
         this.Subastas = Subastas;
     }
-    
-    
+
 }

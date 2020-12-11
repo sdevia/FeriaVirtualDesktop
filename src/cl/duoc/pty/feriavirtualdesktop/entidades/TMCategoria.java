@@ -13,13 +13,12 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class TMCategoria implements TableModel {
 
     private List<Categoria> categorias;
 
-    ///la LISTA QUE TRAAE ESTA NULL
     public TMCategoria(List<Categoria> lista) {
         categorias = lista;
     }

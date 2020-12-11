@@ -6,16 +6,16 @@
 package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 /**
  *
- * @author Administrator
+ * @author Katherine
  */
 public class TMProceso implements TableModel {
+
     private List<Proceso> procesos;
 
     public TMProceso(List<Proceso> lista) {

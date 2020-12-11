@@ -5,29 +5,17 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.grafica;
 
-import cl.duoc.pty.feriavirtualdesktop.entidades.DetalleSubasta;
-import cl.duoc.pty.feriavirtualdesktop.entidades.OrdenProcesoEtapa;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Proceso;
-import cl.duoc.pty.feriavirtualdesktop.entidades.ProcesoListar;
-import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProceso;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaProcesoListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaSubasta;
 import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaSubastaListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Subasta;
-import cl.duoc.pty.feriavirtualdesktop.entidades.TMOrdenProcesoEtapa;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMProcesoSubasta;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMSubasta;
 import cl.duoc.pty.feriavirtualdesktop.negocio.ProcesoController;
 import cl.duoc.pty.feriavirtualdesktop.negocio.SubastaController;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -35,21 +23,15 @@ import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import javafx.scene.control.DatePicker;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.RowFilter;
-import javax.swing.RowFilter.ComparisonType;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import org.jdesktop.swingx.JXDatePicker;
-import org.jdesktop.swingx.calendar.CalendarUtils;
 
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
 
@@ -58,18 +40,12 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
      */
     public VistaGestionSubastaTransporte() {
         initComponents();
-        //inicializarTabla();
-        //inicializarTablaDetalleSubasta();
         Locale.setDefault(new Locale("es"));
-        
+
         buscarProcesos();
         setearBotones();
         dtpFechaTerminoSubasta.getMonthView().setLowerBound(new Date());
     }
-    
-    /*
-    
-    */
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -548,7 +524,7 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
 
     private void txtIdProceso1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtIdProceso1PropertyChange
         // TODO add your handling code here:
-          metodoBtnBuscarSubasta();
+        metodoBtnBuscarSubasta();
     }//GEN-LAST:event_txtIdProceso1PropertyChange
 
     private void dtpFechaTerminoSubastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dtpFechaTerminoSubastaActionPerformed
@@ -596,78 +572,66 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdProceso1;
     private javax.swing.JTextField txtIdSubasta;
     // End of variables declaration//GEN-END:variables
-
+/**
+     * Método para buscar proceso
+     */
     private void buscarProcesos() {
 
         RespuestaProcesoListar listaProceso = new RespuestaProcesoListar();
         listaProceso = ProcesoController.listarProceso();
-                
-         if(listaProceso.isExito()){
-             
-        Predicate<Proceso> byEstado = proceso -> proceso.getEstadoProceso().equals("EN_PROCESO");  
-        List<Proceso> result = listaProceso.getProcesos().stream().filter(byEstado).collect(Collectors.toList());
-        TMProcesoSubasta modelo;
-        modelo = new TMProcesoSubasta(result);
-       
-         tblProceso.setModel(modelo);
-        //Comision
-        tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
-        //valoraduana
-        tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
-        //pago por servicio
-        tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
-        //pago transporte
-        tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
-        //fecha max subasta
-        tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(3));
-        
-         }else
-         {
-        
-         }
-        
+
+        if (listaProceso.isExito()) {
+
+            Predicate<Proceso> byEstado = proceso -> proceso.getEstadoProceso().equals("EN_PROCESO");
+            List<Proceso> result = listaProceso.getProcesos().stream().filter(byEstado).collect(Collectors.toList());
+            TMProcesoSubasta modelo;
+            modelo = new TMProcesoSubasta(result);
+
+            tblProceso.setModel(modelo);
+            //Comision
+            tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
+            //valoraduana
+            tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
+            //pago por servicio
+            tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
+            //pago transporte
+            tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(1));
+            //fecha max subasta
+            tblProceso.removeColumn(tblProceso.getColumnModel().getColumn(3));
+
+        } else {
+
+        }
+
     }
 
-//    private void inicializarTabla() {
-//       
-//        
-//        List<Proceso> procesos = new ArrayList<>();
-//        TMProcesoSubasta modelo;
-//        modelo = new TMProcesoSubasta(procesos);
-//        tblProceso.setModel(modelo);
-//        
-//        
-//         buscarSubastansporte();
-//        
-//    }
-
-  
+    /**
+     * Método para dar seleccionar Registro Tabla Proceso
+     */
     private void seleccionarRegistroTblProceso() {
 
         try {
             int i = tblProceso.getSelectedRow();
             TableModel model = tblProceso.getModel();
-            
-            
 
-            String idProceso = model.getValueAt(i,0).toString();
+            String idProceso = model.getValueAt(i, 0).toString();
             String comision = model.getValueAt(i, 1).toString();
             String valorAduana = model.getValueAt(i, 2).toString();
             String pagoPorServicio = model.getValueAt(i, 3).toString();
-            String fechaString = model.getValueAt(i,5).toString();
-            String fechaProceso = model.getValueAt(i,5).toString();
-            String estado = model.getValueAt(i,6).toString();
-           //Date fechaInicioSubasta = new Date();
+            String fechaString = model.getValueAt(i, 5).toString();
+            String fechaProceso = model.getValueAt(i, 5).toString();
+            String estado = model.getValueAt(i, 6).toString();
+            //Date fechaInicioSubasta = new Date();
             Date fechaInicioSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(fechaString);
             //ZoneId stgo = ZoneId.of("America/Santiago");
-           // LocalDate date =  LocalDate.now(stgo);
-            String fechaMaxSubastaString = model.getValueAt(1,7).toString();
-           Date fechaMaxSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(fechaMaxSubastaString);
+            // LocalDate date =  LocalDate.now(stgo);
+            String fechaMaxSubastaString = model.getValueAt(1, 7).toString();
+            Date fechaMaxSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(fechaMaxSubastaString);
             // LocalDate.now(ZoneId.of("Chile/Continental"));
             //Date fechaFinSubasta = new SimpleDateFormat("dd-MM-yyyy").parse(date.toString());
 
             txtIdProceso1.setText(idProceso);
-            lblComision.setText(comision + "%" );
+            lblComision.setText(comision + "%");
             lblValorAduana.setText("$" + valorAduana);
             lblPagoPorServicio.setText("$" + pagoPorServicio);
             lblFecha.setText(fechaProceso);
@@ -677,152 +641,122 @@ public class VistaGestionSubastaTransporte extends javax.swing.JPanel {
             //dtpFechaTerminoSubasta.setDate(fechaFinSubasta);
             btnCrearSubastaTransporte.setEnabled(true);
             rbtnVigente.setSelected(true);
-           
-         dtpFechaTerminoSubasta.getMonthView().setUpperBound(fechaMaxSubasta);
-  
+
+            dtpFechaTerminoSubasta.getMonthView().setUpperBound(fechaMaxSubasta);
+
         } catch (ParseException ex) {
             Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
 
     }
 
-//    private void inicializarTablaDetalleSubasta() {
-//       
-//        RespuestaSubastaListar listaSubasta = new RespuestaSubastaListar();
-//        listaSubasta = SubastaController.listarSubasta();
-//                
-//         if(listaSubasta.isExito()){
-//             
-//        //Predicate<Proceso> byEstado = proceso -> proceso.getEstadoProceso().equals("EN_PROCESO");  
-//        List<Subasta> subastas = listaSubasta.getSubastas();//new ArrayList<>();
-//        TMSubasta modelo;
-//        modelo = new TMSubasta(subastas);
-//        tblDetalleSubasta.setModel(modelo);
-//         }else
-//         {
-//
-//         }
-//       
-//    }
-    
+    /**
+     * Método para crear subasta
+     */
+    private void crearSubasta() {
 
- private void crearSubasta() {
-     
+        dtpFechaTerminoSubasta.getMonthView().setLowerBound(new Date());
 
-dtpFechaTerminoSubasta.getMonthView().setLowerBound(new Date());
+        if (dtpFechaTerminoSubasta.getDate() != null) {
 
-     
-        if(dtpFechaTerminoSubasta.getDate() != null){
-        
             int idProceso = Integer.valueOf(txtIdProceso1.getText());
             Date fechaSubasta = new Date();//dtpFechaInicioSubasta.getDate();
             Date FechaTerminoSubasta = dtpFechaTerminoSubasta.getDate();
             RespuestaSubasta creacionSubasta = new RespuestaSubasta();
             Subasta subasta = new Subasta();
-            
+
             int i = tblProceso.getSelectedRow();
             TableModel model = tblProceso.getModel();
-            
-            
+
             String pattern = "dd/MM/yyyy";
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
             String inicio = simpleDateFormat.format(new Date());
             String fin = simpleDateFormat.format(FechaTerminoSubasta);
-            
-            
-        try {
-            
-            fechaSubasta = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(inicio);
-            FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fin);
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        subasta.setIdSubasta(0);
-        subasta.setFechaSubasta(fechaSubasta);
-        subasta.setFechaTermino(FechaTerminoSubasta); 
-        
-        if(rbtnVigente.isSelected()){
-        subasta.setEstado(true);
-        } else{
-            subasta.setEstado(false);
-         }
-        subasta.setIdProceso(idProceso);
-        
-        
-        creacionSubasta = SubastaController.crearModificarSubasta(subasta);
-        
-        showMessageDialog(null, creacionSubasta.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
-        
-        RespuestaSubastaListar listaSubasta = new RespuestaSubastaListar();
-        listaSubasta = SubastaController.listarSubasta();
-                
-         if(listaSubasta.isExito()){
-             
-        //Predicate<Proceso> byEstado = proceso -> proceso.getEstadoProceso().equals("EN_PROCESO");  
-        List<Subasta> subastas = listaSubasta.getSubastas();//new ArrayList<>();
-        TMSubasta modelo;
-        modelo = new TMSubasta(subastas);
-        tblDetalleSubasta.setModel(modelo);
-         }else
-         {
-         //showMessageDialog(null, "no hay subastas","Información",JOptionPane.WARNING_MESSAGE);
-         }
-        
-        
-        
-        limpiar();
-        }else{
-        showMessageDialog(null, "Debe seleccionar una fecha válida","Información",JOptionPane.WARNING_MESSAGE);
-}
-   }
 
+            try {
+
+                fechaSubasta = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(inicio);
+                FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fin);
+
+            } catch (ParseException ex) {
+                Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            subasta.setIdSubasta(0);
+            subasta.setFechaSubasta(fechaSubasta);
+            subasta.setFechaTermino(FechaTerminoSubasta);
+
+            if (rbtnVigente.isSelected()) {
+                subasta.setEstado(true);
+            } else {
+                subasta.setEstado(false);
+            }
+            subasta.setIdProceso(idProceso);
+
+            creacionSubasta = SubastaController.crearModificarSubasta(subasta);
+
+            showMessageDialog(null, creacionSubasta.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
+
+            RespuestaSubastaListar listaSubasta = new RespuestaSubastaListar();
+            listaSubasta = SubastaController.listarSubasta();
+
+            if (listaSubasta.isExito()) {
+
+                //Predicate<Proceso> byEstado = proceso -> proceso.getEstadoProceso().equals("EN_PROCESO");  
+                List<Subasta> subastas = listaSubasta.getSubastas();//new ArrayList<>();
+                TMSubasta modelo;
+                modelo = new TMSubasta(subastas);
+                tblDetalleSubasta.setModel(modelo);
+            } else {
+                //showMessageDialog(null, "no hay subastas","Información",JOptionPane.WARNING_MESSAGE);
+            }
+
+            limpiar();
+        } else {
+            showMessageDialog(null, "Debe seleccionar una fecha válida", "Información", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    /**
+     * Método para selecionar registro tabla subasta
+     */
     private void seleccionarRegistroTblSubasta() {
-        
-       
-        
-        
+
         try {
-            
-             
+
             int i = tblDetalleSubasta.getSelectedRow();
             TableModel model = tblDetalleSubasta.getModel();
 
-            String idProceso = model.getValueAt(i,0).toString();
-            String idSubasta = model.getValueAt(i,1).toString();
-            String estado = model.getValueAt(i,4).toString();
-            String fechaString = model.getValueAt(i,2).toString();
-            String fechaFinString = model.getValueAt(i,3).toString();
+            String idProceso = model.getValueAt(i, 0).toString();
+            String idSubasta = model.getValueAt(i, 1).toString();
+            String estado = model.getValueAt(i, 4).toString();
+            String fechaString = model.getValueAt(i, 2).toString();
+            String fechaFinString = model.getValueAt(i, 3).toString();
             Date fechaInicioSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fechaString);
             Date fechaFinSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinString);
-            
+
             txtIdProceso.setText(idProceso);
             txtIdSubasta.setText(idSubasta);
             dtpFechaInicioSubasta.setDate(fechaInicioSubasta);
             dtpFechaTerminoSubasta.setDate(fechaFinSubasta);
-            
-            if(estado.equals("VIGENTE")){
-            rbtnVigente.setSelected(true);
-            rbtnNoVigente.setSelected(false);
-            btnModificarSubastaTransporte.setEnabled(true);
-            btnCrearSubastaTransporte.setEnabled(false);
-            }else {
-                
-               rbtnVigente.setSelected(false);
-               rbtnNoVigente.setSelected(true);
-               btnModificarSubastaTransporte.setEnabled(false);
+
+            if (estado.equals("VIGENTE")) {
+                rbtnVigente.setSelected(true);
+                rbtnNoVigente.setSelected(false);
+                btnModificarSubastaTransporte.setEnabled(true);
+                btnCrearSubastaTransporte.setEnabled(false);
+            } else {
+
+                rbtnVigente.setSelected(false);
+                rbtnNoVigente.setSelected(true);
+                btnModificarSubastaTransporte.setEnabled(false);
 
             }
-            
-            
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     private void limpiar() {
@@ -831,94 +765,87 @@ dtpFechaTerminoSubasta.getMonthView().setLowerBound(new Date());
         txtIdProceso.setText("");
         dtpFechaInicioSubasta.setDate(null);
         dtpFechaTerminoSubasta.setDate(null);
-        
+
         lblComision.setText("");
         lblEstado.setText("");
         lblFecha.setText("");
         lblFechaProceso.setText("");
         lblPagoPorServicio.setText("");
         lblValorAduana.setText("");
-        
+
         rbtnNoVigente.setSelected(false);
         rbtnVigente.setSelected(false);
-        
+
         tblProceso.clearSelection();
         tblDetalleSubasta.clearSelection();
-       
 
-      setearBotones();
+        setearBotones();
     }
 
-private void modificarSubasta() {
+    /**
+     * Método para modificar subasta
+     */
+    private void modificarSubasta() {
 
-//                JXDatePicker picker = new JXDatePicker();
-//		picker.setDate(Calendar.getInstance().getTime());
-//
-//       LocalDate now = LocalDate.now();  
-       
         dtpFechaTerminoSubasta.getMonthView().setLowerBound(new Date());
         int idsubasta = Integer.valueOf(txtIdSubasta.getText());
         int idProceso = Integer.valueOf(txtIdProceso.getText());
         Date fechaSubasta = dtpFechaInicioSubasta.getDate();
         Date FechaTerminoSubasta = dtpFechaTerminoSubasta.getDate();
-       // String est = txtEstado.getText();
+        // String est = txtEstado.getText();
         boolean estado = true;
-        if (rbtnVigente.isSelected()){
+        if (rbtnVigente.isSelected()) {
             estado = true;
-        }else { if (rbtnNoVigente.isSelected()){
-            estado = false;
-        }}
+        } else {
+            if (rbtnNoVigente.isSelected()) {
+                estado = false;
+            }
+        }
         RespuestaSubasta creacionSubasta = new RespuestaSubasta();
         Subasta subasta = new Subasta();
-       
-        
-            String pattern = "dd/MM/yyyy";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
-            String inicio = simpleDateFormat.format(fechaSubasta);
-            String fin = simpleDateFormat.format(FechaTerminoSubasta);
-        
-        
-        
-        
+        String pattern = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        String inicio = simpleDateFormat.format(fechaSubasta);
+        String fin = simpleDateFormat.format(FechaTerminoSubasta);
+
         try {
             fechaSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(inicio);
-            //fechaSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(picker.getDate().toString());
             FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fin);
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-      
+
         subasta.setIdSubasta(idsubasta);
         subasta.setFechaSubasta(fechaSubasta);
-        subasta.setFechaTermino(FechaTerminoSubasta); 
+        subasta.setFechaTermino(FechaTerminoSubasta);
         subasta.setEstado(estado);
         subasta.setIdProceso(idProceso);
-        
+
         creacionSubasta = SubastaController.crearModificarSubasta(subasta);
-        showMessageDialog(null, creacionSubasta.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
-        
+        showMessageDialog(null, creacionSubasta.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
+
         RespuestaSubastaListar listaSubasta = new RespuestaSubastaListar();
         listaSubasta = SubastaController.listarSubasta();
-                
-         if(listaSubasta.isExito()){
-             
-        //Predicate<Proceso> byEstado = proceso -> proceso.getEstadoProceso().equals("EN_PROCESO");  
-        List<Subasta> subastas = listaSubasta.getSubastas();//new ArrayList<>();
-        TMSubasta modelo;
-        modelo = new TMSubasta(subastas);
-        tblDetalleSubasta.setModel(modelo);
-         }else
-         {
-         //showMessageDialog(null, "no hay subastas","Información",JOptionPane.WARNING_MESSAGE);
-         }
-        
+
+        if (listaSubasta.isExito()) {
+
+            List<Subasta> subastas = listaSubasta.getSubastas();//new ArrayList<>();
+            TMSubasta modelo;
+            modelo = new TMSubasta(subastas);
+            tblDetalleSubasta.setModel(modelo);
+        } else {
+        }
+
         limpiar();
-       
+
     }
 
+    /**
+     * Método para dar de baja una subasta
+     */
     private void bajarSubasta() {
 
         int idsubasta = Integer.valueOf(txtIdSubasta.getText());
@@ -927,104 +854,98 @@ private void modificarSubasta() {
         Date FechaTerminoSubasta = dtpFechaTerminoSubasta.getDate();
         RespuestaSubasta creacionSubasta = new RespuestaSubasta();
         Subasta subasta = new Subasta();
-       
-            String pattern = "dd/MM/yyyy";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
-            String inicio = simpleDateFormat.format(fechaSubasta);
-            String fin = simpleDateFormat.format(FechaTerminoSubasta);
-        
-        
+        String pattern = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        String inicio = simpleDateFormat.format(fechaSubasta);
+        String fin = simpleDateFormat.format(FechaTerminoSubasta);
+
         try {
             fechaSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(inicio);
             FechaTerminoSubasta = new SimpleDateFormat("dd/MM/yyyy").parse(fin);
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         subasta.setIdSubasta(idsubasta);
         subasta.setFechaSubasta(fechaSubasta);
-        subasta.setFechaTermino(FechaTerminoSubasta); 
+        subasta.setFechaTermino(FechaTerminoSubasta);
         subasta.setEstado(false);
         subasta.setIdProceso(idProceso);
-        
+
         creacionSubasta = SubastaController.crearModificarSubasta(subasta);
-        showMessageDialog(null, creacionSubasta.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
-        
-        
+        showMessageDialog(null, creacionSubasta.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
+
         RespuestaSubastaListar listaSubasta = new RespuestaSubastaListar();
         listaSubasta = SubastaController.listarSubasta();
-                
-         if(listaSubasta.isExito()){
-             
-        //Predicate<Proceso> byEstado = proceso -> proceso.getEstadoProceso().equals("EN_PROCESO");  
-        List<Subasta> subastas = listaSubasta.getSubastas();//new ArrayList<>();
-        TMSubasta modelo;
-        modelo = new TMSubasta(subastas);
-        tblDetalleSubasta.setModel(modelo);
-         }else
-         {
-         //showMessageDialog(null, "no hay subastas","Información",JOptionPane.WARNING_MESSAGE);
-         }
-        
+
+        if (listaSubasta.isExito()) {
+
+            List<Subasta> subastas = listaSubasta.getSubastas();//new ArrayList<>();
+            TMSubasta modelo;
+            modelo = new TMSubasta(subastas);
+            tblDetalleSubasta.setModel(modelo);
+        } else {
+        }
+
         limpiar();
 
     }
 
+    /**
+     * Método para Buscar un Proceso
+     */
     private void buscarProceso() {
-        
-        
-        TMProcesoSubasta tm =  (TMProcesoSubasta)tblProceso.getModel();
+
+        TMProcesoSubasta tm = (TMProcesoSubasta) tblProceso.getModel();
         TableRowSorter<TMProcesoSubasta> tr = new TableRowSorter<TMProcesoSubasta>(tm);
         tblProceso.setRowSorter(tr);
         String query = txtIdProceso1.getText();
         tr.setRowFilter(RowFilter.regexFilter("^(?i)" + query, 0));
-      
-        if (tblProceso.getRowCount() < 1){
-         showMessageDialog(null, "No existen procesos  ","Información",JOptionPane.WARNING_MESSAGE);
-         
-        tblDetalleSubasta.clearSelection();
-        
-        setearBotones();
+
+        if (tblProceso.getRowCount() < 1) {
+            showMessageDialog(null, "No existen procesos  ", "Información", JOptionPane.WARNING_MESSAGE);
+
+            tblDetalleSubasta.clearSelection();
+
+            setearBotones();
         }
-        
-        
+
     }
-    
-    
+
     private void setearBotones() {
-        
+
         btnCrearSubastaTransporte.setEnabled(false);
         btnModificarSubastaTransporte.setEnabled(false);
         btnBuscarProceso.setEnabled(false);
-        
+
     }
 
     private void metodoBtnBuscarSubasta() {
         btnBuscarProceso.setEnabled(true);
     }
 
+    /**
+     * Método para buscar subasta por Id Proceso
+     */
     private void buscarSubastaPorIdProceso() {
-           int i = tblProceso.getSelectedRow();
-           TableModel model = tblProceso.getModel();
-           int idProceso = Integer.parseInt(model.getValueAt(i,0).toString()); 
-           
-           RespuestaSubastaListar listaSubasta = new RespuestaSubastaListar();
-           listaSubasta = SubastaController.listaSubastaById(idProceso);
-           if(listaSubasta.isExito()){
-             
-      
-        List<Subasta> subastas = listaSubasta.getSubastas();
-        TMSubasta modelo;
-        modelo = new TMSubasta(subastas);
-        tblDetalleSubasta.setModel(modelo);
-         }else
-         {
-        showMessageDialog(null, "No existen subastas asociadas al Proceso seleccionado ","Información",JOptionPane.WARNING_MESSAGE);
-         }
-    }
+        int i = tblProceso.getSelectedRow();
+        TableModel model = tblProceso.getModel();
+        int idProceso = Integer.parseInt(model.getValueAt(i, 0).toString());
 
-    
+        RespuestaSubastaListar listaSubasta = new RespuestaSubastaListar();
+        listaSubasta = SubastaController.listaSubastaById(idProceso);
+        if (listaSubasta.isExito()) {
+
+            List<Subasta> subastas = listaSubasta.getSubastas();
+            TMSubasta modelo;
+            modelo = new TMSubasta(subastas);
+            tblDetalleSubasta.setModel(modelo);
+        } else {
+            showMessageDialog(null, "No existen subastas asociadas al Proceso seleccionado ", "Información", JOptionPane.WARNING_MESSAGE);
+        }
+    }
 
 }

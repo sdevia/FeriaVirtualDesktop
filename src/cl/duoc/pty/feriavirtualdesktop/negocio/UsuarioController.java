@@ -19,10 +19,16 @@ import java.util.List;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class UsuarioController {
 
+    /**
+     * Método que realiza la conexión a la API y devuelve una Lista de Usuarios
+     *
+     * @param idUsuario
+     * @return
+     */
     public static RespuestaUsuarioListar buscarUsuario(String idUsuario) {
 
         RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
@@ -34,11 +40,7 @@ public class UsuarioController {
             List<Parametro> parametros = new ArrayList<Parametro>();
             String resultado = "";
             Gson g = new Gson();
-
-            //Si 
-            //Validar si el campo idUsuario no está vacio o que no sea nulo
             if (idUsuario != null && !idUsuario.isEmpty()) {
-                //parametros.add(new Parametro("idSession", "session"));
                 parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
                 resultado = servicioApi.Get("Usuario/" + idUsuario, parametros);
 
@@ -65,7 +67,7 @@ public class UsuarioController {
                         listaUsuario = formatearUsuario(listaUsuario);
                     }
                 }
-            }  // conn.disconnect();
+            }
 
             if (resultado == null) {
                 listaUsuario.setExito(false);
@@ -80,6 +82,12 @@ public class UsuarioController {
         return listaUsuario;
     }
 
+    /**
+     * Método que realiza envía parámetros actualizados a la API de un Usuario
+     *
+     * @param usuario
+     * @return
+     */
     public static RespuestaUsuario actualizarUsuario(Usuario usuario) {
 
         RespuestaUsuario ru = new RespuestaUsuario();
@@ -116,12 +124,16 @@ public class UsuarioController {
             }
         } catch (Exception e) {
             System.out.println("Se ha producido un error al obtener la información " + e);
-
-            //throw new Error y eso mostrarlo en un componente
         }
         return ru;
     }
 
+    /**
+     * Método que da formato a los datos de los usuarios para ser visualizados
+     *
+     * @param listaUsuario
+     * @return
+     */
     private static RespuestaUsuarioListar formatearUsuario(RespuestaUsuarioListar listaUsuario) {
         List<Usuario> lu = new ArrayList<Usuario>();
         for (Usuario u : listaUsuario.getUsuarios()) {
@@ -160,6 +172,13 @@ public class UsuarioController {
         return listaUsuario;
     }
 
+    /**
+     * Método que da formato a los datos de los usuarios para ser enviados a la
+     * API
+     *
+     * @param ru
+     * @return
+     */
     private static RespuestaUsuario formatearActualizar(RespuestaUsuario ru) {
 
         ru.getUsuario().setRut(ValidacionRut.FormatearRUT(ru.getUsuario().getRut()));
@@ -174,7 +193,7 @@ public class UsuarioController {
         if (ru.getUsuario().getCambiaClave() == "true") {
             ru.getUsuario().setCambiaClave("Si");
         } else {
-           ru.getUsuario().setCambiaClave("No");
+            ru.getUsuario().setCambiaClave("No");
         }
 
         if (ru.getUsuario().getEstado() == "true") {

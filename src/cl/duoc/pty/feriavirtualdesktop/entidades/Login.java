@@ -7,12 +7,12 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class Login {
-    
-    private String rut; 
-    private String clave; 
+
+    private String rut;
+    private String clave;
     private int tipoPerfil;
 
     public Login() {
@@ -48,6 +48,4 @@ public class Login {
         this.tipoPerfil = tipoPerfil;
     }
 
-   
-    
 }

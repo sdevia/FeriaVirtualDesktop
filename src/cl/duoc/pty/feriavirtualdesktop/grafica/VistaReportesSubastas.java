@@ -7,7 +7,7 @@ package cl.duoc.pty.feriavirtualdesktop.grafica;
 
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class VistaReportesSubastas extends javax.swing.JPanel {
 

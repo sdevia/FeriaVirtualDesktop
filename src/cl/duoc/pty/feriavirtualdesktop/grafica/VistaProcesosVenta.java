@@ -23,90 +23,83 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.TableModel;
 
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class VistaProcesosVenta extends javax.swing.JPanel {
+
     private RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
+
     /**
      * Creates new form VistaProcesosVenta
      */
-    
     public VistaProcesosVenta() {
         initComponents();
         inicializarTabla();
         listarOrdenes();
-        //listarProcesos();
         setearBotones();
         listenerOrden();
         dtpFechaFinProceso.getMonthView().setLowerBound(new Date());
 
     }
-    
+
     private void inicializarTabla() {
         List<Orden> ordenes = new ArrayList<>();
-        TMOrden modelo;           
+        TMOrden modelo;
         modelo = new TMOrden(ordenes);
 
-        
-        tblOrdenes.setModel(modelo); 
+        tblOrdenes.setModel(modelo);
     }
-    
+
     private void setearBotones() {
-        
+
         btnFirmarOrden.setEnabled(false);
         btnCrearProceso.setEnabled(false);
         btnModificarProceso.setEnabled(false);
         btnAnularProceso.setEnabled(false);
-        
+
     }
-    
+
     private void listarOrdenes() {
         RespuestaOrdenListar listaOrden = new RespuestaOrdenListar();
-    
+
         listaOrden = OrdenController.listarOrden();
 
         TMOrden modelo;
         modelo = new TMOrden(listaOrden.getOrdenes());
 
         tblOrdenes.setModel(modelo);
-        
+
         tblOrdenes.removeColumn(tblOrdenes.getColumnModel().getColumn(6));
         tblOrdenes.removeColumn(tblOrdenes.getColumnModel().getColumn(6));
         tblOrdenes.removeColumn(tblOrdenes.getColumnModel().getColumn(3));
         tblOrdenes.removeColumn(tblOrdenes.getColumnModel().getColumn(2));
     }
-    
+
     private void listarProcesos() {
         RespuestaProcesoListar listaProceso = new RespuestaProcesoListar();
-    
+
         listaProceso = ProcesoController.listarProceso();
 
         TMProceso modelo;
         modelo = new TMProceso(listaProceso.getProcesos());
 
         tblProcesos.setModel(modelo);
-        
+
         tblProcesos.removeColumn(tblProcesos.getColumnModel().getColumn(8));
     }
-    
+
     private void limpiarCampos() {
         txtIdOrden.setText("");
         txtCliente.setText("");
@@ -122,6 +115,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         txtIdUsuario.setText("");
         dtpFechaFinProceso.setDate(null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -670,80 +664,77 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         txtPagoServicio.setText("");
         txtIdUsuario.setText("");
         dtpFechaFinProceso.setDate(null);
-        
+
         setearBotones();
-        
-                
+
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnModificarProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProcesoActionPerformed
-        if(txtIdOrden.getText().isEmpty() ||
-                txtComision.getText().isEmpty() ||
-                txtAduana.getText().isEmpty() ||
-                txtPagoServicio.getText().isEmpty()) {
-            
-        showMessageDialog(null, "Hay campos vacíos","Información",JOptionPane.WARNING_MESSAGE);
-        
-        } 
-        
-        else {
-            
-        RespuestaProceso modificarProceso = new RespuestaProceso();
-        Proceso proceso = new Proceso();
-        
-        Date fechaProceso = new Date();
-        Date fechaFinProceso = dtpFechaFinProceso.getDate();
-        
-        try {
-            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinProceso.toString());
-            fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
-        } catch (ParseException ex) {
-            System.out.println("Error "+ex);
-        }
-        
-        proceso.setIdProceso(Integer.valueOf(txtIdProceso.getText()));
-        proceso.setIdUsuario(1);
-        proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
-        proceso.setComision(Integer.valueOf(txtComision.getText()));
-        proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
-        proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
-        proceso.setPagoTransportista(Integer.valueOf(txtPagoTransportista.getText()));
-        proceso.setEstadoProceso(txtEstadoProceso.getText());
-        proceso.setFechaProceso(fechaProceso);
-        proceso.setFechaFinProceso(fechaFinProceso);
-        
-        modificarProceso = ProcesoController.crearModificarProceso(proceso);
-        
-        showMessageDialog(null, modificarProceso.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
-        limpiarCampos();
-        btnActualizarOrdenesProcesos.doClick();
-        btnModificarProceso.setEnabled(false);
-        txtIdOrden.setEditable(true);
+        if (txtIdOrden.getText().isEmpty()
+                || txtComision.getText().isEmpty()
+                || txtAduana.getText().isEmpty()
+                || txtPagoServicio.getText().isEmpty()) {
+
+            showMessageDialog(null, "Hay campos vacíos", "Información", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+
+            RespuestaProceso modificarProceso = new RespuestaProceso();
+            Proceso proceso = new Proceso();
+
+            Date fechaProceso = new Date();
+            Date fechaFinProceso = dtpFechaFinProceso.getDate();
+
+            try {
+                fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinProceso.toString());
+                fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
+            } catch (ParseException ex) {
+                System.out.println("Error " + ex);
+            }
+
+            proceso.setIdProceso(Integer.valueOf(txtIdProceso.getText()));
+            proceso.setIdUsuario(1);
+            proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
+            proceso.setComision(Integer.valueOf(txtComision.getText()));
+            proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
+            proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
+            proceso.setPagoTransportista(Integer.valueOf(txtPagoTransportista.getText()));
+            proceso.setEstadoProceso(txtEstadoProceso.getText());
+            proceso.setFechaProceso(fechaProceso);
+            proceso.setFechaFinProceso(fechaFinProceso);
+
+            modificarProceso = ProcesoController.crearModificarProceso(proceso);
+
+            showMessageDialog(null, modificarProceso.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
+            limpiarCampos();
+            btnActualizarOrdenesProcesos.doClick();
+            btnModificarProceso.setEnabled(false);
+            txtIdOrden.setEditable(true);
         }
     }//GEN-LAST:event_btnModificarProcesoActionPerformed
 
     private void tblOrdenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdenesMouseClicked
-        
+
         buscarProcesoPorIdOrden();
         txtIdOrden.setEditable(false);
         int i = tblOrdenes.getSelectedRow();
         TableModel model = tblOrdenes.getModel();
-        
-        txtIdOrden.setText(model.getValueAt(i,0).toString());
-        txtIdUsuario.setText(model.getValueAt(i,6).toString());
-        txtFechaOrden.setText(model.getValueAt(i,1).toString());
-        txtEstadoOrden.setText(model.getValueAt(i,4).toString());
-        
+
+        txtIdOrden.setText(model.getValueAt(i, 0).toString());
+        txtIdUsuario.setText(model.getValueAt(i, 6).toString());
+        txtFechaOrden.setText(model.getValueAt(i, 1).toString());
+        txtEstadoOrden.setText(model.getValueAt(i, 4).toString());
+
         listaUsuario = UsuarioController.buscarUsuario(txtIdUsuario.getText());
         Usuario usuario = new Usuario();
         usuario = listaUsuario.getUsuarios().get(0);
-        txtCliente.setText(usuario.getNombre()+" "+usuario.getApellido());
-        
-        if("PENDIENTE".equals(txtEstadoOrden.getText())) {
-        
+        txtCliente.setText(usuario.getNombre() + " " + usuario.getApellido());
+
+        if ("PENDIENTE".equals(txtEstadoOrden.getText())) {
+
             btnFirmarOrden.setEnabled(true);
-        }
-        else {
+        } else {
             btnFirmarOrden.setEnabled(false);
             btnCrearProceso.setEnabled(true);
         }
@@ -763,10 +754,10 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
 
     private void btnFirmarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirmarOrdenActionPerformed
         RespuestaFirmarOrden firmaOrden = new RespuestaFirmarOrden();
-                
+
         firmaOrden = OrdenController.firmarOrden(txtIdOrden.getText());
-        
-        showMessageDialog(null, firmaOrden.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
+
+        showMessageDialog(null, firmaOrden.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
         btnFirmarOrden.setEnabled(false);
         limpiarCampos();
         txtIdOrden.setEditable(true);
@@ -774,147 +765,141 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnFirmarOrdenActionPerformed
 
     private void tblProcesosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProcesosMouseClicked
-        
+
         setearBotones();
         btnCrearProceso.setEnabled(false);
         txtIdOrden.setEditable(false);
 
-        if("ANULADO".equals(txtEstadoProceso.getText())) {
+        if ("ANULADO".equals(txtEstadoProceso.getText())) {
             btnModificarProceso.setEnabled(false);
         } else {
             btnModificarProceso.setEnabled(true);
         }
-            
-        try { 
+
+        try {
             int i = tblProcesos.getSelectedRow();
             TableModel model = tblProcesos.getModel();
 
-            String fechaFinString = model.getValueAt(i,9).toString();
+            String fechaFinString = model.getValueAt(i, 9).toString();
             Date fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinString);
 
-            txtIdOrden.setText(model.getValueAt(i,0).toString());
-            txtIdProceso.setText(model.getValueAt(i,1).toString());
-            txtAduana.setText(model.getValueAt(i,6).toString());
-            txtPagoServicio.setText(model.getValueAt(i,3).toString());
-            txtPagoTransportista.setText(model.getValueAt(i,4).toString());
-            txtFechaProceso.setText(model.getValueAt(i,5).toString());
-            txtEstadoProceso.setText(model.getValueAt(i,2).toString());
-            txtComision.setText(model.getValueAt(i,7).toString());
+            txtIdOrden.setText(model.getValueAt(i, 0).toString());
+            txtIdProceso.setText(model.getValueAt(i, 1).toString());
+            txtAduana.setText(model.getValueAt(i, 6).toString());
+            txtPagoServicio.setText(model.getValueAt(i, 3).toString());
+            txtPagoTransportista.setText(model.getValueAt(i, 4).toString());
+            txtFechaProceso.setText(model.getValueAt(i, 5).toString());
+            txtEstadoProceso.setText(model.getValueAt(i, 2).toString());
+            txtComision.setText(model.getValueAt(i, 7).toString());
             dtpFechaFinProceso.setDate(fechaFinProceso);
 
-            if(!"ANULADO".equals(txtEstadoProceso.getText())) {
+            if (!"ANULADO".equals(txtEstadoProceso.getText())) {
                 btnAnularProceso.setEnabled(true);
             }
-        
+
         } catch (ParseException ex) {
             Logger.getLogger(VistaGestionSubastaTransporte.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_tblProcesosMouseClicked
 
     private void btnBuscarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOrdenActionPerformed
-        
-       RespuestaOrden orden = new RespuestaOrden();
-                
-       orden = OrdenController.buscarOrden(txtIdOrden.getText()); 
-       String valor = null;
-       if(orden.isExito()) {
-           SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-           valor = sdf.format(orden.getOrden().getFechaOrden());
+
+        RespuestaOrden orden = new RespuestaOrden();
+
+        orden = OrdenController.buscarOrden(txtIdOrden.getText());
+        String valor = null;
+        if (orden.isExito()) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            valor = sdf.format(orden.getOrden().getFechaOrden());
             txtFechaOrden.setText(valor.toString());
             txtEstadoOrden.setText(orden.getOrden().getEstado());
             txtIdUsuario.setText(String.valueOf(orden.getOrden().getIdClienteExterno()));
 
-             if("PENDIENTE".equals(txtEstadoOrden.getText())) {
+            if ("PENDIENTE".equals(txtEstadoOrden.getText())) {
 
-                 btnFirmarOrden.setEnabled(true);
-             }
-             else {
-                 btnFirmarOrden.setEnabled(false);
-                 btnCrearProceso.setEnabled(true);
-             }   
-       }
-       else {
-           limpiarCampos();
-           setearBotones();
-           showMessageDialog(null, orden.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
-       }
+                btnFirmarOrden.setEnabled(true);
+            } else {
+                btnFirmarOrden.setEnabled(false);
+                btnCrearProceso.setEnabled(true);
+            }
+        } else {
+            limpiarCampos();
+            setearBotones();
+            showMessageDialog(null, orden.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnBuscarOrdenActionPerformed
 
     private void txtEstadoOrdenInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtEstadoOrdenInputMethodTextChanged
-         
+
     }//GEN-LAST:event_txtEstadoOrdenInputMethodTextChanged
 
     private void btnCrearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProcesoActionPerformed
-       
+
         dtpFechaFinProceso.getMonthView().setLowerBound(new Date());
-        if(txtIdOrden.getText().isEmpty() ||
-                txtComision.getText().isEmpty() ||
-                txtAduana.getText().isEmpty() ||
-                txtPagoServicio.getText().isEmpty() ||
-                dtpFechaFinProceso.getDate() == null) {
-            
-        showMessageDialog(null, "Hay campos vacíos","Información",JOptionPane.WARNING_MESSAGE);
+        if (txtIdOrden.getText().isEmpty()
+                || txtComision.getText().isEmpty()
+                || txtAduana.getText().isEmpty()
+                || txtPagoServicio.getText().isEmpty()
+                || dtpFechaFinProceso.getDate() == null) {
+
+            showMessageDialog(null, "Hay campos vacíos", "Información", JOptionPane.WARNING_MESSAGE);
 
         } else {
-        RespuestaProceso creacionProceso = new RespuestaProceso();
-        Proceso proceso = new Proceso();
-        
-        Date fechaProceso = new Date();
-        Date fechaFinProceso = dtpFechaFinProceso.getDate();
-        
-        try {
-            fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinProceso.toString());
-            fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
-        } catch (ParseException ex) {
-            System.out.println("Error "+ex);
-        }
-        
-        proceso.setIdProceso(0);
-        proceso.setIdUsuario(1);
-        proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
-        proceso.setComision(Integer.valueOf(txtComision.getText()));
-        proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
-        proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
-        proceso.setPagoTransportista(0);
-        proceso.setEstadoProceso("PENDIENTE");
-        proceso.setFechaProceso(fechaProceso);
-        //TODO agregar calendario
-        proceso.setFechaFinProceso(fechaFinProceso);
-        
-        creacionProceso = ProcesoController.crearModificarProceso(proceso);
-        
-        showMessageDialog(null, creacionProceso.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
-        limpiarCampos();
-        btnCrearProceso.setEnabled(false);
-        btnActualizarOrdenesProcesos.doClick();
-        txtIdOrden.setEditable(true);
+            RespuestaProceso creacionProceso = new RespuestaProceso();
+            Proceso proceso = new Proceso();
+
+            Date fechaProceso = new Date();
+            Date fechaFinProceso = dtpFechaFinProceso.getDate();
+
+            try {
+                fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinProceso.toString());
+                fechaProceso = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaProceso.getText());
+            } catch (ParseException ex) {
+                System.out.println("Error " + ex);
+            }
+
+            proceso.setIdProceso(0);
+            proceso.setIdUsuario(1);
+            proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
+            proceso.setComision(Integer.valueOf(txtComision.getText()));
+            proceso.setValorAduana(Integer.valueOf(txtAduana.getText()));
+            proceso.setPagoPorServicio(Integer.valueOf(txtPagoServicio.getText()));
+            proceso.setPagoTransportista(0);
+            proceso.setEstadoProceso("PENDIENTE");
+            proceso.setFechaProceso(fechaProceso);
+            //TODO agregar calendario
+            proceso.setFechaFinProceso(fechaFinProceso);
+
+            creacionProceso = ProcesoController.crearModificarProceso(proceso);
+
+            showMessageDialog(null, creacionProceso.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
+            limpiarCampos();
+            btnCrearProceso.setEnabled(false);
+            btnActualizarOrdenesProcesos.doClick();
+            txtIdOrden.setEditable(true);
         }
     }//GEN-LAST:event_btnCrearProcesoActionPerformed
 
     private void btnActualizarOrdenesProcesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarOrdenesProcesosActionPerformed
         listarOrdenes();
-        listarProcesos();     
+        listarProcesos();
     }//GEN-LAST:event_btnActualizarOrdenesProcesosActionPerformed
 
     private void btnAnularProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularProcesoActionPerformed
         RespuestaProceso anularProceso = new RespuestaProceso();
         Proceso proceso = new Proceso();
-        
+
         Date fechaProceso = new Date();
         Date fechaFinProceso = dtpFechaFinProceso.getDate();
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z YYYY");
-        //ZonedDateTime today = ZonedDateTime.now();
-        
-        
+
         try {
-            //today = ZonedDateTime.parse(txtFechaFinProceso.getText(), formatter).plusMonths(1);
             fechaFinProceso = new SimpleDateFormat("dd/MM/yyyy").parse(fechaFinProceso.toString());
             fechaProceso = new SimpleDateFormat("EEE MMM dd HH:mm:ss z YYYY", Locale.ENGLISH).parse(txtFechaProceso.getText());
         } catch (ParseException ex) {
-            System.out.println("Error "+ex);
+            System.out.println("Error " + ex);
         }
-        
+
         proceso.setIdProceso(Integer.valueOf(txtIdProceso.getText()));
         proceso.setIdUsuario(1);
         proceso.setIdOrden(Integer.valueOf(txtIdOrden.getText()));
@@ -924,12 +909,11 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
         proceso.setPagoTransportista(Integer.valueOf(txtPagoTransportista.getText()));
         proceso.setEstadoProceso("ANULADO");
         proceso.setFechaProceso(fechaProceso);
-        //TODO agregar calendario
         proceso.setFechaFinProceso(fechaFinProceso);
-        
+
         anularProceso = ProcesoController.crearModificarProceso(proceso);
-        
-        showMessageDialog(null, anularProceso.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
+
+        showMessageDialog(null, anularProceso.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
         limpiarCampos();
         btnAnularProceso.setEnabled(false);
         btnModificarProceso.setEnabled(false);
@@ -940,15 +924,14 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
 
     private void btnCerrarProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarProcesoActionPerformed
         boolean cerrarProceso;
-        
+
         cerrarProceso = ProcesoController.cerrarProceso(Integer.valueOf(txtIdProceso.getText()));
-        if(cerrarProceso) {
-            showMessageDialog(null,"El proceso fue cerrado anticipadamente" ,"Información",JOptionPane.WARNING_MESSAGE);
-        }  
-        else {
-            showMessageDialog(null,"El proceso no pudo ser cerrado" ,"Información",JOptionPane.WARNING_MESSAGE);
+        if (cerrarProceso) {
+            showMessageDialog(null, "El proceso fue cerrado anticipadamente", "Información", JOptionPane.WARNING_MESSAGE);
+        } else {
+            showMessageDialog(null, "El proceso no pudo ser cerrado", "Información", JOptionPane.WARNING_MESSAGE);
         }
-        
+
         limpiarCampos();
         btnAnularProceso.setEnabled(false);
         btnModificarProceso.setEnabled(false);
@@ -957,15 +940,10 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCerrarProcesoActionPerformed
 
     private void txtIdOrdenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdOrdenKeyPressed
-        /*try {
-            int i = Integer.parseInt(txtIdOrden.getText());
-            test.setText("");
-        } catch (NumberFormatException e) {
-            test.setText("Numero invalido");
-        }*/
+
     }//GEN-LAST:event_txtIdOrdenKeyPressed
 
-        public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1047,23 +1025,21 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void buscarProcesoPorIdOrden() {
-           int i = tblOrdenes.getSelectedRow();
-           TableModel model = tblOrdenes.getModel();
-           int idOrden = Integer.parseInt(model.getValueAt(i,0).toString()); 
-           
-           RespuestaProcesoListar listaProceso = new RespuestaProcesoListar();
-           listaProceso = ProcesoController.listaProcesoById(idOrden);
-           if(listaProceso.isExito()){
-             
-      
-        List<Proceso> procesos = listaProceso.getProcesos();
-        TMProceso modelo;
-        modelo = new TMProceso(procesos);
-        tblProcesos.setModel(modelo);
-         }else
-         {
-            showMessageDialog(null, "No existen procesos asociados a la Orden seleccionada ","Información",JOptionPane.WARNING_MESSAGE);
-         }
+        int i = tblOrdenes.getSelectedRow();
+        TableModel model = tblOrdenes.getModel();
+        int idOrden = Integer.parseInt(model.getValueAt(i, 0).toString());
+
+        RespuestaProcesoListar listaProceso = new RespuestaProcesoListar();
+        listaProceso = ProcesoController.listaProcesoById(idOrden);
+        if (listaProceso.isExito()) {
+
+            List<Proceso> procesos = listaProceso.getProcesos();
+            TMProceso modelo;
+            modelo = new TMProceso(procesos);
+            tblProcesos.setModel(modelo);
+        } else {
+            showMessageDialog(null, "No existen procesos asociados a la Orden seleccionada ", "Información", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void listenerOrden() {
@@ -1075,7 +1051,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                 } else {
                     lblValidacionIdOrden.setText("");
                 }
-                    
+
             }
 
             public void keyReleased(KeyEvent e) {
@@ -1085,7 +1061,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
             public void keyPressed(KeyEvent e) {
             }
         });
-        
+
         txtComision.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
                 if (Character.isLetter(e.getKeyChar())) {
@@ -1094,7 +1070,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                 } else {
                     lblValidacionComision.setText("");
                 }
-                    
+
             }
 
             public void keyReleased(KeyEvent e) {
@@ -1104,7 +1080,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
             public void keyPressed(KeyEvent e) {
             }
         });
-        
+
         txtAduana.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
                 if (Character.isLetter(e.getKeyChar())) {
@@ -1113,7 +1089,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                 } else {
                     lblValidacionAduana.setText("");
                 }
-                    
+
             }
 
             public void keyReleased(KeyEvent e) {
@@ -1123,7 +1099,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
             public void keyPressed(KeyEvent e) {
             }
         });
-        
+
         txtPagoServicio.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
                 if (Character.isLetter(e.getKeyChar())) {
@@ -1132,7 +1108,7 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
                 } else {
                     lblValidacionPagoServicio.setText("");
                 }
-                    
+
             }
 
             public void keyReleased(KeyEvent e) {
@@ -1142,5 +1118,5 @@ public class VistaProcesosVenta extends javax.swing.JPanel {
             public void keyPressed(KeyEvent e) {
             }
         });
-        }           
+    }
 }

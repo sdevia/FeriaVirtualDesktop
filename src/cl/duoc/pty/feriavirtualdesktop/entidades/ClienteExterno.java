@@ -7,7 +7,7 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class ClienteExterno {
     

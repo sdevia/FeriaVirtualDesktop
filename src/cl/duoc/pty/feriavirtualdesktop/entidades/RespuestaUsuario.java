@@ -5,11 +5,9 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.entidades;
 
-import java.util.List;
-
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class RespuestaUsuario {
 
@@ -33,7 +31,7 @@ public class RespuestaUsuario {
     public void setUsuario(Usuario Usuario) {
         this.Usuario = Usuario;
     }
-   
+
     public boolean isExito() {
         return Exito;
     }
@@ -50,5 +48,4 @@ public class RespuestaUsuario {
         this.Mensaje = Mensaje;
     }
 
-  
 }

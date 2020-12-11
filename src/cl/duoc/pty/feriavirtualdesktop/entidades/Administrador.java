@@ -5,11 +5,9 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.entidades;
 
-import java.io.Serializable;
-
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class Administrador {
 

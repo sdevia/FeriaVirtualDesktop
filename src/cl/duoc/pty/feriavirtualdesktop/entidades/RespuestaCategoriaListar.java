@@ -9,9 +9,10 @@ import java.util.List;
 
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class RespuestaCategoriaListar {
+
     private boolean Exito;
     private String Mensaje;
     private List<Categoria> Categorias;
@@ -48,7 +49,5 @@ public class RespuestaCategoriaListar {
     public void setCategorias(List<Categoria> Categorias) {
         this.Categorias = Categorias;
     }
-    
-    
-    
+
 }

@@ -13,6 +13,7 @@ import java.util.List;
  * @author Eduardo
  */
 public class OrdenProcesoEtapa {
+
     private int IdOrden;
     private Date FechaOrden;
     private boolean FirmaContrato;
@@ -239,6 +240,5 @@ public class OrdenProcesoEtapa {
     public void setObservacion(String Observacion) {
         this.Observacion = Observacion;
     }
-    
-    
+
 }

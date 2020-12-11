@@ -7,14 +7,15 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 /**
  *
- * @author Administrator
+ * @author Katherine
  */
 public class RespuestaFirmarOrden {
-        private boolean Exito;
-        private String Mensaje;
-        
+
+    private boolean Exito;
+    private String Mensaje;
+
     public RespuestaFirmarOrden() {
-    
+
     }
 
     public RespuestaFirmarOrden(boolean Exito, String Mensaje) {

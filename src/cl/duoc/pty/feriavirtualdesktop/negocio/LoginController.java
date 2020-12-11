@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class LoginController {
 
@@ -31,10 +31,9 @@ public class LoginController {
 
         boolean accesoCorrecto = false;
         Administrador admin = new Administrador();
-        
+
         try {
 
-            //Aqui ponemos loginca para conectarnos a la api
             TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
                 public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                     return null;
@@ -50,20 +49,16 @@ public class LoginController {
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, trustAllCerts, new java.security.SecureRandom());
             HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-            // Create all-trusting host name verifier
             HostnameVerifier allHostsValid = new HostnameVerifier() {
                 public boolean verify(String hostname, SSLSession session) {
                     return true;
                 }
             };
-            // Install the all-trusting host verifier
             HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-            /* End of the fix*/
 
-            URL url = new URL("https://localhost:44302/api/login");//your url i.e fetch data from .
+            URL url = new URL("https://localhost:44302/api/login");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
-            //conn.setDoInput(true);
             conn.setRequestProperty("Content-Type", "application/json;charset=UTF-16");
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Accept", "application/json");
@@ -82,22 +77,17 @@ public class LoginController {
             StringBuilder data = new StringBuilder();
             String output;
             while ((output = br.readLine()) != null) {
-                data.append(output + '\n');         
+                data.append(output + '\n');
             }
-
-            // 
-
-           
             Gson g = new Gson();
             String jsonString = g.toJson(admin);
             admin = g.fromJson(data.toString(), Administrador.class);
 
             if (admin != null) {
-                if(admin.isExito()){
-                    accesoCorrecto = true;         
+                if (admin.isExito()) {
+                    accesoCorrecto = true;
                 }
-
-            } 
+            }
             conn.disconnect();
 
         } catch (Exception e) {

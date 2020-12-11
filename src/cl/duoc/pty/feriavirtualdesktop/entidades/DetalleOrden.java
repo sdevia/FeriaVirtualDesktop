@@ -7,7 +7,7 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 /**
  *
- * @author Administrator
+ * @author Katherine
  */
 class DetalleOrden {
     

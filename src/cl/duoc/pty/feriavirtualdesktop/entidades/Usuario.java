@@ -5,13 +5,9 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.entidades;
 
-import java.util.List;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
-
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class Usuario {
 
@@ -202,5 +198,4 @@ public class Usuario {
         this.EstadoEdit = EstadoEdit;
     }
 
-    
 }

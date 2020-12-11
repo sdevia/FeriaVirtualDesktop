@@ -7,21 +7,22 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 /**
  *
- * @author Administrator
+ * @author Katherine
  */
 public class RespuestaProceso {
+
     private boolean Exito;
     private String Mensaje;
     private Proceso Proceso;
 
     public RespuestaProceso() {
-        
+
     }
-    
+
     public RespuestaProceso(boolean Exito, String Mensaje, Proceso Proceso) {
-    this.Exito = Exito;
-    this.Mensaje = Mensaje;
-    this.Proceso = Proceso;
+        this.Exito = Exito;
+        this.Mensaje = Mensaje;
+        this.Proceso = Proceso;
     }
 
     public boolean isExito() {
@@ -47,7 +48,5 @@ public class RespuestaProceso {
     public void setProceso(Proceso Proceso) {
         this.Proceso = Proceso;
     }
-    
-    
-    
+
 }

@@ -9,9 +9,10 @@ import java.util.Date;
 
 /**
  *
- * @author Administrator
+ * @author Katherine
  */
 public class Proceso {
+
     private int IdProceso;
     private int Comision;
     private int ValorAduana;
@@ -23,9 +24,9 @@ public class Proceso {
     private int IdOrden;
     private int IdUsuario;
     private Date FechaMaxSubasta;
-    
+
     public Proceso() {
-        
+
     }
 
     public Proceso(int IdProceso, int Comision, int ValorAduana, int PagoPorServicio, int PagoTransportista, Date FechaProceso, Date FechaFinProceso, String EstadoProceso, int IdOrden, int IdUsuario, Date FechaMaxSubasta) {
@@ -121,15 +122,13 @@ public class Proceso {
     public void setIdUsuario(int IdUsuario) {
         this.IdUsuario = IdUsuario;
     }
-    
-     public Date getFechaMaxSubasta() {
+
+    public Date getFechaMaxSubasta() {
         return FechaMaxSubasta;
     }
 
     public void setFechaMaxSubasta(Date FechaMaxSubasta) {
         this.FechaMaxSubasta = FechaMaxSubasta;
     }
-    
-    
-}
 
+}

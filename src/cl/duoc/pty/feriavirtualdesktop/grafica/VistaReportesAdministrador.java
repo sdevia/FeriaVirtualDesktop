@@ -13,61 +13,35 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.TMUsuario;
 import cl.duoc.pty.feriavirtualdesktop.entidades.Usuario;
 import cl.duoc.pty.feriavirtualdesktop.negocio.OrdenController;
 import cl.duoc.pty.feriavirtualdesktop.negocio.UsuarioController;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JDialog;
-import javax.swing.RowFilter;
-import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class VistaReportesAdministrador extends javax.swing.JPanel {
+
     /**
      * Creates new form ReportesAdministrador
      */
     CardLayout vista;
+
     public VistaReportesAdministrador() {
         initComponents();
-        
 
- 
     }
 
-    
-    
-        private void inicializarTabla() {
-        String cbxopcion = (String)cbxTipoReporteAdministrador.getSelectedItem();   
-        
-        
-        /*
-        if (cbxopcion == "23") {
-            List<Usuario> usuarios = new ArrayList<>();
-            TMUsuario modelo;                         
-            modelo = new TMUsuario(usuarios);
-            tblReporteAdministrador.setModel(modelo); 
-            RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
-            String s = (String)cbxTipoReporteAdministrador.getSelectedItem();
-            listaUsuario = UsuarioController.buscarUsuario(s);
-            modelo = new TMUsuario(listaUsuario.getUsuarios());
-            tblReporteAdministrador.setModel(modelo);
-        } else {
-                CuadroDialogo.setVisible(true);
-        }
-        
-        */
-        
-        
-        switch (cbxopcion) 
-        { 
-            case "Usuarios Creados en Plataforma": 
+    private void inicializarTabla() {
+        String cbxopcion = (String) cbxTipoReporteAdministrador.getSelectedItem();
+
+        switch (cbxopcion) {
+            case "Usuarios Creados en Plataforma":
                 List<Usuario> usuarios = new ArrayList<>();
-                TMUsuario modeloUsuario;                         
+                TMUsuario modeloUsuario;
                 modeloUsuario = new TMUsuario(usuarios);
                 RespuestaUsuarioListar listaUsuario = new RespuestaUsuarioListar();
                 listaUsuario = UsuarioController.buscarUsuario("");
@@ -76,29 +50,28 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
                 TableRowSorter<TableModel> OrdenModeloUsuario = new TableRowSorter<TableModel>(modeloUsuario);
                 tblReporteAdministrador.setRowSorter(OrdenModeloUsuario);
                 //OrdenModeloUsuario.setRowFilter(RowFilter.regexFilter("23", 0));
-            break; 
-            case "Procesos de Venta Finalizados": 
-            CuadroDialogo.setVisible(true);
+                break;
+            case "Procesos de Venta Finalizados":
+                CuadroDialogo.setVisible(true);
 
-            break; 
-           case "Total Ordenes Generadas": 
+                break;
+            case "Total Ordenes Generadas":
                 List<Orden> ordenes = new ArrayList<>();
-                TMOrden modeloOrden; 
+                TMOrden modeloOrden;
                 modeloOrden = new TMOrden(ordenes);
                 RespuestaOrdenListar listaOrden = new RespuestaOrdenListar();
                 listaOrden = OrdenController.listarOrden();
                 modeloOrden = new TMOrden(listaOrden.getOrdenes());
                 tblReporteAdministrador.setModel(modeloOrden);
-                
+
                 TableRowSorter<TableModel> OrdenModeloOrden = new TableRowSorter<TableModel>(modeloOrden);
                 tblReporteAdministrador.setRowSorter(OrdenModeloOrden);
-                
-                
-            break; 
-}
-        
 
+                break;
         }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -232,7 +205,7 @@ public class VistaReportesAdministrador extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReportesAdminsGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesAdminsGenerarActionPerformed
-        inicializarTabla();          
+        inicializarTabla();
     }//GEN-LAST:event_btnReportesAdminsGenerarActionPerformed
 
     private void tblReporteAdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblReporteAdministradorMouseClicked

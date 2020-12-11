@@ -10,23 +10,22 @@ import java.util.List;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class Orden {
-        private int IdOrden;
-        private Date FechaOrden;
-        private boolean FirmaContrato;
-        private Date FechaFirmaContrato;
-        private String Estado;
-        private double PrecioVenta;
-        private int IdClienteExterno;
-        private int IdClienteInterno;
-        //private List<DetalleOrden> DetalleOrden;
-        
+
+    private int IdOrden;
+    private Date FechaOrden;
+    private boolean FirmaContrato;
+    private Date FechaFirmaContrato;
+    private String Estado;
+    private double PrecioVenta;
+    private int IdClienteExterno;
+    private int IdClienteInterno;
+
     public Orden() {
     }
 
-    
     public Orden(int IdOrden, Date FechaOrden, boolean FirmaContrato, Date FechaFirmaContrato, String Estado, double PrecioVenta, int IdClienteExterno, int IdClienteInterno, List<DetalleOrden> DetalleOrden) {
         this.IdOrden = IdOrden;
         this.FechaOrden = FechaOrden;
@@ -36,7 +35,6 @@ public class Orden {
         this.PrecioVenta = PrecioVenta;
         this.IdClienteExterno = IdClienteExterno;
         this.IdClienteInterno = IdClienteInterno;
-        //this.DetalleOrden = DetalleOrden;
     }
 
     public int getIdOrden() {
@@ -103,12 +101,4 @@ public class Orden {
         this.IdClienteInterno = IdClienteInterno;
     }
 
-    /*public List<DetalleOrden> getDetalleOrden() {
-        return DetalleOrden;
-    }
-
-    public void setDetalleOrden(List<DetalleOrden> DetalleOrden) {
-        this.DetalleOrden = DetalleOrden;
-    }
-    */
 }

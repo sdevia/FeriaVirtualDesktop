@@ -10,14 +10,15 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class FormatoString {
 
     /**
      * Método para mostrar texto con la primera mayúscula
+     *
      * @param frase
-     * @return 
+     * @return
      */
     public static String PrimeraMayuscula(String frase) {
         frase = frase.substring(0, 1).toUpperCase() + frase.substring(1);
@@ -33,8 +34,9 @@ public class FormatoString {
 
     /**
      * Método que valida que solo se digitaron letras
+     *
      * @param cadena
-     * @return 
+     * @return
      */
     public static boolean SoloLetras(String cadena) {
         cadena = cadena;

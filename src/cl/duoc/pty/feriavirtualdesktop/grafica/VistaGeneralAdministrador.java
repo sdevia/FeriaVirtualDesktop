@@ -8,12 +8,10 @@ package cl.duoc.pty.feriavirtualdesktop.grafica;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
 
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class VistaGeneralAdministrador extends javax.swing.JFrame {
 

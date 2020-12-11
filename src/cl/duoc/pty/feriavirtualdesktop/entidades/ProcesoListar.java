@@ -12,6 +12,7 @@ import java.util.List;
  * @author Eduardo
  */
 public class ProcesoListar {
+
     private boolean Exito;
     private String Mensaje;
     private List<Proceso> Procesos;
@@ -49,6 +50,4 @@ public class ProcesoListar {
         this.Procesos = Procesos;
     }
 
-    
-    
 }

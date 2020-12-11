@@ -12,16 +12,17 @@ import java.util.Date;
  * @author Eduardo
  */
 public class DetalleSubasta {
-        private int IdDetalle;
-        private int MontoOferta;
-        private Date Fecha;
-        private String Estado;
-        private int IdSubasta;
-        private int IdUsuario;
-        
-        public DetalleSubasta() {
-            Estado = "EN_PROCESO";
-        }
+
+    private int IdDetalle;
+    private int MontoOferta;
+    private Date Fecha;
+    private String Estado;
+    private int IdSubasta;
+    private int IdUsuario;
+
+    public DetalleSubasta() {
+        Estado = "EN_PROCESO";
+    }
 
     public int getIdDetalle() {
         return IdDetalle;
@@ -70,7 +71,5 @@ public class DetalleSubasta {
     public void setIdUsuario(int IdUsuario) {
         this.IdUsuario = IdUsuario;
     }
-        
-        
-        
+
 }

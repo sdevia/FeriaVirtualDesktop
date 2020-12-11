@@ -6,8 +6,6 @@
 package cl.duoc.pty.feriavirtualdesktop.negocio;
 
 import cl.duoc.pty.feriavirtualdesktop.entidades.Parametro;
-import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaUsuarioListar;
-import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -24,8 +22,8 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 /**
- *
- * @author s1mu2
+ * 
+ * @author Samuel
  */
 public class ApiController {
 
@@ -35,12 +33,16 @@ public class ApiController {
         List<Parametro> parametros = new ArrayList<Parametro>();
         return Get(recurso, parametros);
     }
-
+/**
+ * Método de conexion Get a la API
+ * @param recurso
+ * @param parametros
+ * @return 
+ */
     public String Get(String recurso, List<Parametro> parametros) {
 
         try {
 
-            //Aqui ponemos loginca para conectarnos a la api
             TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
                 public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                     return null;
@@ -66,7 +68,7 @@ public class ApiController {
             for (final Parametro myparam : parametros) {
                 param += myparam.Name + "=" + myparam.Value+"&";
             }
-            URL url = new URL(urlApi + recurso+param);//your url i.e fetch data from .
+            URL url = new URL(urlApi + recurso+param);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestProperty("Content-Type", "application/json;charset=UTF-16");
@@ -84,7 +86,6 @@ public class ApiController {
             while ((output = br.readLine()) != null) {
                 data.append(output + '\n');
             }
-
             
             conn.disconnect();
             return data.toString();
@@ -93,8 +94,13 @@ public class ApiController {
         }
         return null;
     }
-
-    // Todo lo del get y el post aca.
+/**
+ * Método para la conexión del Post a la API
+ * @param recurso
+ * @param objetoJson
+ * @param parametros
+ * @return 
+ */
     public String Post(String recurso, String objetoJson, List<Parametro> parametros) {
 
         try {
@@ -115,27 +121,22 @@ public class ApiController {
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, trustAllCerts, new java.security.SecureRandom());
             HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-            // Create all-trusting host name verifier
             HostnameVerifier allHostsValid = new HostnameVerifier() {
                 public boolean verify(String hostname, SSLSession session) {
                     return true;
                 }
             };
-            // Install the all-trusting host verifier
             HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-            /* End of the fix*/
             String param = "?";
             for (final Parametro myparam : parametros) {
                 param += myparam.Name + "=" + myparam.Value+"&";
             }
-            URL url = new URL(urlApi + recurso+param);//your url i.e fetch data from .
+            URL url = new URL(urlApi + recurso+param);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
-            //conn.setDoInput(true);
             conn.setRequestProperty("Content-Type", "application/json;charset=UTF-16");
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Accept", "application/json");
-            //String jsonInputString = "{Rut: \"" + login.getRut() + "\", Clave: \"" + login.getClave() + "\", TipoPerfil: 1}";            
             String jsonInputString = objetoJson;
             if (objetoJson.length()!=0){
                 try (OutputStream os = conn.getOutputStream()) {

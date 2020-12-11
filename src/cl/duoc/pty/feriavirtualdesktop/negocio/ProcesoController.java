@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author Administrator
+ * @author Katherine
  */
 public class ProcesoController {
     
@@ -40,9 +40,6 @@ public class ProcesoController {
                 if (listaProceso != null) {
                     if (listaProceso.isExito()) {
 
-                       /* List<Orden> ordenes = new ArrayList<Orden>();
-                        ordenes.add(orden.getOrden());
-                        listaOrden.setOrdenes(ordenes);*/
                         return listaProceso;
                     }
                 }
@@ -59,12 +56,10 @@ public class ProcesoController {
         
         try {
             Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-            String jsonInputString = g.toJson(proceso);//"{Rut: \"" + login.getRut() + "\", Clave: \"" + login.getClave() + "\", TipoPerfil: 1}";
-            //String jsonString = g.toJson(login);
+            String jsonInputString = g.toJson(proceso);
             List<Parametro> parametros = new ArrayList<Parametro>();
             parametros.add(new Parametro("idSession", VistaGeneralAdministrador.session));
             String resultado = new ApiController().Post("Admin/Proceso", jsonInputString, parametros);
-            //String jsonString = g.toJson(admin);
             creaProceso = g.fromJson(resultado, RespuestaProceso.class);
             
             
@@ -109,7 +104,6 @@ public class ProcesoController {
         try {
             ApiController servicioApi = new ApiController();
             List<Parametro> parametros = new ArrayList<Parametro>();
-            //String resultado = "";
 
             Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
             parametros.add(new Parametro("idProceso", String.valueOf(idProceso)));

@@ -7,9 +7,10 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class Comuna {
+
     private int IdComuna;
     private int IdRegion;
     private int CodigoComuna;
@@ -76,6 +77,5 @@ public class Comuna {
     public void setNombreRegion(String NombreRegion) {
         this.NombreRegion = NombreRegion;
     }
-    
-    
+
 }

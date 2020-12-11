@@ -7,7 +7,7 @@ package cl.duoc.pty.feriavirtualdesktop.grafica;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class Main {
 

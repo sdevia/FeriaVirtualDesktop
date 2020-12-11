@@ -9,9 +9,10 @@ import java.util.List;
 
 /**
  *
- * @author Administrator
+ * @author Katherine
  */
 public class RespuestaOrdenListar {
+
     private boolean Exito;
     private String Mensaje;
     private List<Orden> Ordenes;
@@ -41,7 +42,7 @@ public class RespuestaOrdenListar {
         this.Mensaje = Mensaje;
     }
 
-   public List<Orden> getOrdenes() {
+    public List<Orden> getOrdenes() {
         return Ordenes;
     }
 

@@ -5,14 +5,13 @@
  */
 package cl.duoc.pty.feriavirtualdesktop.entidades;
 
-import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
 import java.util.List;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class TMUsuario implements TableModel {
 

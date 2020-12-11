@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class RespuestaUsuarioListar {
 

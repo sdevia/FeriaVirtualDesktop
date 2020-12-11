@@ -26,7 +26,7 @@ import java.awt.event.*;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class VistaGestionUsuarios extends javax.swing.JPanel implements ActionListener {
 

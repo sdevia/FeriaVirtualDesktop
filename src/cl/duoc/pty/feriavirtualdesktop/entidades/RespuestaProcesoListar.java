@@ -9,15 +9,16 @@ import java.util.List;
 
 /**
  *
- * @author Administrator
+ * @author Katherine
  */
 public class RespuestaProcesoListar {
+
     private boolean Exito;
     private String Mensaje;
     private List<Proceso> Procesos;
-    
+
     public RespuestaProcesoListar() {
-        
+
     }
 
     public RespuestaProcesoListar(boolean Exito, String Mensaje, List<Proceso> Procesos) {
@@ -49,7 +50,5 @@ public class RespuestaProcesoListar {
     public void setProcesos(List<Proceso> Procesos) {
         this.Procesos = Procesos;
     }
-    
-    
-}
 
+}

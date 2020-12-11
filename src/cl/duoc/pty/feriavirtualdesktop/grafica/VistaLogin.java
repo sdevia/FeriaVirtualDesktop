@@ -13,13 +13,11 @@ import cl.duoc.pty.feriavirtualdesktop.utils.ValidacionRut;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class VistaLogin extends javax.swing.JFrame {
 
@@ -243,7 +241,9 @@ public class VistaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void txtIdentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificadorActionPerformed
-        // TODO add your handling code here:
+        /**
+         * Validacion del Rut
+         */
         ValidacionRut valida;
         valida = new ValidacionRut();
         String rut = txtIdentificador.getText();
@@ -260,7 +260,6 @@ public class VistaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdentificadorActionPerformed
 
     private void txtIdentificadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdentificadorFocusLost
-        // TODO add your handling code here:
         ValidacionRut valida;
         valida = new ValidacionRut();
         String rut = txtIdentificador.getText();
@@ -279,7 +278,6 @@ public class VistaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarMouseExited
 
     private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
-        // TODO add your handling code here:
         login();
     }//GEN-LAST:event_txtClaveActionPerformed
 
@@ -287,33 +285,7 @@ public class VistaLogin extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VistaLogin().setVisible(true);

@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class Categoria {
     private int IdCategoria;

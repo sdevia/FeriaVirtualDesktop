@@ -10,6 +10,7 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
  * @author Eduardo
  */
 public class RespuestaSubasta {
+
     private boolean Exito;
     private String Mensaje;
     private Subasta Subasta;
@@ -46,7 +47,5 @@ public class RespuestaSubasta {
     public void setSubasta(Subasta Subasta) {
         this.Subasta = Subasta;
     }
-    
-    
-}
 
+}

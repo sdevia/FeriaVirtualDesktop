@@ -7,7 +7,7 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 /**
  *
- * @author s1mu2
+ * @author Samuel
  */
 public class Parametro {
 
@@ -17,9 +17,9 @@ public class Parametro {
 
     public String Name;
     public String Value;
-    
+
     public Parametro(String name, String value) {
-    this.Name = name;
-    this.Value = value;
+        this.Name = name;
+        this.Value = value;
     }
 }

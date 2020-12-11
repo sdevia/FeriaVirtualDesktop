@@ -11,7 +11,6 @@ import cl.duoc.pty.feriavirtualdesktop.entidades.RespuestaCategoriaListar;
 import cl.duoc.pty.feriavirtualdesktop.entidades.TMCategoria;
 import cl.duoc.pty.feriavirtualdesktop.negocio.CategoriaController;
 import cl.duoc.pty.feriavirtualdesktop.utils.FormatoString;
-import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author bruunildo
+ * @author Javier
  */
 public class VistaCategoriaProductos extends javax.swing.JPanel {
 
@@ -32,7 +31,7 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
      * Creates new form VistaCategoriaProductos
      */
     private RespuestaCategoriaListar listaCategorias = new RespuestaCategoriaListar();
-    
+
     public VistaCategoriaProductos() {
         initComponents();
         inicializarTabla();
@@ -41,15 +40,15 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
 
     private void inicializarTabla() {
         List<Categoria> categorias = new ArrayList<>();
-        TMCategoria modelo;           
+        TMCategoria modelo;
         modelo = new TMCategoria(categorias);
 
-        
-        tblCategorias.setModel(modelo); 
+        tblCategorias.setModel(modelo);
     }
-        private void listarCategorias() {
+
+    private void listarCategorias() {
         RespuestaCategoriaListar listaCategoria = new RespuestaCategoriaListar();
-    
+
         listaCategoria = CategoriaController.listarCategoria();
 
         TMCategoria modelo;
@@ -57,7 +56,8 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
 
         tblCategorias.setModel(modelo);
     }
-        private void limpiarCampos() {
+
+    private void limpiarCampos() {
         txtIdCategoriaProducto.setText("");
         txtNombreCategoriaProducto.setText("");
         txtDescripcionCategoriaProducto.setText("");
@@ -66,9 +66,7 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
         txtDescripcionCategoriaIngles.setText("");
         txtNombreCategoriaIngles.setText("");
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -359,20 +357,20 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
         int i = tblCategorias.getSelectedRow();
         TableModel model = tblCategorias.getModel();
 
-        txtIdCategoriaProducto.setText(model.getValueAt(i,0).toString());
-        txtNombreCategoriaProducto.setText(model.getValueAt(i,1).toString());
-        txtNombreCategoriaIngles.setText(model.getValueAt(i,2).toString());
-        txtDescripcionCategoriaProducto.setText(model.getValueAt(i,3).toString());
-        txtDescripcionCategoriaIngles.setText(model.getValueAt(i,4).toString());
-        String opcion = (model.getValueAt(i,5).toString()); 
+        txtIdCategoriaProducto.setText(model.getValueAt(i, 0).toString());
+        txtNombreCategoriaProducto.setText(model.getValueAt(i, 1).toString());
+        txtNombreCategoriaIngles.setText(model.getValueAt(i, 2).toString());
+        txtDescripcionCategoriaProducto.setText(model.getValueAt(i, 3).toString());
+        txtDescripcionCategoriaIngles.setText(model.getValueAt(i, 4).toString());
+        String opcion = (model.getValueAt(i, 5).toString());
         if (opcion == "Habilitado") {
             cbxEstadoCategoria.setSelectedIndex(1);
-        }else {
+        } else {
             cbxEstadoCategoria.setSelectedIndex(2);
         }
-        txtFechaCreacionCategoria.setText(model.getValueAt(i,6).toString());
-        txtFechaModificacionCategoriaProducto.setText(model.getValueAt(i,7).toString());
-     
+        txtFechaCreacionCategoria.setText(model.getValueAt(i, 6).toString());
+        txtFechaModificacionCategoriaProducto.setText(model.getValueAt(i, 7).toString());
+
     }//GEN-LAST:event_tblCategoriasMouseClicked
 
     private void btnCrearCategoriaProductoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCategoriaProductoMouseEntered
@@ -392,101 +390,92 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLimpiarCategoriaActionPerformed
 
     private void btnCrearCategoriaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCategoriaProductoActionPerformed
-        if(
-          
-           txtNombreCategoriaProducto.getText().isEmpty() ||
-           txtNombreCategoriaIngles.getText().isEmpty() ||
-           txtDescripcionCategoriaProducto.getText().isEmpty() ||
-           txtDescripcionCategoriaIngles.getText().isEmpty()){
-           //txtFechaCreacionCategoria.getText().isEmpty() ||
-           //txtFechaModificacionCategoriaProducto.getText().isEmpty()) {
-            
-        showMessageDialog(null, "Hay campos vacíos","Información",JOptionPane.WARNING_MESSAGE);
+        if (txtNombreCategoriaProducto.getText().isEmpty()
+                || txtNombreCategoriaIngles.getText().isEmpty()
+                || txtDescripcionCategoriaProducto.getText().isEmpty()
+                || txtDescripcionCategoriaIngles.getText().isEmpty()) {
+
+            showMessageDialog(null, "Hay campos vacíos", "Información", JOptionPane.WARNING_MESSAGE);
 
         } else {
-        RespuestaCategoria creacionCategoria = new RespuestaCategoria();
-        Categoria categoria = new Categoria();
-        
-        Date fechaCreacionCategoria = new Date();
-        Date fechaModificacionCategoria = new Date();
-        
-        try {
-            fechaCreacionCategoria = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaCreacionCategoria.getText());
-            fechaModificacionCategoria = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaModificacionCategoriaProducto.getText());
-        } catch (ParseException ex) {
-            System.out.println("Error "+ex);
-        }
-        
-        categoria.setIdUsuario(1);
-        categoria.setNombreCategoria(txtNombreCategoriaProducto.getText());
-        categoria.setNombreCategoriaIngles(txtNombreCategoriaIngles.getText());
-        categoria.setDescripcion(txtDescripcionCategoriaProducto.getText());
-        categoria.setDescripcionIngles(txtDescripcionCategoriaIngles.getText());
-        String opcionEstadoCategoria = (String) cbxEstadoCategoria.getSelectedItem();
-            if (opcionEstadoCategoria=="Habilitado") {     
-            categoria.setEstado(true);
-            }else{
-            categoria.setEstado(false);
+            RespuestaCategoria creacionCategoria = new RespuestaCategoria();
+            Categoria categoria = new Categoria();
+
+            Date fechaCreacionCategoria = new Date();
+            Date fechaModificacionCategoria = new Date();
+
+            try {
+                fechaCreacionCategoria = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaCreacionCategoria.getText());
+                fechaModificacionCategoria = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaModificacionCategoriaProducto.getText());
+            } catch (ParseException ex) {
+                System.out.println("Error " + ex);
             }
-        categoria.setFechaCreacion(fechaCreacionCategoria);
-        categoria.setFechaModificacion(fechaModificacionCategoria);
-        
-        creacionCategoria = CategoriaController.crearModificarCategoria(categoria);
-        
-        showMessageDialog(null, creacionCategoria.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
-        limpiarCampos();
-        //inicializarTabla();
+
+            categoria.setIdUsuario(1);
+            categoria.setNombreCategoria(txtNombreCategoriaProducto.getText());
+            categoria.setNombreCategoriaIngles(txtNombreCategoriaIngles.getText());
+            categoria.setDescripcion(txtDescripcionCategoriaProducto.getText());
+            categoria.setDescripcionIngles(txtDescripcionCategoriaIngles.getText());
+            String opcionEstadoCategoria = (String) cbxEstadoCategoria.getSelectedItem();
+            if (opcionEstadoCategoria == "Habilitado") {
+                categoria.setEstado(true);
+            } else {
+                categoria.setEstado(false);
+            }
+            categoria.setFechaCreacion(fechaCreacionCategoria);
+            categoria.setFechaModificacion(fechaModificacionCategoria);
+
+            creacionCategoria = CategoriaController.crearModificarCategoria(categoria);
+
+            showMessageDialog(null, creacionCategoria.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
+            limpiarCampos();
         }
     }//GEN-LAST:event_btnCrearCategoriaProductoActionPerformed
 
     private void btnModificarCategoriaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCategoriaProductoActionPerformed
-        if(
-          
-           txtNombreCategoriaProducto.getText().isEmpty() ||
-           txtNombreCategoriaIngles.getText().isEmpty() ||
-           txtDescripcionCategoriaProducto.getText().isEmpty() ||
-           txtDescripcionCategoriaIngles.getText().isEmpty() ||
-           txtFechaCreacionCategoria.getText().isEmpty() ||
-           txtFechaModificacionCategoriaProducto.getText().isEmpty()) {
-            
-        showMessageDialog(null, "Hay campos vacíos","Información",JOptionPane.WARNING_MESSAGE);
-        
-        } 
-        
-        else {
-            
-        RespuestaCategoria modificarCategoria = new RespuestaCategoria();
-        Categoria categoria = new Categoria();
-        
-        Date fechaCreacionCategoria = new Date();
-        Date fechaModificacionCategoria = new Date();
-        
-        try {
-            fechaCreacionCategoria = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaCreacionCategoria.getText());
-            fechaModificacionCategoria = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaModificacionCategoriaProducto.getText());
-        } catch (ParseException ex) {
-            System.out.println("Error "+ex);
-        }
-        
-        categoria.setIdUsuario(1);
-        categoria.setIdCategoria(Integer.valueOf(txtIdCategoriaProducto.getText()));
-        categoria.setNombreCategoria(txtNombreCategoriaProducto.getText());
-        categoria.setNombreCategoriaIngles(txtNombreCategoriaIngles.getText());
-        categoria.setDescripcion(txtDescripcionCategoriaProducto.getText());
-        categoria.setDescripcionIngles(txtDescripcionCategoriaIngles.getText());
-        String opcionEstadoCategoria = (String) cbxEstadoCategoria.getSelectedItem();
-            if (opcionEstadoCategoria=="Habilitado") {     
-            categoria.setEstado(true);
-            }else{
-            categoria.setEstado(false);
+        if (txtNombreCategoriaProducto.getText().isEmpty()
+                || txtNombreCategoriaIngles.getText().isEmpty()
+                || txtDescripcionCategoriaProducto.getText().isEmpty()
+                || txtDescripcionCategoriaIngles.getText().isEmpty()
+                || txtFechaCreacionCategoria.getText().isEmpty()
+                || txtFechaModificacionCategoriaProducto.getText().isEmpty()) {
+
+            showMessageDialog(null, "Hay campos vacíos", "Información", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+
+            RespuestaCategoria modificarCategoria = new RespuestaCategoria();
+            Categoria categoria = new Categoria();
+
+            Date fechaCreacionCategoria = new Date();
+            Date fechaModificacionCategoria = new Date();
+
+            try {
+                fechaCreacionCategoria = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaCreacionCategoria.getText());
+                fechaModificacionCategoria = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(txtFechaModificacionCategoriaProducto.getText());
+            } catch (ParseException ex) {
+                System.out.println("Error " + ex);
             }
-        categoria.setFechaCreacion(fechaCreacionCategoria);
-        categoria.setFechaModificacion(fechaModificacionCategoria);
-        
-        modificarCategoria = CategoriaController.crearModificarCategoria(categoria);
-        
-        showMessageDialog(null, modificarCategoria.getMensaje(),"Información",JOptionPane.WARNING_MESSAGE);
-        limpiarCampos();
+
+            categoria.setIdUsuario(1);
+            categoria.setIdCategoria(Integer.valueOf(txtIdCategoriaProducto.getText()));
+            categoria.setNombreCategoria(txtNombreCategoriaProducto.getText());
+            categoria.setNombreCategoriaIngles(txtNombreCategoriaIngles.getText());
+            categoria.setDescripcion(txtDescripcionCategoriaProducto.getText());
+            categoria.setDescripcionIngles(txtDescripcionCategoriaIngles.getText());
+            String opcionEstadoCategoria = (String) cbxEstadoCategoria.getSelectedItem();
+            if (opcionEstadoCategoria == "Habilitado") {
+                categoria.setEstado(true);
+            } else {
+                categoria.setEstado(false);
+            }
+            categoria.setFechaCreacion(fechaCreacionCategoria);
+            categoria.setFechaModificacion(fechaModificacionCategoria);
+
+            modificarCategoria = CategoriaController.crearModificarCategoria(categoria);
+
+            showMessageDialog(null, modificarCategoria.getMensaje(), "Información", JOptionPane.WARNING_MESSAGE);
+            limpiarCampos();
         }
     }//GEN-LAST:event_btnModificarCategoriaProductoActionPerformed
 

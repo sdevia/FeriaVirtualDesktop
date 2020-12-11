@@ -7,15 +7,16 @@ package cl.duoc.pty.feriavirtualdesktop.entidades;
 
 /**
  *
- * @author Administrator
+ * @author Katherine
  */
 public class RespuestaOrden {
+
     private boolean Exito;
     private String Mensaje;
     private Orden Orden;
-    
+
     public RespuestaOrden() {
-        
+
     }
 
     public RespuestaOrden(boolean Exito, String Mensaje, Orden Orden) {
@@ -48,5 +49,4 @@ public class RespuestaOrden {
         this.Orden = Orden;
     }
 
-    
 }

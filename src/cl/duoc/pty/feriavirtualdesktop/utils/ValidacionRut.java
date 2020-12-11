@@ -7,7 +7,7 @@ package cl.duoc.pty.feriavirtualdesktop.utils;
 
 /**
  *
- * @author s1mul
+ * @author Samuel
  */
 public class ValidacionRut {
 

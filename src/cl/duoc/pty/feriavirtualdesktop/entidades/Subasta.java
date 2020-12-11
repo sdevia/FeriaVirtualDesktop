@@ -13,6 +13,7 @@ import java.util.List;
  * @author Eduardo
  */
 public class Subasta {
+
     private int IdSubasta;
     private Date FechaSubasta;
     private Date FechaTermino;
@@ -22,24 +23,6 @@ public class Subasta {
 
     public Subasta() {
     }
-    
-   /*  public Subasta(Date FechaSubasta, Date FechaTermino, boolean Estado, int IdProceso) {
-        this.FechaSubasta = FechaSubasta;
-        this.FechaTermino = FechaTermino;
-        this.Estado = Estado;
-        this.IdProceso = IdProceso;
-        
-    }
-    
-    public Subasta(int IdSubasta, Date FechaSubasta, Date FechaTermino, boolean Estado, int IdProceso) {
-        this.IdSubasta = IdSubasta;
-        this.FechaSubasta = FechaSubasta;
-        this.FechaTermino = FechaTermino;
-        this.Estado = Estado;
-        this.IdProceso = IdProceso;
-        
-    }
-    */
 
     public Subasta(int IdSubasta, Date FechaSubasta, Date FechaTermino, boolean Estado, int IdProceso, List<DetalleSubasta> DetalleSubasta) {
         this.IdSubasta = IdSubasta;
@@ -49,8 +32,6 @@ public class Subasta {
         this.IdProceso = IdProceso;
         this.DetalleSubasta = DetalleSubasta;
     }
-    
-    
 
     public int getIdSubasta() {
         return IdSubasta;
@@ -99,6 +80,5 @@ public class Subasta {
     public void setDetalleSubasta(List<DetalleSubasta> DetalleSubasta) {
         this.DetalleSubasta = DetalleSubasta;
     }
-    
-    
+
 }

@@ -14,10 +14,10 @@ import javax.swing.table.TableModel;
  * @author Eduardo
  */
 public class TMOrdenProcesoEtapa implements TableModel {
-    
+
     private List<OrdenProcesoEtapa> ordenProcesoEtapas;
-    
-    public TMOrdenProcesoEtapa(List<OrdenProcesoEtapa> lista){
+
+    public TMOrdenProcesoEtapa(List<OrdenProcesoEtapa> lista) {
         ordenProcesoEtapas = lista;
     }
 
@@ -34,22 +34,22 @@ public class TMOrdenProcesoEtapa implements TableModel {
     @Override
     public String getColumnName(int columnIndex) {
         String titulo = null;
-            switch (columnIndex) {
-                case 0: {
-                    titulo = "ID USUARIO";
-                    break;
-                }
-                case 1: {
-                    titulo = "ESTADO";
-                    break;
-                }
-                case 2: {
-                    titulo = "PRECIO VENTA";
-                    break;
-                }
-
+        switch (columnIndex) {
+            case 0: {
+                titulo = "ID USUARIO";
+                break;
             }
-            return titulo;
+            case 1: {
+                titulo = "ESTADO";
+                break;
+            }
+            case 2: {
+                titulo = "PRECIO VENTA";
+                break;
+            }
+
+        }
+        return titulo;
     }
 
     @Override
@@ -59,48 +59,48 @@ public class TMOrdenProcesoEtapa implements TableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex !=0;
+        return columnIndex != 0;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         OrdenProcesoEtapa o = ordenProcesoEtapas.get(rowIndex);
-            String valor = null;
-            
-            switch (columnIndex) {
-                case 0: {
-                    valor = Integer.toString(o.getIdUsuario());
-                    break;
-                }
-                case 1: {
-                    valor = o.getEstado();
-                    break;
-                }
-                case 2: {
-                    valor = Double.toString(o.getPrecioVenta());
-                    break;
-                }
+        String valor = null;
+
+        switch (columnIndex) {
+            case 0: {
+                valor = Integer.toString(o.getIdUsuario());
+                break;
             }
-            return valor;
+            case 1: {
+                valor = o.getEstado();
+                break;
+            }
+            case 2: {
+                valor = Double.toString(o.getPrecioVenta());
+                break;
+            }
+        }
+        return valor;
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         OrdenProcesoEtapa o = ordenProcesoEtapas.get(rowIndex);
-            switch (columnIndex) {
-                case 0: {
-                    o.setIdUsuario(aValue.hashCode());
-                    break;
-                }
-                case 1: {
-                    o.setEstado(aValue.toString());
-                    break;
-                }
-                case 2: {
-                    o.setPrecioVenta(aValue.hashCode());
-                    break;
-                }
+        switch (columnIndex) {
+            case 0: {
+                o.setIdUsuario(aValue.hashCode());
+                break;
             }
+            case 1: {
+                o.setEstado(aValue.toString());
+                break;
+            }
+            case 2: {
+                o.setPrecioVenta(aValue.hashCode());
+                break;
+            }
+        }
     }
 
     @Override
@@ -110,5 +110,5 @@ public class TMOrdenProcesoEtapa implements TableModel {
     @Override
     public void removeTableModelListener(TableModelListener l) {
     }
-    
+
 }

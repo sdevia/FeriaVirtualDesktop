@@ -228,7 +228,7 @@ public class VistaCategoriaProductos extends javax.swing.JPanel {
         txtFechaModificacionCategoriaProducto.setEnabled(false);
 
         lblIdCategoriaProducto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblIdCategoriaProducto.setText("ID Categora");
+        lblIdCategoriaProducto.setText("ID Categoría");
 
         cbxEstadoCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Habilitado", "Desabilitado" }));
 
